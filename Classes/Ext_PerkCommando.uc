@@ -1,4 +1,4 @@
-Class Ext_PerkCommando extends Ext_PerkBase;
+Class Ext_PerkCommando extends Ext_PerkMetronomeBase;
 
 var bool bUseProfessional,bUseMachineGunner;
 var float ZTExtCount;
@@ -61,6 +61,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitTactician')
 	DefTraitList.Add(class'Ext_TraitMachineGunner')
+	DefTraitList.Add(class'Ext_TraitMetronome')
 	BasePerk=class'KFPerk_Commando'
 	
 	ZTExtCount=1.f;

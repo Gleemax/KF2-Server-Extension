@@ -1363,6 +1363,7 @@ simulated function float GetIronSightSpeedModifier( KFWeapon KFW )
 
 function OnWaveEnded();
 function NotifyZedTimeStarted();
+function NotifyZedTimeEnded();
 
 simulated function float GetZedTimeExtensions( byte Level )
 {
