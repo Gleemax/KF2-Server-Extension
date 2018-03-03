@@ -35,5 +35,4 @@ defaultproperties
 	DamList.Add(1.5)
 	DamList.Add(2)
 	DamList.Add(3)
-	DamList.Add(3)
 }

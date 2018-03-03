@@ -237,7 +237,7 @@ static final function class<KFPawn_Monster> PickRandomMonster( byte Level, bool 
 defaultproperties
 {
 	RespawnHelperTime=1
-	HPScale=0.5
-	DamageScale=2
-	FriendlyScalar=0.65
+	HPScale=0.25
+	DamageScale=4
+	FriendlyScalar=0.35
 }

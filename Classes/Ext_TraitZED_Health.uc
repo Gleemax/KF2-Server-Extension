@@ -20,19 +20,17 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	NumLevels=5
+	NumLevels=4
 	bPostApplyEffect=true
 	TraitName="Monster Health"
-	Description="This trait will scale how much health your helper ZED will have:|Lv1-5: +25%, +50%, +75%, +100%, +200%||-Requires Monster Tongue trait."
-	DefLevelCosts(0)=5
-	DefLevelCosts(1)=15
-	DefLevelCosts(2)=25
-	DefLevelCosts(3)=40
-	DefLevelCosts(4)=60
+	Description="This trait will scale how much health your helper ZED will have:|Lv1-5: +25%, +50%, +75%, +100%||-Requires Monster Tongue trait."
+	DefLevelCosts(0)=15
+	DefLevelCosts(1)=25
+	DefLevelCosts(2)=40
+	DefLevelCosts(3)=60
 	
 	HPList.Add(1.25)
 	HPList.Add(1.5)
 	HPList.Add(1.75)
 	HPList.Add(2)
-	HPList.Add(3)
 }
