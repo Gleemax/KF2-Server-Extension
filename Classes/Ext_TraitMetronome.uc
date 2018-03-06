@@ -13,6 +13,14 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 {
 	Ext_PerkMetronomeBase(Perk).EnableMetronome(false);
 }
+static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
+{
+	Ext_PerkMetronomeBase(Perk).EnableUI(true);
+}
+static function PlayerDied( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
+{
+	Ext_PerkMetronomeBase(Perk).EnableUI(false);
+}
 
 defaultproperties
 {

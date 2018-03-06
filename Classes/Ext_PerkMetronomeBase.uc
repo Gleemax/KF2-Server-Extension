@@ -3,7 +3,7 @@ Class Ext_PerkMetronomeBase extends Ext_PerkBase;
 var byte HeadShotMax,HeadShotCount,ZTStackCount,ZTStackMax;
 var float CountdownIntervall;
 var KFPawn_Monster LKFPM;
-var bool bCountingDown;
+var bool bCountingDown,bEnabledUI;
 
 final function SetIntervall( float Intervall )
 {
@@ -22,11 +22,26 @@ final function EnableMetronome( bool bEnabled )
 		HeadShotCount = 0;
 		ZTStackCount = 0;
 		ZTStackMax = 0;
+		bEnabledUI = false;
 		CountdownIntervall = 0;
 		HeadShotMessage(0,true,1);
 	}
 	else 
 		SetTimer(CountdownIntervall,true,nameOf(SetUpMetronome));
+}
+final function EnableUI( bool bEnabled )
+{
+	if (!bEnabled) 
+	{
+		bEnabledUI = false;
+		HeadShotMessage(0,true,1);
+	}
+	else 
+	{
+		bEnabledUI = true;
+		HeadShotMessage(HeadShotCount,true,HeadShotMax);
+	}
+	
 }
 final function UpdateZedTimeCount( bool bHit )
 {
@@ -46,7 +61,8 @@ final function UpdateZedTimeCount( bool bHit )
 	}
 	else
 		HeadShotCount = HeadShotMax;
-	HeadShotMessage(HeadShotCount,true,HeadShotMax);
+	if ( bEnabledUI )
+		HeadShotMessage(HeadShotCount,true,HeadShotMax);
 }
 final function SetUpMetronome()
 {
@@ -82,10 +98,10 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 }
 
 reliable client function HeadShotMessage( byte HeadShotNum, bool bMissed, byte MaxHits )
-{
+{	
 	local AkEvent TempAkEvent;
 	local KFPlayerController PC;
-
+	
 	PC = KFPlayerController(PlayerOwner);
 	if( PC==none || PC.MyGFxHUD==none )
 	{
@@ -116,4 +132,5 @@ reliable client function HeadShotMessage( byte HeadShotNum, bool bMissed, byte M
 
 defaultproperties
 {
+	bEnabledUI=false
 }
