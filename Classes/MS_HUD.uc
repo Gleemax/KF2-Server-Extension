@@ -36,7 +36,7 @@ final function ShowProgressMsg( string S, optional bool bDis )
 	ParseStringIntoArray(S,ProgressLines,"|",false);
 	bProgressDC = bDis;
 	if( !bDis )
-		ProgressLines.AddItem("Press [Esc] to cancel connection");
+		ProgressLines.AddItem("按下 [Esc] 键取消连接");
 }
 
 final function RenderProgress()
@@ -44,7 +44,7 @@ final function RenderProgress()
 	local float Y,XL,YL,Sc;
 	local int i;
 	
-	Canvas.Font = Canvas.GetDefaultCanvasFont();
+	Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
 	Sc = FMin(Canvas.ClipY/1000.f,3.f);
 	if( bProgressDC )
 		Canvas.SetDrawColor(255,80,80,255);
@@ -59,7 +59,7 @@ final function RenderProgress()
 		Y+=YL;
 	}
 	Canvas.SetPos(Canvas.ClipX*0.2,Canvas.ClipY*0.91);
-	Canvas.DrawText("Use Mouse scroll to adjust sensitivity: "$(ActiveGame.Sensitivity*100.f)$"%",,Sc,Sc);
+	Canvas.DrawText("使用鼠标滚轮调整灵敏度: "$(ActiveGame.Sensitivity*100.f)$"%",,Sc,Sc);
 }
 
 defaultproperties

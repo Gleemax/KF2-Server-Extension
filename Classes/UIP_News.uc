@@ -53,7 +53,7 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=WebSiteButton
 		ID="Website"
-		ButtonText="Visit Website"
+		ButtonText="ทรฮสอ๘ีพ"
 		XPosition=0.44
 		YPosition=0.92
 		XSize=0.12

@@ -16,6 +16,10 @@ var bool bPlayingFeignDeathRecovery,bRagdollFromFalling,bRagdollFromBackhit,bRag
 
 var byte HealingShieldMod,HealingSpeedBoostMod,HealingDamageBoostMod;
 
+var byte PoolIndex;
+var array<float> RegenRatePool;
+var array<int> HealthToRegenPool;
+
 replication
 {
 	if( true )
@@ -110,7 +114,7 @@ simulated reliable client function ClientSetBatteryRate( float Rate )
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor=true, optional bool bMessageHealer=true)
 {
 	local int DoshEarned,UsedHealAmount;
-	local float ScAmount;
+	local float ScAmount,ScDelay;
 	local KFPlayerReplicationInfo InstigatorPRI;
 	local ExtPlayerController InstigatorPC, KFPC;
 	local KFPerk InstigatorPerk;
@@ -154,22 +158,27 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 		{
 			if( Healer==None || Healer.PlayerReplicationInfo == None )
 				return false;
-
+	
 			InstigatorPRI = KFPlayerReplicationInfo(Healer.PlayerReplicationInfo);
 			ScAmount = Amount;
+			ScDelay = HealthRegenRate;
 			if( InstigatorPerk != none )
+			{
+				
 				InstigatorPerk.ModifyHealAmount( ScAmount );
+				InstigatorExtPerk.ModifyHealDelay( ScDelay );
+			}
 			UsedHealAmount = ScAmount;
 
 			// You can never have a HealthToRegen value that's greater than HealthMax
 			if( Health + HealthToRegen + UsedHealAmount > HealthMax )
-				UsedHealAmount = Min(HealthMax - (Health + HealthToRegen),255-HealthToRegen);
-			else UsedHealAmount = Min(UsedHealAmount,255-HealthToRegen);
-
+				UsedHealAmount = HealthMax - (Health + HealthToRegen);
+			if ( UsedHealAmount <= 0 )
+				return false;
+				
 	    	HealthToRegen += UsedHealAmount;
 			RepRegenHP = HealthToRegen;
-			if( !IsTimerActive('GiveHealthOverTime') )
-				SetTimer(HealthRegenRate, true, 'GiveHealthOverTime');
+			AddToHealingPool(UsedHealAmount, ScDelay);
 
 			// Give the healer money/XP for helping a teammate
 		    if( Healer.Pawn != none && Healer.Pawn != self )
@@ -223,9 +232,80 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	return bRepairedArmor;
 }
 
+function AddToHealingPool(int amount, float delay)
+{
+	local byte iter;
+	
+	iter = 0;
+	if ( PoolIndex > 0 )
+		for ( iter = 0; iter < PoolIndex; iter++ )
+			if ( delay <= RegenRatePool[iter] ) 
+				break;
+		
+	if ( iter >= PoolIndex )
+	{
+		RegenRatePool.AddItem( delay );
+		HealthToRegenPool.AddItem( amount );
+		ClearTimer( nameof( GiveHealthOverTime ) );
+		SetTimer(delay, true, 'GiveHealthOverTime');
+	} else if ( delay == RegenRatePool[iter] )
+		HealthToRegenPool[iter] += amount;
+	else 
+	{
+		RegenRatePool.InsertItem( iter, delay );
+		HealthToRegenPool.InsertItem( iter, amount );
+	}
+	
+	PoolIndex = RegenRatePool.length;
+	
+}
+function ClearHealingPool()
+{
+	PoolIndex = RegenRatePool.length;	
+	RegenRatePool.Remove(0, PoolIndex);
+	HealthToRegenPool.Remove(0, PoolIndex);
+	PoolIndex = 0;
+	HealthToRegen = 0;
+}
+
 function GiveHealthOverTime()
 {
-	Super.GiveHealthOverTime();
+	local KFPlayerReplicationInfo KFPRI;
+	
+	if( HealthToRegen > 0 && Health < HealthMax )
+	{
+		Health++;
+		HealthToRegen--;
+		
+		if ( --HealthToRegenPool[PoolIndex - 1] <= 0 )
+		{
+			RegenRatePool.Remove(PoolIndex - 1, 1);
+			HealthToRegenPool.Remove(PoolIndex - 1, 1);
+			PoolIndex = RegenRatePool.length;
+			
+			if ( PoolIndex > 0 )
+			{
+				ClearTimer( nameof( GiveHealthOverTime ) );
+				SetTimer(RegenRatePool[PoolIndex], true, 'GiveHealthOverTime');
+			}
+		}
+		
+        WorldInfo.Game.ScoreHeal(1, Health - 1, Controller, self, none);
+
+		KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
+		if( KFPRI != none )
+		{
+			KFPRI.PlayerHealth = Health;
+			KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
+		}
+	}
+	else
+	{
+		ClearHealingPool();
+		HealthToRegen = 0;
+	 	ClearTimer( nameof( GiveHealthOverTime ) );
+	}
+	
 	RepRegenHP = HealthToRegen;
 }
 
@@ -1294,7 +1374,8 @@ simulated function Ext_PerkFieldMedic GetMedicPerk(ExtPlayerController Healer)
 defaultproperties
 {
 	KnockbackResist=1
-
+	PoolIndex=-1
+	
 	// Ragdoll mode:
 	bReplicateRigidBodyLocation=true
 	bCanBecomeRagdoll=true

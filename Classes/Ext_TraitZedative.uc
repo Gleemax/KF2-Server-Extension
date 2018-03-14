@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|Trait requires prestige level: #{FF4000}2";
+	S $= "|天赋需要转生等级： #{FF4000}2";
 	return S;
 }
 
@@ -40,9 +40,9 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Zedative"
+	TraitName="丧尸时间 - 丧尸狂"
 	NumLevels=1
 	DefLevelCosts(0)=50
 	DefMinLevel=65
-	Description="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage. ||-REQUIREMENT: Healing bonus trait needs to have at least 25 points!"
+	Description="在丧尸时间中，使用医疗职业武器伤害丧尸会使其减速30%并且造成大量毒素伤害。||-需求：拥有至少30点治疗速率属性"
 }

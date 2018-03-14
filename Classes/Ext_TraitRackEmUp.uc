@@ -18,7 +18,7 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkRhythmPerkBase'
-	TraitName="Rack 'em up"
+	TraitName="连击起来"
 	DefLevelCosts(0)=15
 	DefLevelCosts(1)=20
 	DefLevelCosts(2)=25
@@ -40,5 +40,5 @@ defaultproperties
 	MultiplierSize.Add(0.125)
 	MultiplierSize.Add(0.15)
 	NumLevels=5
-	Description="Deals more damage to each consequtive headshot done to zeds up to 5 stacks.|For each level you can make a bigger combo and deal more damage and sustain in a rate of:|Lv1-5: +5%/1.5s, +7.5%/1.75s, +10%/2s, +12.5%/2.5s, +15%/3s"
+	Description="每次爆头都会在几秒钟内提升对僵尸的伤害，最高五层。|每级你的每层连击可以造成更高伤害以及持续更长时间：|Lv1-5: +5%/1.5s, +7.5%/1.75s, +10%/2s, +12.5%/2.5s, +15%/3s"
 }

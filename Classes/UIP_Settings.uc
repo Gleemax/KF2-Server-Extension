@@ -14,18 +14,18 @@ function InitMenu()
 	SettingsBox = KFGUI_ComponentList(FindComponentID('SettingsBox'));
 	
 	//AddCheckBox("Text-To-Speech:","Enable Text-to-Speech talk for player chat messages",'TTS', bool bDefault );
-	AddCheckBox("First person legs:","Show first person body",'FP',class'ExtPlayerController'.Default.bShowFPLegs);
+	AddCheckBox("第一人称显示腿:","第一人称显示身体",'FP',class'ExtPlayerController'.Default.bShowFPLegs);
 	if( class'ExtPlayerController'.Default.bShowFPLegs )
 		ExtPlayerController(GetPlayer()).ToggleFPBody(false);
-	AddCheckBox("Hide name beacons:","Hide the player name beacons",'NB',class'ExtPlayerController'.Default.bHideNameBeacons);
-	AddCheckBox("Hide kill messages:","Hide player kill messages",'KM',class'ExtPlayerController'.Default.bHideKillMsg);
-	AddCheckBox("Hide damage messages:","Hide player damage messages",'DM',class'ExtPlayerController'.Default.bHideDamageMsg);
-	AddCheckBox("Hide damage popup:","Hide damage popup messages",'PP',class'ExtPlayerController'.Default.bHideNumberMsg);
-	AddCheckBox("Use KF2 DeathMessages:","Use KF2 death message display format.",'K2DM',class'ExtPlayerController'.Default.bUseKF2DeathMessages);
-	AddCheckBox("Use KF2 Kill Messages:","Use KF2 kill message display format.",'K2KM',class'ExtPlayerController'.Default.bUseKF2KillMessages);
-	KeyBindButton = AddButton("","Toggle Behindview keybind:","With this desired button you can toggle your behindview (click to change it)",'KB',KeyBindLabel);
-	AddCheckBox("Don't become zombie:","Disable zombie player mode (for game modes that support it)",'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
-	AddCheckBox("No screen shake:","Disable screen shake (from explosions)",'NS',class'ExtPlayerController'.Default.bNoScreenShake);
+	AddCheckBox("隐藏名称标签:","隐藏玩家名称标签",'NB',class'ExtPlayerController'.Default.bHideNameBeacons);
+	AddCheckBox("隐藏击杀信息:","隐藏玩家击杀信息",'KM',class'ExtPlayerController'.Default.bHideKillMsg);
+	AddCheckBox("隐藏伤害信息:","隐藏玩家伤害信息",'DM',class'ExtPlayerController'.Default.bHideDamageMsg);
+	AddCheckBox("隐藏浮动伤害:","隐藏浮动伤害信息",'PP',class'ExtPlayerController'.Default.bHideNumberMsg);
+	AddCheckBox("使用官方死亡信息:","使用官方死亡信息",'K2DM',class'ExtPlayerController'.Default.bUseKF2DeathMessages);
+	AddCheckBox("使用官方击杀信息:","使用官方击杀信息",'K2KM',class'ExtPlayerController'.Default.bUseKF2KillMessages);
+	//KeyBindButton = AddButton("","视角切换按键:","此按钮可以切换视角(点击修改按键)",'KB',KeyBindLabel);
+	AddCheckBox("禁用成为丧尸:","禁用玩家丧尸模式(需要游戏模式支持)",'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
+	AddCheckBox("无屏幕抖动:","禁用屏幕抖动 (来自爆炸)",'NS',class'ExtPlayerController'.Default.bNoScreenShake);
 	InitBehindviewKey();
 }
 final function InitBehindviewKey()
@@ -131,7 +131,7 @@ function ButtonClicked( KFGUI_Button Sender )
 	switch( Sender.ID )
 	{
 	case 'KB':
-		KeyBindButton.ButtonText = "Press a button";
+		KeyBindButton.ButtonText = "按下一个按钮";
 		KeyBindButton.SetDisabled(true);
 		GrabKeyFocus();
 		bSetKeybind = true;

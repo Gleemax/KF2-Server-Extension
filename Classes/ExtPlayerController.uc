@@ -479,13 +479,13 @@ simulated final function string ParseSuicideMsg( string Victim, class<DamageType
 	if( Left(S,15)~="KFDT_Ballistic_" )
 	{
 		S = Mid(S,15); // Weapon name.
-		return Victim$Chr(6)$"M killed himself with "$S;
+		return Victim$Chr(6)$"M 使用该武器杀死了自己 "$S;
 	}
 	else if( class<KFDT_Fire>(DamType)!=None )
-		return Victim$Chr(6)$"M was burned to death";
+		return Victim$Chr(6)$"M 被活活烧死";
 	else if( class<KFDT_Explosive>(DamType)!=None )
-		return Victim$Chr(6)$"M was blown into pieces";
-	return Victim$Chr(6)$"M had a sudden heart attack";
+		return Victim$Chr(6)$"M 被炸成了碎片";
+	return Victim$Chr(6)$"M 心脏病突发去世";
 }
 simulated final function string ParseKillMsg( string Victim, string Killer, bool bFF, class<DamageType> DamType )
 {
@@ -496,13 +496,13 @@ simulated final function string ParseKillMsg( string Victim, string Killer, bool
 	if( Left(S,15)~="KFDT_Ballistic_" )
 	{
 		S = Mid(S,15); // Weapon name.
-		return Chr(6)$"O"$Victim$Chr(6)$"M was killed by "$Chr(6)$T$Killer$Chr(6)$"M's "$S;
+		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$Chr(6)$"M的 "$S$"M 杀死了";
 	}
 	else if( class<KFDT_Fire>(DamType)!=None )
-		return Chr(6)$"O"$Victim$Chr(6)$"M was incinerated by "$Chr(6)$T$Killer;
+		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 烧成了灰烬";
 	else if( class<KFDT_Explosive>(DamType)!=None )
-		return Chr(6)$"O"$Victim$Chr(6)$"M was blown up by "$Chr(6)$T$Killer;
-	return Chr(6)$"O"$Victim$Chr(6)$"M was killed by "$Chr(6)$T$Killer;
+		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 炸成了碎片";
+	return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 残忍的杀害了";
 }
 
 reliable server function ServerCamera( name NewMode )

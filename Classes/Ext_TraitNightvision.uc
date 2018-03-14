@@ -11,8 +11,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Nightvision"
+	TraitName="夜视仪"
 	NumLevels=1
 	DefLevelCosts(0)=25
-	Description="Spawn with nightvision goggles."
+	Description="使你重生的时候携带夜视仪。"
 }

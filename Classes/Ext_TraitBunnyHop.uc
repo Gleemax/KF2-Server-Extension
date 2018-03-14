@@ -13,8 +13,8 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	TraitName="Bunny Hop"
+	TraitName="兔子跳"
 	DefLevelCosts(0)=50
 	DefMinLevel=100
-	Description="Enable player to do bunny hopping. It means the more you continiously make successful jumps while moving forward you will keep accelerating in speed."
+	Description="允许玩家进行兔子跳，使得你在向前移动时能通过连续的向前跳跃使移动速度不断增加。"
 }

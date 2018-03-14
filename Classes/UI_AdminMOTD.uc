@@ -45,12 +45,12 @@ function ButtonClicked( KFGUI_Button Sender )
 }
 function MOTDEdited( KFGUI_EditBox Sender )
 {
-	NewsField.SetText("MOTD Preview:|"$Sender.Value);
+	NewsField.SetText("每日讯息预览:|"$Sender.Value);
 }
 
 defaultproperties
 {
-	WindowTitle="Edit MOTD line"
+	WindowTitle="编辑每日信息"
 	XPosition=0.25
 	YPosition=0.2
 	XSize=0.5
@@ -67,8 +67,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=YesButten
 		ID="Yes"
-		ButtonText="Submit"
-		Tooltip="Submit changes to server"
+		ButtonText="确认"
+		Tooltip="保存修改"
 		XPosition=0.4
 		YPosition=0.9
 		XSize=0.09
@@ -79,8 +79,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=NoButten
 		ID="No"
-		ButtonText="Cancel"
-		Tooltip="Abort without doing anything"
+		ButtonText="取消"
+		Tooltip="取消修改"
 		XPosition=0.5
 		YPosition=0.9
 		XSize=0.09
@@ -90,7 +90,7 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_EditBox Name=EditBox
 		ID="Edit"
-		Tooltip="Enter the text here, use vertical line character for line switches."
+		Tooltip="在此处输入内容，使用竖线字符进行换行。"
 		XPosition=0.05
 		YPosition=0.09
 		XSize=0.9

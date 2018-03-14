@@ -11,7 +11,7 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Fake Out"
+	TraitName="欺诈"
 	DefLevelCosts(0)=30
-	Description="With this trait you are ungrabbable by the zeds."
+	Description="该天赋会使你无法被丧尸抓取。"
 }

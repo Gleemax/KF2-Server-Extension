@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|Trait requires prestige level: #{FF4000}1";
+	S $= "|天赋需要转生等级： #{FF4000}1";
 	return S;
 }
 
@@ -40,9 +40,9 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkCommando'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Tactician"
+	TraitName="丧尸时间 - 战术家"
 	NumLevels=1
 	DefLevelCosts(0)=30
 	DefMinLevel=35
-	Description="During Zed time, you reload perk weapons at full speed and switch perk weapons twice as fast! ||-REQUIREMENT: Damage bonus trait needs to have at least 30 points!"
+	Description="在丧失时间中。你可以实时装填你的职业武器并且能够以两倍速度切换武器！||-需求：拥有至少30点职业伤害属性"
 }

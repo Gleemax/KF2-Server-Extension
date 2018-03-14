@@ -87,7 +87,7 @@ function Timer()
 					}
 				}
 				OldPerkPoints = PendingPerk.CurrentSP;
-				PerkLabel.SetText("Lv"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (Points: "$PendingPerk.CurrentSP$")");
+				PerkLabel.SetText("等级"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (技能点: "$PendingPerk.CurrentSP$")");
 				for( i=0; i<StatsList.ItemComponents.Length; ++i ) // Just make sure perk stays the same.
 				{
 					StatBuyers[i].SetActivePerk(PendingPerk);
@@ -95,8 +95,8 @@ function Timer()
 				}
 				B_Prestige.SetDisabled(!PendingPerk.CanPrestige());
 				if( PendingPerk.MinLevelForPrestige<0 )
-					B_Prestige.ChangeToolTip("Prestige is disabled for this perk");
-				else B_Prestige.ChangeToolTip("Prestige this perk.|Minimum level required: "$PendingPerk.MinLevelForPrestige);
+					B_Prestige.ChangeToolTip("此职业禁止转生");
+				else B_Prestige.ChangeToolTip("转生此职业。|最小等级: "$PendingPerk.MinLevelForPrestige);
 				UpdateTraits();
 			}
 			else // Empty out if needed.
@@ -104,7 +104,7 @@ function Timer()
 				for( i=0; i<StatsList.ItemComponents.Length; ++i )
 					StatBuyers[i].CloseMenu();
 				StatsList.ItemComponents.Length = 0;
-				PerkLabel.SetText("<No perk selected>");
+				PerkLabel.SetText("<没有选择职业>");
 			}
 		}
 		else if( PendingPerk!=None && OldPerkPoints!=PendingPerk.CurrentSP )
@@ -112,7 +112,7 @@ function Timer()
 			B_Prestige.SetDisabled(!PendingPerk.CanPrestige());
 
 			OldPerkPoints = PendingPerk.CurrentSP;
-			PerkLabel.SetText("Lv"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (Points: "$PendingPerk.CurrentSP$")");
+			PerkLabel.SetText("等级"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (技能点: "$PendingPerk.CurrentSP$")");
 			for( i=0; i<StatsList.ItemComponents.Length; ++i ) // Just make sure perk stays the same.
 				StatBuyers[i].CheckBuyLimit();
 			
@@ -209,7 +209,7 @@ function DrawPerkInfo( Canvas C, int Index, float YOffset, float Height, float W
 	C.DrawText(P.PerkName,,Sc,Sc);
 	
 	C.SetPos(6+Height,YOffset+Height*0.5);
-	C.DrawText("Lv "$P.GetLevelString()$" ("$P.CurrentEXP$"/"$P.NextLevelEXP$" XP)",,Sc,Sc);
+	C.DrawText("等级"$P.GetLevelString()$"("$P.CurrentEXP$"/"$P.NextLevelEXP$"XP)",,Sc,Sc);
 }
 function SwitchedPerk( int Index, bool bRight, int MouseX, int MouseY )
 {
@@ -303,8 +303,8 @@ defaultproperties
 	
 	Begin Object Class=KFGUI_Button Name=ResetPerkButton
 		ID="Reset"
-		ButtonText="Reset Level"
-		ToolTip="Reset this perk by unloading all stats, traits and set XP gained and level to 0"
+		ButtonText="重置职业"
+		ToolTip="重置此职业所有属性、技能和等级"
 		XPosition=0.25
 		YPosition=0.025
 		XSize=0.074
@@ -315,8 +315,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=UnloadPerkButton
 		ID="Unload"
-		ButtonText="Unload Perk"
-		ToolTip="Reset all spent points on this perk and refund the points in exchange of some XP"
+		ButtonText="重置加点"
+		ToolTip="消耗部分经验来返还此职业的所有技能点"
 		XPosition=0.325
 		YPosition=0.025
 		XSize=0.074
@@ -327,8 +327,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=PrestigePerkButton
 		ID="Prestige"
-		ButtonText="Prestige"
-		ToolTip="-"
+		ButtonText="转生"
+		ToolTip="将此职业的等级归零，增加每级获得的技能点"
 		XPosition=0.4
 		YPosition=0.025
 		XSize=0.074

@@ -2,8 +2,8 @@ Class Ext_TraitWPSurv extends Ext_TraitWeapons;
 
 defaultproperties
 {
-	TraitName="Survivalist Weapon Loadout"
-	Description="This will grant you Survivalist weapon loadout to spawn with.|Level 1: Dragons Breath|Level 2: M16M203 Assault Rifle|Level 3: Medic Assault Rifle|Level 4: All 3"
+	TraitName="生存初始武器"
+	Description="使你重生时携带特定生存专家职业武器。|Level 1: 龙息霰弹枪|Level 2: M16突击步枪|Level 3: 401突击步枪|Level 4: 以上全部3种"
 	
 	LevelEffects(0)=(LoadoutClasses=(class'KFWeap_Shotgun_DragonsBreath'))
 	LevelEffects(1)=(LoadoutClasses=(class'KFWeap_AssaultRifle_M16M203'))

@@ -18,7 +18,7 @@ event PlayerTick( float DeltaTime )
 	{
 		if( TravelData.PendingURL!="" )
 		{
-			MS_HUD(myHUD).ShowProgressMsg("Connecting to "$TravelData.PendingURL);
+			MS_HUD(myHUD).ShowProgressMsg("正在连接到 "$TravelData.PendingURL);
 			ConsoleCommand("Open "$TravelData.PendingURL);
 		}
 		if( TravelData.PendingSong!=None )
@@ -64,7 +64,7 @@ final function AbortConnection()
 		HandleNetworkError(false);
 	else
 	{
-		ShowConnectionProgressPopup(PMT_ConnectionFailure,"Connection aborted","User aborted connection...",true);
+		ShowConnectionProgressPopup(PMT_ConnectionFailure,"连接失败","用户终止连接...",true);
 		ConsoleCommand("Cancel");
 	}
 }
@@ -80,7 +80,7 @@ reliable client event bool ShowConnectionProgressPopup( EProgressMessageType Pro
 	case PMT_ConnectionFailure:
 	case PMT_PeerConnectionFailure:
 		bConnectionFailed = true;
-		MS_HUD(myHUD).ShowProgressMsg("Connection Error: "$ProgressTitle$"|"$ProgressDescription$"|Disconnecting...",true);
+		MS_HUD(myHUD).ShowProgressMsg("连接错误: "$ProgressTitle$"|"$ProgressDescription$"|断开连接中...",true);
 		SetTimer(4,false,'HandleNetworkError');
 		return true;
 	case PMT_DownloadProgress:

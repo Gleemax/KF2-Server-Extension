@@ -7,8 +7,8 @@ static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Leve
 
 defaultproperties
 {
-	TraitName="Grenade Supply"
-	Description="With this trait you can supply grenades for your team mates. For each use you will receive a little bit of XP points."
+	TraitName="手雷补给"
+	Description="你可以每隔一段时间为你的队友提供手雷，每次提供都会使你获得少量的经验值。"
 	
 	SupplyIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
 }

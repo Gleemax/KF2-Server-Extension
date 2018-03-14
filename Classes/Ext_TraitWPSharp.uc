@@ -2,8 +2,8 @@ Class Ext_TraitWPSharp extends Ext_TraitWeapons;
 
 defaultproperties
 {
-	TraitName="Sharpshooter Weapon Loadout"
-	Description="This will grant you sharpshooter weapon loadout to spawn with.|Level 1: Crossbow|Level 2: M14 EBR|Level 3: Railgun|Level 4: All 3"
+	TraitName="神射初始武器"
+	Description="使你重生时携带特定神射职业武器。|Level 1: 十字弩|Level 2: M14|Level 3: 轨道枪|Level 4: 以上全部3种"
 	
 	LevelEffects(0)=(LoadoutClasses=(class'KFWeap_Bow_Crossbow'))
 	LevelEffects(1)=(LoadoutClasses=(class'KFWeap_Rifle_M14EBR'))

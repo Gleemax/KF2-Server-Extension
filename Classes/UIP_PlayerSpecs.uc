@@ -167,8 +167,8 @@ function SelectedRow( KFGUI_ListItem Item, int Row, bool bRight, bool bDblClick 
 defaultproperties
 {
 	Begin Object Class=KFGUI_Button Name=B_ShowStats
-		ButtonText="Show Stats"
-		Tooltip="Show the stats of the current players in server"
+		ButtonText="显示状态"
+		Tooltip="显示当前玩家统计信息"
 		XPosition=0.05
 		YPosition=0.05
 		XSize=0.1
@@ -179,8 +179,8 @@ defaultproperties
 		OnClickRight=ButtonClicked
 	End Object
 	Begin Object Class=KFGUI_Button Name=B_ShowTopTime
-		ButtonText="Top playtime"
-		Tooltip="Show the top playtime by players in all-time from this server"
+		ButtonText="最长游戏时间"
+		Tooltip="显示服务器中游戏时间最长的玩家"
 		XPosition=0.35
 		YPosition=0.05
 		XSize=0.1
@@ -190,8 +190,8 @@ defaultproperties
 		OnClickRight=ButtonClicked
 	End Object
 	Begin Object Class=KFGUI_Button Name=B_ShowTopKills
-		ButtonText="Top kills"
-		Tooltip="Show the top kills by players in all-time from this server"
+		ButtonText="最多击杀"
+		Tooltip="显示服务器中最多击杀的玩家"
 		XPosition=0.6
 		YPosition=0.05
 		XSize=0.1
@@ -201,8 +201,8 @@ defaultproperties
 		OnClickRight=ButtonClicked
 	End Object
 	Begin Object Class=KFGUI_Button Name=B_ShowTopEXP
-		ButtonText="Top EXP"
-		Tooltip="Show the top EXP by players in all-time from this server"
+		ButtonText="最高经验值"
+		Tooltip="显示服务器中获得经验值最多玩家"
 		XPosition=0.85
 		YPosition=0.05
 		XSize=0.1
@@ -225,31 +225,31 @@ defaultproperties
 
 		Begin Object Class=KFGUI_ColumnList Name=PlayerList
 			ID="Players"
-			Columns.Add((Text="Player",Width=0.55))
-			Columns.Add((Text="Total Kills",Width=0.15))
-			Columns.Add((Text="Total EXP",Width=0.15))
-			Columns.Add((Text="Total PlayTime",Width=0.15))
+			Columns.Add((Text="玩家",Width=0.55))
+			Columns.Add((Text="击杀",Width=0.15))
+			Columns.Add((Text="经验",Width=0.15))
+			Columns.Add((Text="游戏时间",Width=0.15))
 			OnSelectedRow=SelectedRow
 		End Object
 		Begin Object Class=KFGUI_ColumnList Name=TopPlaytimes
 			ID="PlayTimes"
 			Columns.Add((Text="#",Width=0.05))
-			Columns.Add((Text="Player",Width=0.7))
-			Columns.Add((Text="Total PlayTime",Width=0.25))
+			Columns.Add((Text="玩家",Width=0.7))
+			Columns.Add((Text="游戏时间",Width=0.25))
 			OnSelectedRow=SelectedRow
 		End Object
 		Begin Object Class=KFGUI_ColumnList Name=TopKills
 			ID="Kills"
 			Columns.Add((Text="#",Width=0.05))
-			Columns.Add((Text="Player",Width=0.7))
-			Columns.Add((Text="Total Kills",Width=0.25))
+			Columns.Add((Text="玩家",Width=0.7))
+			Columns.Add((Text="击杀",Width=0.25))
 			OnSelectedRow=SelectedRow
 		End Object
 		Begin Object Class=KFGUI_ColumnList Name=TopExp
 			ID="EXP"
 			Columns.Add((Text="#",Width=0.05))
-			Columns.Add((Text="Player",Width=0.7))
-			Columns.Add((Text="Total EXP",Width=0.25))
+			Columns.Add((Text="玩家",Width=0.7))
+			Columns.Add((Text="经验",Width=0.25))
 			OnSelectedRow=SelectedRow
 		End Object
 		Components.Add(PlayerList)

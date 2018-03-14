@@ -75,7 +75,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 
 defaultproperties
 {
-	PerkName="Demolitionist"
+	PerkName="±¨∆∆ ÷"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Demolition'
 	DefTraitList.Add(class'Ext_TraitWPDemo')
 	DefTraitList.Add(class'Ext_TraitBoomWeld')

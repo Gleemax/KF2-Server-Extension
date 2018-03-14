@@ -13,7 +13,7 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkGunslinger'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Uber Ammo"
+	TraitName="丧尸时间 - 子弹风暴"
 	DefLevelCosts(0)=30
-	Description="Gives player unlimited ammunition for perked weapons during ZED-time."
+	Description="在丧尸时间中，你的枪手职业武器有无限弹药。"
 }

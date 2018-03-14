@@ -84,21 +84,21 @@ function Render( float XPos, float YPos, float XSize, float YSize )
 
 	// Score
 	H = WorldInfo.RealTimeSeconds * 0.6;
-	Canvas.Font = Canvas.GetDefaultCanvasFont();
+	Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
 	W = FMin(YSize/200.f,3.f);
 	if( !bGameStarted )
 	{
 		Canvas.SetDrawColor(128,64,64,Abs(Sin(H))*96.f+128);
 		Canvas.SetPos(XPos+XSize*0.4,YPos+YSize*0.2);
-		Canvas.DrawText("Press Fire to start pong",,W,W);
+		Canvas.DrawText("按下鼠标左键开始游戏",,W,W);
 	}
 	else
 	{
 		Canvas.SetDrawColor(255,255,128,Abs(Sin(H))*96.f);
 		Canvas.SetPos(XPos+XSize*0.2,YPos+YSize*0.22);
-		Canvas.DrawText("Score: "$string(Score),,W,W);
+		Canvas.DrawText("得分: "$string(Score),,W,W);
 		Canvas.SetPos(XPos+XSize*0.2,YPos+YSize*0.68);
-		Canvas.DrawText("Plays: "$string(NumPlays),,W,W);
+		Canvas.DrawText("玩家: "$string(NumPlays),,W,W);
 	}
 	
 	// Borders

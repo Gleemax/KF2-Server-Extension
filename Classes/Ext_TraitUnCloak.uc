@@ -20,14 +20,14 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	TraitName="Cloak Detection"
+	TraitName="隐身侦测"
 	NumLevels=5
 	DefLevelCosts(0)=5
 	DefLevelCosts(1)=7
 	DefLevelCosts(2)=10
 	DefLevelCosts(3)=15
 	DefLevelCosts(4)=25
-	Description="Detect cloaked stalkers with radius for each level:|Lv1-5: 8m, 12m, 18m, 30m, 60m"
+	Description="让你能够探测隐身敌人，探测距离随等级上升：|Lv1-5: 8m, 12m, 18m, 30m, 60m"
 	RadiusValues.Add(800)
 	RadiusValues.Add(1200)
 	RadiusValues.Add(1800)

@@ -21,12 +21,12 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 defaultproperties
 {
 	TraitGroup=class'Ext_TGroupRegen'
-	TraitName="Ammo Regeneration"
+	TraitName="弹药再生"
 	NumLevels=3
 	DefLevelCosts(0)=10
 	DefLevelCosts(1)=20
 	DefLevelCosts(2)=40
-	Description="With this trait all your weapons ammo (not grenades) will regen every half minute at rate of:|Lvl1-3: 2%, 5%, 10% of max ammo"
+	Description="该天赋会使你所有武器的弹药（除手榴弹）每半分钟按以下效率恢复：|Lv1-3: 2%, 5%, 10% 的总弹药"
 	RegenValues.Add(0.02)
 	RegenValues.Add(0.05)
 	RegenValues.Add(0.1)

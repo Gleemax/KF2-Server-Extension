@@ -21,12 +21,12 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 defaultproperties
 {
 	TraitGroup=class'Ext_TGroupRegen'
-	TraitName="Health Regeneration"
+	TraitName="生命再生"
 	NumLevels=3
 	DefLevelCosts(0)=10
 	DefLevelCosts(1)=20
 	DefLevelCosts(2)=40
-	Description="With this trait your health will regen every 10 seconds at a rate of:|Lvl1-3: +5HP, +10HP, +20HP"
+	Description="该天赋会使你的生命值每十秒钟按以下效率恢复：|Lvl1-3: +5HP, +10HP, +20HP"
 	RegenValues.Add(5)
 	RegenValues.Add(10)
 	RegenValues.Add(20)

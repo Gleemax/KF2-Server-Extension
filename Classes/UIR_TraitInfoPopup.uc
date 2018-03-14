@@ -45,12 +45,12 @@ function Timer()
 		OldLevel = MyPerk.PerkTraits[TraitIndex].CurrentLevel;
 		if( OldLevel>=MyTrait.Default.NumLevels )
 		{
-			YesButton.ButtonText = "Max level";
+			YesButton.ButtonText = "最大等级";
 			YesButton.SetDisabled(true);
 			return;
 		}
 		Cost = MyTrait.Static.GetTraitCost(OldLevel);
-		YesButton.ButtonText = "Buy ("$Cost$")";
+		YesButton.ButtonText = "购买 ("$Cost$")";
 		if( Cost>OldPoints || !MyTrait.Static.MeetsRequirements(OldLevel,MyPerk) )
 			YesButton.SetDisabled(true);
 		else YesButton.SetDisabled(false);
@@ -87,7 +87,7 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=BuyButten
 		ID="Yes"
-		Tooltip="Purchase this trait (you can not undo this action!)"
+		Tooltip="购买此技能（无法撤销）"
 		XPosition=0.3
 		YPosition=0.91
 		XSize=0.19
@@ -98,8 +98,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=CancelButten
 		ID="No"
-		ButtonText="Cancel"
-		Tooltip="Abort without doing anything"
+		ButtonText="取消"
+		Tooltip="放弃购买技能"
 		XPosition=0.5
 		YPosition=0.91
 		XSize=0.19

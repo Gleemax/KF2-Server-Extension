@@ -17,9 +17,9 @@ static function PlayerDied( Ext_PerkBase Perk, byte Level, optional Ext_TraitDat
 
 defaultproperties
 {
-	TraitName="Ammunition Supply"
+	TraitName="弹药补给"
 	DefLevelCosts(0)=50
-	Description="With this trait you can supply ammunition for your team mates. For each use you will receive a little bit of XP points."
+	Description="你可以每隔一段时间为你的队友提供弹药，每次提供都会使你获得少量的经验值。"
 	TraitData=class'Ext_TraitSupplyData'
 	
 	SupplyIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'

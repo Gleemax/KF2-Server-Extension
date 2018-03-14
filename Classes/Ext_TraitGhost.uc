@@ -26,9 +26,9 @@ defaultproperties
 	bHighPriorityDeath=true
 	NumLevels=2
 	TraitData=class'Ext_T_GhostHelper'
-	TraitName="Redemption"
+	TraitName="救赎"
 	DefLevelCosts(0)=30
 	DefLevelCosts(1)=30
 	DefMinLevel=30
-	Description="With this trait you will turn into ghost when you die and redeem at another spot in the map.|Level 1: Works 50 % of the time, but never again until you respawned after death.|Level 2: Always works, and it lets you redeem again after 3 minutes"
+	Description="该天赋会使你在死亡时转为一个幽灵并且随后在地图的另一个点复活。|Level 1: 50%几率生效，死亡前只会出现一次。|Level 2: 每三分钟必定生效一次。"
 }

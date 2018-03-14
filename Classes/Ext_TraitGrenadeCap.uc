@@ -14,13 +14,13 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Grenade Capacity"
-	DefLevelCosts(0)=40
-	DefLevelCosts(1)=55
-	DefLevelCosts(2)=70
-	DefLevelCosts(3)=90
-	DefLevelCosts(4)=150
-	Description="With this trait you can carry more grenades.|Lv1-5: +1,+2,+3,+5,+8 grenades"
+	TraitName="手雷上限"
+	DefLevelCosts(0)=25
+	DefLevelCosts(1)=40
+	DefLevelCosts(2)=55
+	DefLevelCosts(3)=75
+	DefLevelCosts(4)=125
+	Description="该天赋使你能够携带额外的手雷。|Lv1-5: +1,+2,+3,+5,+8 手雷上限"
 	CarryAdds(0)=1
 	CarryAdds(1)=2
 	CarryAdds(2)=3

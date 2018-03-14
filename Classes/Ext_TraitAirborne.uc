@@ -15,7 +15,7 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
-	TraitName="Airborne Agent"
+	TraitName="扩散药剂"
 	DefLevelCosts(0)=20
 	DefLevelCosts(1)=10
 	DefLevelCosts(2)=10
@@ -26,5 +26,5 @@ defaultproperties
 	HealRates(3)=0.15
 	NumLevels=4
 	DefMinLevel=50
-	Description="Give extra health boost and area of heal effect for medic darts during ZED-time,|each level gives extra amount of heal boost at a rate of:|Lv 1-3: +5%, +10%, +20%|Lv 4: +15%, but works outside of ZED-time too!"
+	Description="使你的治疗针在子弹时间中获得额外的医疗速率，并且会获得范围治疗能力。|每级会获得额外的治疗速度加成：|Lv 1-3: +5%, +10%, +20%|Lv 4: +15%, 在丧失时间外同样生效"
 }

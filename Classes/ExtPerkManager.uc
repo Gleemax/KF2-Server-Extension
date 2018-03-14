@@ -502,11 +502,6 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 	if( CurrentPerk!=None )
 		CurrentPerk.ModifyRateOfFire(InRate,KFW);
 }
-simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
-{
-	if( CurrentPerk!=None )
-		CurrentPerk.ModifyWeaponSwitchTime(ModifiedSwitchTime);
-}
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
 	return (CurrentPerk!=None ? CurrentPerk.GetReloadRateScale(KFW) : 1.f);

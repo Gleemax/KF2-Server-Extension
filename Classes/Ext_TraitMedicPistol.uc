@@ -8,7 +8,7 @@ static function AddDefaultInventory( KFPawn Player, Ext_PerkBase Perk, byte Leve
 
 defaultproperties
 {
-	TraitName="Medic Pistol"
+	TraitName="医疗手枪"
 	DefLevelCosts(0)=20
-	Description="Spawn with a medic pistol instead of standard 9mm."
+	Description="将重生时携带的基础9mm手枪替换成101医疗手枪。"
 }

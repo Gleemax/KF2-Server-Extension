@@ -55,5 +55,5 @@ defaultproperties
 	YSize=0.73
 	
 	Pages.Empty
-	Pages.Add((PageClass=Class'UIP_PerkSelectionLobby',Caption="Perk",Hint="Select and upgrade your perks"))
+	Pages.Add((PageClass=Class'UIP_PerkSelectionLobby',Caption="ְҵ",Hint=""))
 }

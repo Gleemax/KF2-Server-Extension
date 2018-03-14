@@ -7,11 +7,11 @@ var() bool bLimitToOne; // Limit to only one trait for this group.
 
 static function string GetUIInfo( Ext_PerkBase Perk )
 {
-	return (Default.bLimitToOne ? Default.GroupInfo$" (MAX 1)" : Default.GroupInfo);
+	return (Default.bLimitToOne ? Default.GroupInfo$" (?? 1)" : Default.GroupInfo);
 }
 static function string GetUIDesc()
 {
-	return Default.GroupInfo$" trait group";
+	return Default.GroupInfo$" ???";
 }
 
 // See if group is already using up limitation.
@@ -30,5 +30,5 @@ static function bool GroupLimited( Ext_PerkBase Perk, class<Ext_TraitBase> Trait
 
 defaultproperties
 {
-	GroupInfo="Group"
+	GroupInfo="???"
 }

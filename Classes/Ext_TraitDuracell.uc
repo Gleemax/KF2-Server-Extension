@@ -15,13 +15,13 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	TraitName="Duracell Batteries"
+	TraitName="霸王电池"
 	NumLevels=4
 	DefLevelCosts(0)=5
 	DefLevelCosts(1)=10
 	DefLevelCosts(2)=20
 	DefLevelCosts(3)=25
-	Description="With this trait your flashlight batteries becomes extra durable.|Lv1-4: +30,+100,+300,+1000% lifetime"
+	Description="该天赋会使你的手电筒的电池更加耐用。|Lv1-4: +30,+100,+300,+1000% 最大时间"
 	BatteryCharges.Add(0.77)
 	BatteryCharges.Add(0.5)
 	BatteryCharges.Add(0.333)

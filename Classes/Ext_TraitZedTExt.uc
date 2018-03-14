@@ -13,7 +13,7 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkCommando'
-	TraitName="ZED Time Extensions"
+	TraitName="丧尸时间扩展"
 	NumLevels=6
 	DefLevelCosts(0)=15
 	DefLevelCosts(1)=25
@@ -22,5 +22,5 @@ defaultproperties
 	DefLevelCosts(4)=55
 	DefLevelCosts(5)=65
 	DefMinLevel=15
-	Description="Adds ZED Time extensions to your perk. The amount of extensions is increased by 1 every level"
+	Description="为你的职业增加额外的丧尸时间长度，其扩展的长度为每级增加1秒。"
 }

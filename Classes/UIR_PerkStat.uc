@@ -33,7 +33,7 @@ function CloseMenu()
 function SetActivePerk( Ext_PerkBase P )
 {
 	MyPerk = P;
-	StatCountBox.Value = "5";
+	StatCountBox.Value = "1";
 	OldValue = -1;
 }
 function Timer()
@@ -123,7 +123,7 @@ defaultproperties
 		XSize=0.18
 		YSize=0.8
 		OnTextChange=EditBoxChange
-		ToolTip="Here you can specify how many stat points to buy"
+		ToolTip="在此处指定购买多少个点属性。"
 		MaxValue=100
 		MinValue=1
 		bScaleByFontSize=false
@@ -135,7 +135,7 @@ defaultproperties
 		XSize=0.08
 		YSize=0.8
 		ButtonText="+"
-		ToolTip="Click here to buy stats for this perk"
+		ToolTip="点击为本职业购买该属性"
 		OnClickLeft=BuyStatPoint
 		OnClickRight=BuyStatPoint
 	End Object

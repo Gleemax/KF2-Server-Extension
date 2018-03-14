@@ -52,7 +52,7 @@ simulated function float GetZedTimeExtensions( byte Level )
 
 defaultproperties
 {
-	PerkName="Commando"
+	PerkName="Í»»÷±ø"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
 	DefTraitList.Add(class'Ext_TraitWPComm')
 	DefTraitList.Add(class'Ext_TraitUnCloak')

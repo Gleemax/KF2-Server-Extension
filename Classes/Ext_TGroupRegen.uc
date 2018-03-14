@@ -2,11 +2,11 @@ class Ext_TGroupRegen extends Ext_TGroupBase;
 
 static function string GetUIInfo( Ext_PerkBase Perk )
 {
-	return Default.GroupInfo$" (MAX "$GetMaxLimit(Perk)$")";
+	return Default.GroupInfo$" (最大 "$GetMaxLimit(Perk)$")";
 }
 static function string GetUIDesc()
 {
-	return Super.GetUIDesc()$"|To buy additional regen abilities:|-Prestige level 1 + Perk level 100 = MAX 2 traits|-Prestige level 5 + Perk level 150 = MAX 3 traits";
+	return Super.GetUIDesc()$"|完成下列要求更买额外再生技能：|-一转 + 100级 = 最大两个技能|-五转 + 150级 = 最大三个技能";
 }
 
 static function bool GroupLimited( Ext_PerkBase Perk, class<Ext_TraitBase> Trait )
@@ -30,5 +30,5 @@ static final function byte GetMaxLimit( Ext_PerkBase Perk )
 
 defaultproperties
 {
-	GroupInfo="Regeneration"
+	GroupInfo="再生"
 }

@@ -30,7 +30,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 defaultproperties
 {
-	PerkName="SWAT"
+	PerkName="ль╬╞"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
 	DefTraitList.Add(class'Ext_TraitWPSWAT')
 	DefTraitList.Add(class'Ext_TraitHeavyArmor')

@@ -11,7 +11,7 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Napalm"
+	TraitName="凝固汽油"
 	DefLevelCosts(0)=35
-	Description="Make zombies lit each other on fire."
+	Description="使得你点燃的丧尸能够点燃其他的丧尸。"
 }

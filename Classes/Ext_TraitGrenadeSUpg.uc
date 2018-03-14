@@ -12,8 +12,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Grenade Upgrade"
+	TraitName="手雷升级"
 	DefLevelCosts(0)=50
-	Description="With this upgrade you will upgrade to your perk specific grenades.|Level 1: SUPER grenade"
+	Description="使用特定的超级职业手雷替换你的通用手雷。|Level 1: 超级手雷"
 	DefMinLevel=50
 }

@@ -167,7 +167,7 @@ simulated function float GetSelfHealingSurgePct()
 
 defaultproperties
 {
-	PerkName="Field Medic"
+	PerkName="战地医生"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Medic'
 	DefTraitList.Remove(class'Ext_TraitMedicPistol')
 	DefTraitList.Add(class'Ext_TraitAirborne')

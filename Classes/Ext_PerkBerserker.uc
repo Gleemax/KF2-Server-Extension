@@ -35,12 +35,12 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DT )
 {
 	if( VampRegenRate>0 && PlayerOwner.Pawn!=None && PlayerOwner.Pawn.Health>0 && class<KFDamageType>(DT)!=None && class<KFDamageType>(DT).Default.ModifierPerkList.Find(BasePerk)>=0 )
-		PlayerOwner.Pawn.HealDamage( Max(PlayerOwner.Pawn.HealthMax*VampRegenRate,1), PlayerOwner, class'KFDT_Healing', false, false );
+		PlayerOwner.Pawn.HealDamage( Max(PlayerOwner.Pawn.HealthMax*VampRegenRate,1), PlayerOwner, class'KFDT_Healing', false, false);
 }
 
 defaultproperties
 {
-	PerkName="Berserker"
+	PerkName="¿ñÕ½Ê¿"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 	DefTraitList.Add(class'Ext_TraitWPBers')
 	DefTraitList.Add(class'Ext_TraitUnGrab')

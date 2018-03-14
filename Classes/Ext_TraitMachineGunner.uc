@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|Trait requires prestige level: #{FF4000}2";
+	S $= "|天赋需要转生等级： #{FF4000}1";
 	return S;
 }
 
@@ -31,9 +31,9 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkCommando'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Machine Gunner"
+	TraitName="丧尸时间 - 机枪手"
 	NumLevels=1
 	DefLevelCosts(0)=60
 	DefMinLevel=55
-	Description="During Zed time, you do 3% more damage with perks weapons and shoot 3x faster with all guns!"
+	Description="在丧失时间中，你的职业武器会造成3%的额外伤害而且会以三倍射速射击！"
 }

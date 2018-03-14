@@ -12,8 +12,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkDemolition'
-	TraitName="Armor Piercing Rounds"
+	TraitName="破甲弹头"
 	DefLevelCosts(0)=100
 	DefMinLevel=50
-	Description="Demo weapons will do 50% more damage when hitting a critical point!"
+	Description="爆破职业武器将会对丧尸的弱点额外造成50%伤害。"
 }

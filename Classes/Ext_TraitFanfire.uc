@@ -13,7 +13,7 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkGunslinger'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Fanfire"
+	TraitName="丧尸时间 - 扇火"
 	DefLevelCosts(0)=30
-	Description="Make perked weapons fire at normal firerate during ZED-time."
+	Description="在丧尸时间中，你的枪手职业武器可以实时射击和装填。"
 }

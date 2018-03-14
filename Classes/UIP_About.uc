@@ -31,12 +31,12 @@ defaultproperties
 		YPosition=0.025
 		XSize=0.95
 		YSize=0.8
-		Text="#{F3E2A9}Server Extension Mod#{DEF} - Written by Marco||Credits:|#{01DF3A}Forrest Mark X#{DEF} - Implementation of first person legs and backpack weapon.|#{FF00FF}Sheep#{DEF} - Beta testing.|Mysterial - For ideas from UT2004RPG mod.|All other beta testers..."
+		Text="#{F3E2A9}Server Extension Mod#{DEF} - 作者：Marco||授权:|#{01DF3A}Forrest Mark X#{DEF} - 第一人称腿和背包武器的实现.|汉化：|柯里昂之主（CORLEONE）|内容扩展：|#{FF0000}DeathAngle#{DEF}|#{FF00FF}Sheep#{DEF} - Beta测试.|Mysterial - UT2004RPG MOD创意.|其他所有测试人员..."
 	End Object
 	Begin Object Class=KFGUI_Button Name=AboutButton
 		ID="Author"
-		ButtonText="Author Profile"
-		Tooltip="Visit this mod authors steam profile"
+		ButtonText="作者简介"
+		Tooltip="浏览作者的Steam个人页面"
 		XPosition=0.7
 		YPosition=0.92
 		XSize=0.27
@@ -46,8 +46,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=ForumButton
 		ID="Forum"
-		ButtonText="Visit Forums"
-		Tooltip="Visit this mods discussion forum"
+		ButtonText="浏览论坛"
+		Tooltip="浏览本MOD的讨论论坛"
 		XPosition=0.7
 		YPosition=0.84
 		XSize=0.27

@@ -12,7 +12,7 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Explosive Weld"
+	TraitName="焊接陷阱"
 	DefLevelCosts(0)=30
-	Description="Cases welded doors explode when broken by zeds. The more you weld one door, the bigger explosion."
+	Description="你焊接的自动门会在被丧尸破坏时爆炸，你对同一个门的焊接程度越高，爆炸就越强。"
 }

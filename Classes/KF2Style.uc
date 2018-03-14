@@ -16,19 +16,18 @@ function InitStyle()
 	for( i=0; i<ArrayCount(LoadedTex); ++i )
 		if( LoadedTex[i]==None )
 			LoadedTex[i] = Texture2D'EngineMaterials.DefaultWhiteGrid';
-	DrawFonts[0] = Font(DynamicLoadObject("UI_Canvas_Fonts.Font_General",class'Font'));
-	DrawFonts[1] = Font(DynamicLoadObject("EngineFonts.SmallFont",class'Font'));
-	DrawFonts[2] = Font(DynamicLoadObject("EngineFonts.TinyFont",class'Font'));
+	DrawFonts[0] = Font(DynamicLoadObject("UI_Canvas_Fonts.Font_Main",class'Font'));
+	DrawFonts[1] = Font(DynamicLoadObject("UI_Canvas_Fonts.Font_Main",class'Font'));
+	DrawFonts[2] = Font(DynamicLoadObject("UI_Canvas_Fonts.Font_Main",class'Font'));
 	for( i=0; i<ArrayCount(DrawFonts); ++i )
 	{
 		if( DrawFonts[i]==None )
-			DrawFonts[i] = class'Engine'.Static.GetMediumFont();
+			DrawFonts[i] = class'KFGameEngine'.Static.GetKFCanvasFont();
 	}
 }
 function RenderFramedWindow( KFGUI_FloatingWindow P )
 {
 	local int XS,YS,CornerSlope,TitleHeight;
-	
 	XS = Canvas.ClipX-Canvas.OrgX;
 	YS = Canvas.ClipY-Canvas.OrgY;
 	CornerSlope = DefaultHeight*0.4;
@@ -36,8 +35,8 @@ function RenderFramedWindow( KFGUI_FloatingWindow P )
 
 	// Frame Header
 	if( P.bWindowFocused )
-		Canvas.SetDrawColor(220,2,2,255);
-	else Canvas.SetDrawColor(100,1,1,P.FrameOpacity);
+ 	       Canvas.SetDrawColor(100,12,12,255);
+	else Canvas.SetDrawColor(100,12,12,P.FrameOpacity);
 	Canvas.SetPos(0,0);
 	DrawCornerTex(CornerSlope,0);
 	Canvas.SetPos(0,TitleHeight);
@@ -55,8 +54,8 @@ function RenderFramedWindow( KFGUI_FloatingWindow P )
 	
 	// Frame itself.
 	if( P.bWindowFocused )
-		Canvas.SetDrawColor(32,6,6,255);
-	else Canvas.SetDrawColor(16,2,2,P.FrameOpacity);
+		Canvas.SetDrawColor(5,5,5,255);
+	else  Canvas.SetDrawColor(5,5,5,P.FrameOpacity);
 	Canvas.SetPos(0,TitleHeight);
 	DrawCornerTex(CornerSlope,0);
 	Canvas.SetPos(XS-CornerSlope,TitleHeight);
@@ -77,7 +76,7 @@ function RenderFramedWindow( KFGUI_FloatingWindow P )
 	// Title.
 	if( P.WindowTitle!="" )
 	{
-		Canvas.SetDrawColor(250,250,250,P.FrameOpacity);
+		Canvas.SetDrawColor(250, 250, 250, 255);
 		Canvas.SetPos(CornerSlope,0);
 		DrawText(DefaultFontSize,P.WindowTitle);
 	}
@@ -92,7 +91,7 @@ function RenderWindow( KFGUI_Page P )
 
 	// Frame itself.
 	if( P.bWindowFocused )
-		Canvas.SetDrawColor(64,64,64,255);
+		Canvas.SetDrawColor(64, 64, 64, P.FrameOpacity);
 	else Canvas.SetDrawColor(32,32,32,P.FrameOpacity);
 	Canvas.SetPos(0,0);
 	DrawCornerTex(CornerSlope,0);
@@ -152,12 +151,12 @@ function RenderToolTip( KFGUI_Tooltip TT )
 	Canvas.SetDrawColor(200,200,80,TT.CurrentAlpha);
 	Canvas.SetPos(X-2,Y-2);
 	DrawWhiteBox(TX+4,TY+4);
-	Canvas.SetDrawColor(80,10,80,TT.CurrentAlpha);
+	Canvas.SetDrawColor(148, 4, 4, 160);
 	Canvas.SetPos(X,Y);
 	DrawWhiteBox(TX,TY);
 
 	// Draw text.
-	Canvas.SetDrawColor(255,255,255,TT.CurrentAlpha);
+	Canvas.SetDrawColor(64, 4, 4, 160);
 	X+=TOOLTIP_BORDER;
 	Y+=TOOLTIP_BORDER;
 	for( i=0; i<TT.Lines.Length; ++i )
@@ -175,10 +174,10 @@ function RenderButton( KFGUI_Button B )
 	if( B.bDisabled )
 		Canvas.SetDrawColor(32,0,0,255);
 	else if( B.bPressedDown )
-		Canvas.SetDrawColor(255,64,64,255);
+		Canvas.SetDrawColor(64, 255, 64, 255);
 	else if( B.bFocused )
-		Canvas.SetDrawColor(180,45,45,255);
-	else Canvas.SetDrawColor(164,8,8,255);
+		Canvas.SetDrawColor(24, 225, 24,255);
+	else Canvas.SetDrawColor(12, 116, 12,255);
 	
 	if( B.bIsHighlighted )
 	{
@@ -254,10 +253,10 @@ function RenderScrollBar( KFGUI_ScrollBarBase S )
 	local byte i;
 
 	if( S.bDisabled )
-		Canvas.SetDrawColor(48,2,2,255);
+		Canvas.SetDrawColor(5,5,5,0);
 	else if( S.bFocused || S.bGrabbedScroller )
-		Canvas.SetDrawColor(86,8,8,255);
-	else Canvas.SetDrawColor(74,4,4,255);
+		Canvas.SetDrawColor(15,15,15,160);
+	else Canvas.SetDrawColor(15,15,15,160);
 
 	Canvas.SetPos(0.f,0.f);
 	DrawWhiteBox(S.CompPos[2],S.CompPos[3]);
@@ -286,10 +285,10 @@ function RenderScrollBar( KFGUI_ScrollBarBase S )
 	S.ButtonOffset = A*(S.CompPos[i]-S.SliderScale);
 
 	if( S.bGrabbedScroller )
-		Canvas.SetDrawColor(140,86,8,255);
+		Canvas.SetDrawColor(255,0,0,200);
 	else if( S.bFocused )
-		Canvas.SetDrawColor(175,48,8,255);
-	else Canvas.SetDrawColor(150,36,4,255);
+		Canvas.SetDrawColor(200,0,0,200);
+	else Canvas.SetDrawColor(150,0,0,200);
 
 	if( S.bVertical )
 	{
@@ -309,12 +308,12 @@ function RenderColumnHeader( KFGUI_ColumnTop C, float XPos, float Width, int Ind
 	if( bSort )
 	{
 		if( bFocus )
-			Canvas.SetDrawColor(175,240,8,255);
-		else Canvas.SetDrawColor(128,200,56,255);
+			Canvas.SetDrawColor(24,24,100,220);
+		else Canvas.SetDrawColor(24,24,100,220);
 	}
 	else if( bFocus )
-		Canvas.SetDrawColor(220,220,8,255);
-	else Canvas.SetDrawColor(220,86,56,255);
+		Canvas.SetDrawColor(24,24,100,220);
+	else Canvas.SetDrawColor(24,24,100,220);
 
 	XS = DefaultHeight*0.125;
 	Canvas.SetPos(XPos,0.f);
@@ -383,10 +382,10 @@ function RenderComboList( KFGUI_ComboSelector C )
 	// Draw background.
 	Edge = C.Combo.BorderSize;
 	Canvas.SetPos(0.f,0.f);
-	Canvas.SetDrawColor(128,4,4,255);
+	Canvas.SetDrawColor(128,4,4,220);
 	DrawWhiteBox(C.CompPos[2],C.CompPos[3]);
 	Canvas.SetPos(Edge,Edge);
-	Canvas.SetDrawColor(64,4,4,255);
+	Canvas.SetDrawColor(64,4,4,220);
 	DrawWhiteBox(C.CompPos[2]-(Edge*2.f),C.CompPos[3]-(Edge*2.f));
 
 	// While rendering, figure out mouse focus row.
@@ -409,7 +408,7 @@ function RenderComboList( KFGUI_ComboSelector C )
 			bCheckMouse = false;
 			C.CurrentRow = i;
 			Canvas.SetPos(4.f,YP);
-			Canvas.SetDrawColor(128,48,48,255);
+			Canvas.SetDrawColor(128,48,48,220);
 			DrawWhiteBox(C.CompPos[2]-(Edge*2.f),YL);
 		}
 		Canvas.SetPos(Edge,YP);
@@ -438,10 +437,10 @@ function RenderRightClickMenu( KFGUI_RightClickMenu C )
 	// Draw background.
 	Edge = C.EdgeSize;
 	Canvas.SetPos(0.f,0.f);
-	Canvas.SetDrawColor(148,4,4,255);
+	Canvas.SetDrawColor(148,4,4,200);
 	DrawWhiteBox(C.CompPos[2],C.CompPos[3]);
 	Canvas.SetPos(Edge,Edge);
-	Canvas.SetDrawColor(64,4,4,255);
+	Canvas.SetDrawColor(5,5,5,160);
 	DrawWhiteBox(C.CompPos[2]-(Edge*2.f),C.CompPos[3]-(Edge*2.f));
 
 	// While rendering, figure out mouse focus row.
@@ -496,25 +495,25 @@ function Font PickFont( byte i, out float Scaler )
 	switch( i )
 	{
 	case 0:
-		Scaler = 1;
+		Scaler = 0.6;
 		return DrawFonts[2];
 	case 1:
-		Scaler = 1;
+		Scaler = 0.6;
 		return DrawFonts[1];
 	case 2:
-		Scaler = 0.4;
+		Scaler = 0.6;
 		return DrawFonts[0];
 	case 3:
-		Scaler = 0.55;
+		Scaler = 0.65;
 		return DrawFonts[0];
 	case 4:
-		Scaler = 0.6;
+		Scaler = 0.65;
 		return DrawFonts[0];
 	case 5:
 		Scaler = 0.75;
 		return DrawFonts[0];
 	default:
-		Scaler = 1.0;
+		Scaler = 0.8;
 		return DrawFonts[0];
 	}
 }

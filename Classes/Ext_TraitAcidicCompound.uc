@@ -12,8 +12,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
-	TraitName="Acidic Compound"
+	TraitName="酸素弹头"
 	DefLevelCosts(0)=15
 	DefMinLevel=5
-	Description="When activated medic weapons have a chance to poison zeds."
+	Description="在该天赋激活的时候你的武器会使丧尸中毒。"
 }

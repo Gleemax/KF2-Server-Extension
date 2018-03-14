@@ -2,7 +2,7 @@ Class Ext_PerkFirebug extends Ext_PerkBase;
 
 defaultproperties
 {
-	PerkName="Firebug"
+	PerkName="×Ý»ð¿ñ"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
 	DefTraitList.Add(class'Ext_TraitWPFire')
 	DefTraitList.Add(class'Ext_TraitNapalm')

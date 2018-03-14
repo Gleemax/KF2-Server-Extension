@@ -287,7 +287,7 @@ event PostRender()
 			bShowProgress = false;
 			if( PlayerOwner.Player==None )
 			{
-				ShowProgressMsg("Downloading contents for next map, please wait...|Press [Escape] key to cancel connection!");
+				ShowProgressMsg("正在下载下一个地图的内容, 请稍等...|按[Escape] 取消连接!");
 				RenderProgress();
 			}
 			else if( bProgressDC )
@@ -313,7 +313,7 @@ final function DrawRespawnCounter()
 	local string S;
 
 	Canvas.Font = GUIStyle.PickFont(GUIStyle.DefaultFontSize+1,Sc);
-	S = "You are about to respawn in "$class'UI_Scoreboard'.Static.FormatTimeSM(EPRI.RespawnCounter);
+	S = "你剩余重生时间 "$class'UI_Scoreboard'.Static.FormatTimeSM(EPRI.RespawnCounter);
 	Canvas.SetDrawColor(250,150,150,255);
 	Canvas.TextSize(S,XL,YL,Sc,Sc);
 	Canvas.SetPos((Canvas.ClipX-XL)*0.5,Canvas.ClipY*0.075);
@@ -353,8 +353,8 @@ final function RenderKillMsg()
 		if( KillMessages[i].bDamage )
 			S = "-"$KillMessages[i].Counter$" HP "$KillMessages[i].Name;
 		else if( KillMessages[i].bLocal )
-			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " kills" : " kill");
-		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : "Someone")$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " kills" : " kill");
+			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " 被击杀" : " 被击杀");
+		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : "Someone")$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " 被击杀" : " 被击杀");
 		Canvas.SetPos(X,Y);
 		Canvas.DrawColor = KillMessages[i].MsgColor;
 		T = (1.f - (T/6.f)) * 255.f;
@@ -939,7 +939,7 @@ final function DrawDamage()
     local float TextWidth, TextHeight, x, Sc;
 	local string S;
 
-	Canvas.Font = class'Engine'.Static.GetMediumFont();
+	Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
 	Sc = 1;
 	
 	KFPlayerController(Owner).GetPlayerViewPoint(CameraLocation, CameraRotation);
@@ -1068,7 +1068,7 @@ simulated final function DrawItemsList()
 		else XS = XPos-XS;
 		
 		Canvas.SetPos(XS,YPos);
-		Canvas.DrawText("New Item:",,FontScale,FontScale);
+		Canvas.DrawText("新物品:",,FontScale,FontScale);
 		Canvas.SetPos(XS,YPos+(YSize*0.5));
 		Canvas.DrawText(NewItems[i].Item,,FontScale,FontScale);
 
@@ -1103,5 +1103,5 @@ defaultproperties
 	HealthBarCutoffDist=3500
 	DamagePopupFadeOutTime=3.000000
 	
-	BadConnectionStr="Warning: Connection problem!"
+	BadConnectionStr="警告: 连接问题!"
 }

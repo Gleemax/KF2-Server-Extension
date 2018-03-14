@@ -2,5 +2,5 @@ class Ext_TGroupZEDTime extends Ext_TGroupBase;
 
 defaultproperties
 {
-	GroupInfo="ZED Time"
+	GroupInfo="É¥Ê¬Ê±¼ä"
 }

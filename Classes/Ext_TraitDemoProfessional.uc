@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|Trait requires prestige level: #{FF4000}1";
+	S $= "|天赋需要转生等级： #{FF4000}1";
 	return S;
 }
 
@@ -39,8 +39,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkDemolition'
-	TraitName="Demolitions Specialist"
+	TraitName="爆破专家"
 	DefLevelCosts(0)=100
 	DefMinLevel=100
-	Description="Projectiles from demo weapons will never be duds. ||-REQUIREMENT: Reload bonus trait needs to have at least 30 points!"
+	Description="爆破职业武器的弹头会在任意距离引爆。||-需求：至少拥有30点装填速度属性"
 }

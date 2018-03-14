@@ -11,8 +11,8 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="Siren Resistance"
+	TraitName="女妖抗性"
 	DefLevelCosts(0)=50
 	DefMinLevel=75
-	Description="Make all your projectiles resistant to siren screams."
+	Description="使你的所有投射物对女妖尖叫产生抗性。"
 }

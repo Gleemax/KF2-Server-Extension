@@ -13,7 +13,7 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkSWAT'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="ZED TIME - Rapid Assault"
+	TraitName="丧尸时间 - 急速突击"
 	DefLevelCosts(0)=30
-	Description="Gives player unlimited ammunition for perked weapons during ZED-time and allows them to fire in realtime."
+	Description="在丧尸时间中，使玩家的职业武器拥有无限弹药而且能够实时开火。"
 }

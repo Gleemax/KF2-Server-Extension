@@ -36,12 +36,12 @@ final function ComputeSize()
 	if( ItemRows.Length==0 )
 	{
 		YS = 0;
-		XS = 50;
+		XS = 60;
 	}
 	else
 	{
 		YS = Owner.CurrentStyle.DefaultHeight * ItemRows.Length;
-		XS = 20;
+		XS = 30;
 		F = Owner.CurrentStyle.PickFont(Owner.CurrentStyle.DefaultFontSize,Scalar);
 		for( i=0; i<ItemRows.Length; ++i )
 		{

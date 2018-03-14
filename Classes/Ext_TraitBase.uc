@@ -6,7 +6,7 @@ Class Ext_TraitBase extends Object
 var array<FWebAdminConfigInfo> WebConfigs;
 
 var() class<Ext_TGroupBase> TraitGroup; // With groups you can prevent player from buying multiple traits of same group.
-var() string TraitName,Description; // UI name.
+var() Localized string TraitName,Description; // UI name.
 var() byte NumLevels; // Maximum number of levels.
 var config array<int> LevelCosts;
 var() array<int> DefLevelCosts; // Point price tag for each level.
@@ -57,9 +57,9 @@ static function string GetPerkDescription()
 			S = string(GetTraitCost(i));
 		else S $= ", "$GetTraitCost(i);
 	}
-	S = "Max level: #{9FF781}"$Default.NumLevels$"#{DEF}|Level costs: #{F3F781}"$S$"#{DEF}";
+	S = "最大等级: #{9FF781}"$Default.NumLevels$"#{DEF}|等级花费: #{F3F781}"$S$"#{DEF}";
 	if( Default.MinLevel>0 )
-		S = "Min perk level: #{FF4000}"$Default.MinLevel$"#{DEF}|"$S;
+		S = "最小职业等级: #{FF4000}"$Default.MinLevel$"#{DEF}|"$S;
 	return Default.Description$"||"$S;
 }
 
