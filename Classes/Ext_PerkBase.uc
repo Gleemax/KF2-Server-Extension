@@ -99,6 +99,13 @@ replication
 		CurrentLevel,CurrentPrestige,CurrentEXP,NextLevelEXP,CurrentSP,LastLevelEXP,bHasNightVision,MinLevelForPrestige,PrestigeSPIncrease,MaxPrestige,bTacticalReload,EnemyHealthRange;
 }
 
+simulated function InitLocalization()
+{
+	local int i;
+	for ( i=0; i<20; ++i )
+		DefPerkStats[i].UIName = StatStr[i];
+}
+
 simulated final function bool IsWeaponOnPerk( KFWeapon W )
 {
 	if( default.AdditionalOnPerkWeapon.Find(W.class.name) != INDEX_NONE )
@@ -119,12 +126,14 @@ simulated function PostBeginPlay()
 {
 	local int i,j;
 	local class<Ext_TraitBase> T;
-
+	
+	InitLocalization();
+	
 	if( WorldInfo.NetMode==NM_Client )
 	{
 		PerkStats.Length = 0; // Prevent client desync with client settings.
 		PlayerOwner = GetALocalPlayerController();
-		SetTimer(0.01,false,'InitPerk');
+		SetTimer(0.01,false,'InitPerk');	
 	}
 	else
 	{
@@ -154,7 +163,6 @@ simulated function PostBeginPlay()
 		for( j=0; j<PerkStats.Length; ++j )
 		{
 			i = DefPerkStats.Find('StatType',PerkStats[j].StatType);
-			DefPerkStats[i].UIName = StatStr[i];
 			if( i>=0 )
 				PerkStats[j].UIName = DefPerkStats[i].UIName;
 			else
