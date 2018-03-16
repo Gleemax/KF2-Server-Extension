@@ -5,6 +5,8 @@ var KFGUI_Button YesButten;
 var KFGUI_TextField InfoLabel;
 var byte CurCallCode;
 
+var() Localized string localizedStr[8];
+
 function InitMenu()
 {
 	YesButten = KFGUI_Button(FindComponentID('Yes'));
@@ -14,9 +16,9 @@ function InitMenu()
 final function SetupTo( class<Ext_PerkBase> P )
 {
 	PerkToReset = P;
-	WindowTitle = "警告: 重置职业状态"$P.Default.PerkName;
+	WindowTitle = localizedStr[0]$P.Default.PerkName;
 	YesButten.SetDisabled(true);
-	InfoLabel.SetText("请稍等...");
+	InfoLabel.SetText(localizedStr[1]);
 	++CurCallCode;
 	ExtPlayerController(GetPlayer()).OnClientGetResponse = ReceivedInfo;
 	ExtPlayerController(GetPlayer()).ServerGetUnloadInfo(CurCallCode,PerkToReset,false);
@@ -48,13 +50,13 @@ function ReceivedInfo( byte CallID, byte Code, int DataA, int DataB )
 	switch( Code )
 	{
 	case 0:
-		InfoLabel.SetText("错误：服务器禁止重置加点！");
+		InfoLabel.SetText(localizedStr[2]);
 		break;
 	case 1:
-		InfoLabel.SetText("错误：你需要至少 #{FFFF00}"$DataA$"#{DEF} 级才能进行该操作！");
+		InfoLabel.SetText(localizedStr[3]$DataA$localizedStr[4]);
 		break;
 	case 2:
-		InfoLabel.SetText("#{FF0000}警告：#{DEF} 使用该功能后您将失去 #{FFFF00}"$DataA$"#{DEF} 点经验值， 将降低你的 #{FF0000}"$DataB$"#{DEF} 个等级！|此外，你将被迫自杀来重置属性数据。||你确定要继续吗？");
+		InfoLabel.SetText(localizedStr[5]$DataA$localizedStr[6]$DataB$localizedStr[7]);
 		YesButten.SetDisabled(false);
 		break;
 	}
@@ -78,8 +80,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=YesButten
 		ID="Yes"
-		ButtonText="确认"
-		Tooltip="重置本职业(无法撤销)"
+		ButtonText="YES"
+		Tooltip="Reset the perk (you can not undo this action!)"
 		XPosition=0.2
 		YPosition=0.9
 		XSize=0.29
@@ -90,8 +92,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=NoButten
 		ID="No"
-		ButtonText="中止"
-		Tooltip="取消执行该操作"
+		ButtonText="ABORT"
+		Tooltip="Abort without doing anything"
 		XPosition=0.5
 		YPosition=0.9
 		XSize=0.29

@@ -18,8 +18,7 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	TraitName="护甲再生"
-	Description="该天赋会使你的护甲每十秒钟按以下效率恢复：|Lvl1-3: +7点, +12点, +25点"
+	TraitGroup=class'Ext_TGroupRegen'
 	RegenValues.Empty()
 	RegenValues.Add(7)
 	RegenValues.Add(12)

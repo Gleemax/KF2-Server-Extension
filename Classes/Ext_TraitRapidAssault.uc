@@ -13,7 +13,5 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkSWAT'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="丧尸时间 - 急速突击"
 	DefLevelCosts(0)=30
-	Description="在丧尸时间中，使玩家的职业武器拥有无限弹药而且能够实时开火。"
 }

@@ -57,8 +57,6 @@ defaultproperties
 {
 	bIsSummoner=true
 	NumLevels=4
-	TraitName="替补爪牙"
-	Description="该天赋会使你能够召唤额外的协助丧尸。|Lv 1: 一个普通丧尸。|Lv 2: 一个强大丧尸。|Lv 3: 一个普通丧尸和一个强大丧尸。|Lv 4: 两个强大丧尸||-需求：丧尸爪牙天赋"
 	DefLevelCosts(0)=100
 	DefLevelCosts(1)=40
 	DefLevelCosts(2)=80

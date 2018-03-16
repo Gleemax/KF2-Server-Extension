@@ -25,7 +25,6 @@ static function PlayerDied( Ext_PerkBase Perk, byte Level, optional Ext_TraitDat
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkMetronomeBase'
-	TraitName="精确节拍器"
 	DefLevelCosts(0)=25
 	DefLevelCosts(1)=30
 	DefLevelCosts(2)=40
@@ -39,5 +38,4 @@ defaultproperties
 	MaxStackSize.Add(1)
 	MaxStackSize.Add(2)
 	NumLevels=4
-	Description="每隔一段时间你将会获得一次机会，让你能够通过使用职业武器对同一目标进行五次爆头来触发一个丧尸时间。|每级你的触发间隔将会更短：|Lv1-4: 30s, 20s, 15s, 额外触发机会"
 }

@@ -50,7 +50,7 @@ function Timer()
 					}
 				}
 				OldPerkPoints = PendingPerk.CurrentSP;
-				PerkLabel.SetText("等级"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (点数: "$PendingPerk.CurrentSP$")");
+				PerkLabel.SetText(localizedStr[0]$PendingPerk.GetLevelString()@PendingPerk.PerkName$" ("$localizedStr[1]$": "$PendingPerk.CurrentSP$")");
 				for( i=0; i<StatsList.ItemComponents.Length; ++i ) // Just make sure perk stays the same.
 				{
 					StatBuyers[i].SetActivePerk(PendingPerk);
@@ -69,7 +69,7 @@ function Timer()
 		else if( PendingPerk!=None && OldPerkPoints!=PendingPerk.CurrentSP )
 		{
 			OldPerkPoints = PendingPerk.CurrentSP;
-			PerkLabel.SetText("等级"$PendingPerk.GetLevelString()@PendingPerk.PerkName$" (点数: "$PendingPerk.CurrentSP$")");
+			PerkLabel.SetText(localizedStr[0]$PendingPerk.GetLevelString()@PendingPerk.PerkName$" ("$localizedStr[1]$": "$PendingPerk.CurrentSP$")");
 			for( i=0; i<StatsList.ItemComponents.Length; ++i ) // Just make sure perk stays the same.
 				StatBuyers[i].CheckBuyLimit();
 			

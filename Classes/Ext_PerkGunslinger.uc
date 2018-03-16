@@ -35,7 +35,6 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 defaultproperties
 {
-	PerkName="«π ÷"
 	DefTraitList.Add(class'Ext_TraitWPGuns')
 	DefTraitList.Add(class'Ext_TraitUberAmmo')
 	DefTraitList.Add(class'Ext_TraitFanfire')

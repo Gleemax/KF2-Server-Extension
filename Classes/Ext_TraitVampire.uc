@@ -14,7 +14,6 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkBerserker'
-	TraitName="吸血鬼"
 	NumLevels=4
 	DefLevelCosts(0)=25
 	DefLevelCosts(1)=15
@@ -24,5 +23,4 @@ defaultproperties
 	RegenRate.Add(0.03)
 	RegenRate.Add(0.04)
 	RegenRate.Add(0.05)
-	Description="该天赋会使你在使用近战武器击杀丧尸时按如下百分比恢复生命值：|Lv1-4: +2%, +3%, +4%, +5%"
 }

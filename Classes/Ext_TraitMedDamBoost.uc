@@ -23,11 +23,9 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
-	TraitName="焦点注射"
 	NumLevels=3
 	DefLevelCosts(0)=40
 	DefLevelCosts(1)=50
 	DefLevelCosts(2)=60
 	DefMinLevel=85
-	Description="治疗玩家将会增加他们的伤害至最大最大到15%，其增幅百分比按等级增加：|Lv1-3: 5%, 10%, 15%"
 }

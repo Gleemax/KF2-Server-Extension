@@ -12,8 +12,6 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
-	TraitName="酸素弹头"
 	DefLevelCosts(0)=15
 	DefMinLevel=5
-	Description="在该天赋激活的时候你的武器会使丧尸中毒。"
 }

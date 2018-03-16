@@ -1,0 +1,453 @@
+[Ext_TraitAcidicCompound]
+TraitName="酸性彈頭"
+Description="在該天賦激活的時候妳的武器會使喪屍中毒."
+[Ext_TraitAirborne]
+TraitName="擴散藥劑"
+Description="使妳的治療針在子彈時間中獲得額外的醫療速率, 並且會獲得範圍治療能力. |每級會獲得額外的治療速度加成: |Lv 1-3: +5%, +10%, +20%|Lv 4: +15%, 在喪失時間外同樣生效"
+[Ext_TraitAirborneAgent]
+TraitName="喪屍時間 - 懸浮劑"
+Description="在喪屍時間內, 妳會釋放壹股治療氣體, 治療接近妳的隊友. ||-需求: 手雷升級天賦"
+ExtraDesc="|特性需求轉生等級: #{FF4000}1"
+[Ext_TraitAmmoReg]
+TraitName="彈藥再生"
+Description="該天賦會使妳所有武器的彈藥（除手榴彈）每半分鐘按以下效率恢復: |Lv1-3: 2%, 5%, 10% 的總彈藥"
+[Ext_TraitAPShots]
+TraitName="穿甲彈"
+Description="極大的增加職業武器的護甲穿透能力, 穿透強度每級按以下程度增長: |Lv1-4: 25%, 30%, 35%, 40%"
+[Ext_TraitArmorReg]
+TraitName="護甲再生"
+Description="該天賦會使妳的護甲每十秒鐘按以下效率恢復: |Lvl1-3: +7點, +12點, +25點"
+[Ext_TraitArmorRep]
+TraitName="護甲修復"
+Description="妳能夠在妳治療別人時修復其護甲, 每級妳會擁有更高的護甲修復比例: |Lv1-5: +5%, +10%, +15%, +20%, +25%"
+[Ext_TraitAutoFire]
+TraitName="自動開火"
+Description="使妳的所有武器都能夠全自動開火."
+[Ext_TraitBase]
+localizedStr[0]="最大等級"
+localizedStr[1]="等級消耗"
+localizedStr[2]="最小職業等級"
+TraitName=""
+Description=""
+ExtraDesc=""
+[Ext_TraitBoomWeld]
+TraitName="焊接陷阱"
+Description="妳焊接的自動門會在被喪屍破壞時爆炸, 妳對同壹個門的焊接程度越高, 爆炸就越強."
+[Ext_TraitBunnyHop]
+TraitName="兔子跳"
+Description="允許玩家進行兔子跳, 使得妳在向前移動時能通過連續的向前跳躍使移動速度不斷增加."
+[Ext_TraitCarryCap]
+TraitName="負重上限"
+Description="通過該天賦妳可以擁有更高的負重上限. |Lv1-5: +2,+4,+6,+8,+15 負重上限"
+[Ext_TraitContactNade]
+TraitName="接觸式引線"
+Description="使妳的1/2炸藥在接觸喪屍時能夠立刻爆炸."
+[Ext_TraitDemoAOE]
+TraitName="範圍傷害"
+Description="增加妳的爆破職業武器的傷害範圍, 其增加的傷害範圍隨每等級提升: |Lv1-4: 15%, 20%, 25%, 30%"
+[Ext_TraitDemoCriticalHit]
+TraitName="破甲彈頭"
+Description="爆破職業武器將會對喪屍的弱點額外造成50%傷害."
+[Ext_TraitDemoDirectHit]
+TraitName="強烈沖擊"
+Description="爆破職業武器直擊將會額外造成25%的傷害."
+[Ext_TraitDemoNuke]
+TraitName="喪屍時間 - 核爆"
+Description="爆破武器將會在喪屍時間中制造核爆. |每等級增加核爆的威力和輻射的持續時間. ||-需求: 擁有至少30點職業傷害屬性"
+ExtraDesc="|天賦需要轉生等級:  #{FF4000}3"
+[Ext_TraitDemoProfessional]
+TraitName="爆破專家"
+Description="爆破職業武器的彈頭會在任意距離引爆. ||-需求: 至少擁有30點裝填速度屬性"
+ExtraDesc="|天賦需要轉生等級:  #{FF4000}1"
+[Ext_TraitDemoReactiveArmor]
+TraitName="反應裝甲"
+Description="當妳瀕臨死亡時妳將會產生壹次大爆炸並使妳剩余5點生命值."
+[Ext_TraitDireReload]
+TraitName="急迫裝填"
+Description="當妳的生命值低於40點時妳將會極大的增加妳的裝填速度."
+[Ext_TraitDoorRepair]
+TraitName="自動門維修"
+Description="允許妳使用焊槍維修自動門."
+[Ext_TraitDuracell]
+TraitName="霸王電池"
+Description="該天賦會使妳的手電筒的電池更加耐用. |Lv1-4: +30,+100,+300,+1000% 最大時間"
+[Ext_TraitEliteReload]
+TraitName="戰術裝填"
+Description="該天賦會使妳的職業武器擁有額外的戰術裝填動作和裝填速度."
+[Ext_TraitEnemyHP]
+TraitName="生命值探測"
+Description="讓妳能夠探測敵人的生命值, 探測距離隨等級上升: |Lv1-4: 12, 18, 32, 48"
+[Ext_TraitFanfire]
+TraitName="喪屍時間 - 扇火"
+Description="在喪屍時間中, 妳的槍手職業武器可以實時射擊和裝填."
+[Ext_TraitFireExplode]
+TraitName="喪屍彈片"
+Description="使妳燒死的喪屍有時會產生爆炸, 擊倒其他喪屍."
+[Ext_TraitFireRange]
+TraitName="火焰延伸"
+Description="為妳的火焰噴射器增加額外的火焰噴射距離."
+[Ext_TraitGhost]
+TraitName="救贖"
+Description="該天賦會使妳在死亡時轉為壹個幽靈並且隨後在地圖的另壹個點復活. |Level 1: 50%幾率生效, 死亡前只會出現壹次. |Level 2: 每三分鐘必定生效壹次."
+[Ext_TraitGrenadeCap]
+TraitName="手雷上限"
+Description="該天賦使妳能夠攜帶額外的手雷. |Lv1-5: +1,+2,+3,+5,+8 手雷上限"
+[Ext_TraitGrenadeSUpg]
+TraitName="手雷升級"
+Description="使用特定的超級職業手雷替換妳的通用手雷. |Level 1: 超級手雷"
+[Ext_TraitGrenadeUpg]
+TraitName="手雷升級"
+Description="使用特定的職業手雷替換妳的通用手雷. |Level 1: 普通職業手雷|Level 2: 超級職業手雷（需求: 50級）"
+[Ext_TraitHealthReg]
+TraitName="生命再生"
+Description="該天賦會使妳的生命值每十秒鐘按以下效率恢復: |Lvl1-3: +5HP, +10HP, +20HP"
+[Ext_TraitHeavyArmor]
+TraitName="重型護甲"
+Description="Level 1: 使妳重生時擁有100點護甲值. |Level 2: 使妳重生時擁有最大護甲. |Level 3: 妳的護甲會吸收尖叫和跌落外的所有傷害."
+[Ext_TraitKnockback]
+TraitName="擊退抗性"
+Description="按以下比例減少喪屍對妳造成的擊退強度: |Lv1-4: -20%, -50%, -70%, -90%"
+[Ext_TraitMachineGunner]
+TraitName="喪屍時間 - 機槍手"
+Description="在喪失時間中, 妳的職業武器會造成3%的額外傷害而且會以三倍射速射擊！"
+ExtraDesc="|天賦需要轉生等級:  #{FF4000}1"
+[Ext_TraitMedBoost]
+TraitName="腎上腺素註射"
+Description="治療玩家將會增加他們的移動速度至30%, 每次治療提供的加成隨等級增加: |Lv1-5: 10%, 15%, 20%, 25%, 30%"
+[Ext_TraitMedDamBoost]
+TraitName="焦點註射"
+Description="治療玩家將會增加他們的傷害至最大最大到15%, 其增幅百分比按等級增加: |Lv1-3: 5%, 10%, 15%"
+[Ext_TraitMedicPistol]
+TraitName="醫療手槍"
+Description="將重生時攜帶的基礎9mm手槍替換成101醫療手槍."
+[Ext_TraitMedShield]
+TraitName="促凝劑"
+Description="治療玩家會增加他們的傷害抗性, 其增幅隨等級增加: |Lv1-5: 10%, 15%, 20%, 25%, 30%"
+[Ext_TraitMetronome]
+TraitName="精確節拍器"
+Description="每隔壹段時間妳將會獲得壹次機會, 讓妳能夠通過使用職業武器對同壹目標進行五次爆頭來觸發壹個喪屍時間. |每級妳的觸發間隔將會更短: |Lv1-4: 30s, 20s, 15s, 額外觸發機會"
+[Ext_TraitNapalm]
+TraitName="凝固汽油"
+Description="使得妳點燃的喪屍能夠點燃其他的喪屍."
+[Ext_TraitNightvision]
+TraitName="夜視儀"
+Description="使妳重生的時候攜帶夜視儀."
+[Ext_TraitPenetrator]
+TraitName="喪屍時間 - 穿刺者"
+Description="在喪屍時間中, 妳的職業武器將能夠穿透任何擊中的目標. ||-需求: 至少擁有1級穿甲彈技能"
+ExtraDesc="|天賦需要轉生等級:  #{FF4000}2"
+[Ext_TraitRackEmUp]
+TraitName="連擊起來"
+Description="每次爆頭都會在幾秒鐘內提升對僵屍的傷害, 最高五層. |每級妳的每層連擊可以造成更高傷害以及持續更長時間: |Lv1-5: +5%/1.5s, +7.5%/1.75s, +10%/2s, +12.5%/2.5s, +15%/3s"
+[Ext_TraitRagdoll]
+TraitName="擊倒抗性"
+Description="降低妳的被擊倒幾率. 每級降低幾率: |Lv1-3: 20%, 50%, 80%||-服務器未啟用擊倒時無效"
+[Ext_TraitRanger]
+TraitName="喪屍時間 - 精準射手"
+Description="在喪屍時間中, 妳對喪屍爆頭將會造成非常有效的擊暈效果."
+[Ext_TraitRapidAssault]
+TraitName="喪屍時間 - 急速突擊"
+Description="在喪屍時間中, 使玩家的職業武器擁有無限彈藥而且能夠實時開火."
+[Ext_TraitRetali]
+TraitName="復仇"
+Description="用壹次大爆炸來結束妳光輝的壹生！"
+[Ext_TraitSirenResistance]
+TraitName="女妖抗性"
+Description="使妳的所有投射物對女妖尖叫產生抗性."
+[Ext_TraitSpartan]
+TraitName="喪屍時間 - 斯巴達！"
+Description="在喪屍時間中, 妳可以實時移動並且會以更快速度進行攻擊: |Lv1-3: +50,+120,+300% 攻擊速度"
+[Ext_TraitSupply]
+TraitName="彈藥補給"
+Description="妳可以每隔壹段時間為妳的隊友提供彈藥, 每次提供都會使妳獲得少量的經驗值."
+[Ext_TraitSupplyData]
+[Ext_TraitSupplyGren]
+TraitName="手雷補給"
+Description="妳可以每隔壹段時間為妳的隊友提供手雷, 每次提供都會使妳獲得少量的經驗值."
+[Ext_TraitSWATEnforcer]
+TraitName="喪屍時間 - 執法者"
+Description="在喪屍時間內, 妳可以實時移動並且可以撞倒移動路徑上的喪屍."
+[Ext_TraitTacticalMove]
+TraitName="戰術移動"
+Description="該天賦會使妳在機械瞄準和蹲伏時擁有額外的移動速度: |Lv 1-3: +30%,+50%,+100%"
+[Ext_TraitTactician]
+TraitName="喪屍時間 - 戰術家"
+Description="在喪失時間中. 妳可以實時裝填妳的職業武器並且能夠以兩倍速度切換武器！||-需求: 擁有至少30點職業傷害屬性"
+[Ext_TraitToxicDart]
+TraitName="毒液註射"
+Description="使妳的治療飛鏢能夠對喪屍造成毒素傷害, 傷害隨等級增加: :|Lv 1-3: 15, 35, 70點傷害"
+[Ext_TraitUberAmmo]
+TraitName="喪屍時間 - 子彈風暴"
+Description="在喪屍時間中, 妳的槍手職業武器有無限彈藥."
+[Ext_TraitUnCloak]
+TraitName="隱身偵測"
+Description="讓妳能夠探測隱身敵人, 探測距離隨等級上升: |Lv1-5: 8m, 12m, 18m, 30m, 60m"
+[Ext_TraitUnGrab]
+TraitName="欺詐"
+Description="該天賦會使妳無法被喪屍抓取."
+[Ext_TraitVampire]
+TraitName="吸血鬼"
+Description="該天賦會使妳在使用近戰武器擊殺喪屍時按如下百分比恢復生命值: |Lv1-4: +2%, +3%, +4%, +5%"
+[Ext_TraitWeapons]
+[Ext_TraitWPBers]
+TraitName="狂戰初始武器"
+Description="使妳重生時攜帶特定狂戰士職業武器. |Level 1: 粉碎機|Level 2: 釘槍|Level 3: |Level 4: 以上全部3種"
+[Ext_TraitWPComm]
+TraitName="突擊初始武器"
+Description="使妳重生時攜帶特定突擊手職業武器. |Level 1: 小牛式步槍|Level 2: AK12|Level 3: SCAR|Level 4: 以上全部3種"
+[Ext_TraitWPDemo]
+TraitName="爆破初始武器"
+Description="使妳重生時攜帶特定爆破手職業武器. |Level 1: C4|Level 2: M79榴彈發射器|Level 3: RPG火箭發射器|Level 4: 以上全部3種"
+[Ext_TraitWPFire]
+TraitName="縱火初始武器"
+Description="使妳重生時攜帶特定縱火狂職業武器. |Level 1: 龍息霰彈槍|Level 2: 火焰噴射器|Level 3: 微波槍|Level 4: 以上全部3種"
+[Ext_TraitWPGuns]
+TraitName="槍手初始武器"
+Description="使妳重生時攜帶特定槍手職業武器. |Level 1: M1911手槍|Level 2: 沙漠之鷹|Level 3: 馬格南左輪|Level 4: 全部3種"
+[Ext_TraitWPMedic]
+TraitName="醫療初始武器"
+Description="使妳重生時攜帶特定醫療職業武器. |Level 1: 201沖鋒槍|Level 2: 301霰彈槍|Level 3: 401突擊步槍|Level 4: 以上全部3種"
+[Ext_TraitWPSharp]
+TraitName="神射初始武器"
+Description="使妳重生時攜帶特定神射職業武器. |Level 1: 十字弩|Level 2: M14|Level 3: 軌道槍|Level 4: 以上全部3種"
+[Ext_TraitWPSupp]
+TraitName="支援初始武器"
+Description="使妳重生時攜帶特定支援職業武器. |Level 1: M4霰彈槍|Level 2: 雙管霰彈槍|Level 3: AA12|Level 4: 以上全部3種"
+[Ext_TraitWPSurv]
+TraitName="生存初始武器"
+Description="使妳重生時攜帶特定生存專家職業武器. |Level 1: 龍息霰彈槍|Level 2: M16突擊步槍|Level 3: 401突擊步槍|Level 4: 以上全部3種"
+[Ext_TraitWPSWAT]
+TraitName="特警初始武器"
+Description="使妳重生時攜帶特定特警職業武器. |Level 1: MP5沖鋒槍|Level 2: P90沖鋒槍|Level 3: Kriss沖鋒槍|Level 4: 以上全部3種"
+[Ext_TraitZED_Damage]
+TraitName="喪屍傷害"
+Description="增加妳的協助僵屍所造成的傷害: |Lv1-5: +10%, +25%, +50%, +100%, +200%||-需求: 喪屍爪牙天賦"
+[Ext_TraitZED_Health]
+TraitName="喪屍生命"
+Description="增加妳的協助喪屍的最大生命值: |Lv1-4: +25%, +50%, +75%, +100%||-需求: 喪屍爪牙天賦"
+[Ext_TraitZED_Summon]
+TraitName="喪屍爪牙"
+Description="妳能夠通過該天賦召喚壹個協助僵屍, 該天賦的等級越高, 妳就能召喚壹個越強大的僵屍. ||-需求: 擁有至少30點職業傷害屬性"
+[Ext_TraitZED_SummonExt]
+TraitName="替補爪牙"
+Description="該天賦會使妳能夠召喚額外的協助喪屍. |Lv 1: 壹個普通喪屍. |Lv 2: 壹個強大喪屍. |Lv 3: 壹個普通喪屍和壹個強大喪屍. |Lv 4: 兩個強大喪屍||-需求: 喪屍爪牙天賦"
+[Ext_TraitZedative]
+TraitName="喪屍時間 - 喪屍狂"
+Description="在喪屍時間中, 使用醫療職業武器傷害喪屍會使其減速30%並且造成大量毒素傷害. ||-需求: 擁有至少30點治療速率屬性"
+ExtraDesc="|天賦需要轉生等級:  #{FF4000}2"
+[Ext_TraitZEDBase]
+[Ext_TraitZedTExt]
+TraitName="喪屍時間擴展"
+Description="為妳的職業增加額外的喪屍時間長度, 其擴展的長度為每級增加1秒."
+
+[Ext_TGroupBase]
+GroupInfo="組"
+localizedStr[0]="最大 "
+localizedStr[1]=" 技能組"
+[Ext_TGroupMonster]
+GroupInfo="喪屍"
+[Ext_TGroupRegen]
+GroupInfo="再生"
+localizedStr[1]="|完成下列要求更買額外再生技能: |-壹轉 + 100級 = 最大兩個技能|-五轉 + 150級 = 最大三個技能"
+[Ext_TGroupZEDTime]
+GroupInfo="喪屍時間"
+
+[Ext_PerkBase]
+PerkName=""
+StatStr[0]="移動速度 (+&%)"
+StatStr[1]="職業傷害 (+&%)"
+StatStr[2]="後坐力 (-&%)"
+StatStr[3]="武器散射 (-&%)"
+StatStr[4]="武器射速 (+&%)"
+StatStr[5]="裝填時間 (-&%)"
+StatStr[6]="生命值 (+&HP)"
+StatStr[7]="擊退 (+&%)"
+StatStr[8]="焊接速度 (+&%)"
+StatStr[9]="治療效率 (+&%)"
+StatStr[10]="彈夾容量 (+&%)"
+StatStr[11]="最大備彈 (+&%)"
+StatStr[12]="非職業傷害 (+&%)"
+StatStr[13]="自傷減免 (+&%)"
+StatStr[14]="護甲 (+&)"
+StatStr[15]="毒素抗性 (+&%)"
+StatStr[16]="音波抗性 (+&%)"
+StatStr[17]="火焰抗性 (+&%)"
+StatStr[18]="全體抗性 (+&%)"
+StatStr[19]="切換速度 (+&%)"
+[Ext_PerkSupport]
+PerkName="支援兵"
+[Ext_PerkSurvivalist]
+PerkName="生存專家"
+[Ext_PerkSWAT]
+PerkName="特警"
+[Ext_PerkBerserker]
+PerkName="狂戰士"
+[Ext_PerkCommando]
+PerkName="突擊兵"
+[Ext_PerkDemolition]
+PerkName="爆破手"
+[Ext_PerkFieldMedic]
+PerkName="戰地醫生"
+[Ext_PerkFirebug]
+PerkName="縱火狂"
+[Ext_PerkGunslinger]
+PerkName="槍手"
+[Ext_PerkMetronomeBase]
+[Ext_PerkRhythmPerkBase]
+[Ext_PerkSharpshooter]
+PerkName="神射手"
+
+[UIP_Settings]
+localizedStr[0]="第壹人稱顯示腿:"
+localizedStr[1]="第壹人稱顯示身體"
+localizedStr[2]="隱藏名稱標簽:"
+localizedStr[3]="隱藏玩家名稱標簽"
+localizedStr[4]="隱藏擊殺信息:"
+localizedStr[5]="隱藏玩家擊殺信息"
+localizedStr[6]="隱藏傷害信息:"
+localizedStr[7]="隱藏玩家傷害信息"
+localizedStr[8]="隱藏浮動傷害:"
+localizedStr[9]="隱藏浮動傷害信息"
+localizedStr[10]="使用官方死亡信息:"
+localizedStr[11]="使用官方死亡信息"
+localizedStr[12]="使用官方擊殺信息:"
+localizedStr[13]="使用官方擊殺信息"
+localizedStr[14]="視角切換按鍵:"
+localizedStr[15]="此按鈕可以切換視角(點擊修改按鍵)"
+localizedStr[16]="禁用成為喪屍:"
+localizedStr[17]="禁用玩家喪屍模式(需要遊戲模式支持)"
+localizedStr[18]="無屏幕抖動:"
+localizedStr[19]="禁用屏幕抖動 (來自爆炸)"
+localizedStr[20]="按下壹個按鈕"
+
+[UIP_PlayerSpecs]
+[UIR_PerkStat]
+[UIR_PerkTraitList]
+[UIR_TraitInfoPopup]
+localizedStr[0]="最大等級"
+localizedStr[1]="購買"
+[UI_AdminMOTD]
+localizedStr="每日訊息預覽:|"
+[UI_AdminPerkLevel]
+localizedStr[0]="設置等級"
+localizedStr[1]="設置轉生等級"
+localizedStr[2]="設置等級為"
+localizedStr[3]="設置轉生等級為"
+
+[UI_MidGameMenu]
+localizedStr[0]="地圖投票"
+localizedStr[1]="顯示地圖投票菜單"
+localizedStr[2]="設置"
+localizedStr[3]="打開遊戲設置"
+localizedStr[4]="斷開連接"
+localizedStr[5]="斷開服務器連接"
+localizedStr[6]="關閉"
+localizedStr[7]="關閉菜單"
+localizedStr[8]="退出"
+localizedStr[9]="退出遊戲"
+localizedStr[10]="加入戰鬥"
+localizedStr[11]="冷眼旁觀"
+localizedStr[12]="點擊此處加入遊戲"
+localizedStr[13]="點擊此處開始旁觀"
+
+[UI_Scoreboard]
+localizedStr[0]="時間: "
+localizedStr[1]=" | 玩家總數: "
+localizedStr[2]=" | 存活: "
+localizedStr[3]=" | 旁觀者: "
+localizedStr[4]="當前波數"
+localizedStr[5]="玩家"
+localizedStr[6]="金錢"
+localizedStr[7]="擊殺"
+localizedStr[8]="助攻"
+localizedStr[9]="延遲"
+localizedStr[10]="未選擇職業"
+localizedStr[11]="重生於: "
+localizedStr[12]="電腦"
+localizedStr[13]="死亡"
+localizedStr[14]="取消靜音玩家"
+localizedStr[15]="靜音玩家"
+localizedStr[16]="妳將該玩家靜音: "
+localizedStr[17]="妳取消對該玩家的靜音:  "
+localizedStr[18]="玩家: "
+localizedStr[19]="|生命: "
+localizedStr[20]="|(右鍵查看選項)"
+
+[UI_Scoreboard_CD]
+localizedStr[0]="  |  當前波數 "
+localizedStr[1]="  | 當前波數 "
+localizedStr[2]=" 玩家總數 : "
+localizedStr[3]="  |  存活 "
+localizedStr[4]="  |  旁觀者 : "
+localizedStr[5]="玩家總數 : "
+localizedStr[6]="  |  存活 : "
+localizedStr[7]="  |  旁觀者 : "
+localizedStr[8]="職業"
+localizedStr[9]="擊殺"
+localizedStr[10]="助攻"
+localizedStr[11]="金錢"
+localizedStr[12]="狀態"
+localizedStr[13]="等級"
+localizedStr[14]="玩家"
+localizedStr[15]="延遲"
+localizedStr[16]="開發者"
+localizedStr[17]="玩家"
+localizedStr[18]="死亡"
+localizedStr[19]="玩家: "
+localizedStr[20]="|生命值: "
+localizedStr[21]="|(右鍵查看選項)"
+
+[UI_ResetWarning]
+localizedStr[0]="警告: 重置"
+[UI_UnloadInfo]
+localizedStr[0]="警告: 重置職業狀態"
+localizedStr[1]="請稍等..."
+localizedStr[2]="錯誤: 服務器禁止重置加點！"
+localizedStr[3]="錯誤: 妳需要至少 #{FFFF00}"
+localizedStr[4]="#{DEF} 級才能進行該操作！"
+localizedStr[5]="#{FF0000}警告: #{DEF} 使用該功能後您將失去 #{FFFF00}"
+localizedStr[6]="#{DEF} 點經驗值,  將降低妳的 #{FF0000}"
+localizedStr[7]="#{DEF} 個等級！|此外, 妳將被迫自殺來重置屬性數據. ||妳確定要繼續嗎？"
+[UI_PrestigeNote]
+localizedStr[0]="提示: 轉生"
+localizedStr[1]="提示: 如果妳進行轉生, 妳將不能撤消這個操作！|妳的經驗和等級將重置為 #{FF0000}0#{DEF}.|但這會令妳每次升級增加 #{F7FE2E} "
+localizedStr[2]="#{DEF} 點數. ||妳確定要這樣做嗎？"
+
+[UIP_About]
+[UIP_AdminMenu]
+[UIP_MiniGame]
+[UIP_News]
+
+[UIP_PerkSelection]
+localizedStr[0]="等級"
+localizedStr[1]="技能點"
+localizedStr[2]="此職業禁止轉生"
+localizedStr[3]="轉生此職業. |最小等級: "
+localizedStr[4]="<沒有選擇職業>"
+[UIP_PerkSelectionLobby]
+localizedStr[0]="等級"
+localizedStr[1]="技能點"
+localizedStr[2]="此職業禁止轉生"
+localizedStr[3]="轉生此職業. |最小等級: "
+localizedStr[4]="<沒有選擇職業>"
+
+[MX_PongGame]
+localizedStr[0]="按下鼠標左鍵開始遊戲"
+localizedStr[1]="得分: "
+localizedStr[2]="場數: "
+
+[ExtPlayerController]
+localizedStr[0]=" 使用 "
+localizedStr[1]=" 殺死了自己"
+localizedStr[2]=" 被活活燒死"
+localizedStr[3]=" 被炸成了碎片"
+localizedStr[4]=" 心臟病突發去世"
+localizedStr[5]=" 被 "
+localizedStr[6]=" 的 "
+localizedStr[7]=" 殺死了"
+localizedStr[8]=" 被 "
+localizedStr[9]=" 燒成了灰燼"
+localizedStr[10]=" 被 "
+localizedStr[11]=" 炸成了碎片"
+localizedStr[12]=" 被 "
+localizedStr[13]=" 殘忍的殺害了"

@@ -46,6 +46,8 @@ struct SavedSkins
 };
 var globalconfig array<SavedSkins> SavedWeaponSkins;
 
+var() Localized string localizedStr[14];
+
 replication
 {
 	// Things the server should send to the client.
@@ -479,13 +481,13 @@ simulated final function string ParseSuicideMsg( string Victim, class<DamageType
 	if( Left(S,15)~="KFDT_Ballistic_" )
 	{
 		S = Mid(S,15); // Weapon name.
-		return Victim$Chr(6)$"M 使用该武器杀死了自己 "$S;
+		return Victim$Chr(6)$localizedStr[0]$S$localizedStr[1];
 	}
 	else if( class<KFDT_Fire>(DamType)!=None )
-		return Victim$Chr(6)$"M 被活活烧死";
+		return Victim$Chr(6)$localizedStr[2];
 	else if( class<KFDT_Explosive>(DamType)!=None )
-		return Victim$Chr(6)$"M 被炸成了碎片";
-	return Victim$Chr(6)$"M 心脏病突发去世";
+		return Victim$Chr(6)$localizedStr[3];
+	return Victim$Chr(6)$localizedStr[4];
 }
 simulated final function string ParseKillMsg( string Victim, string Killer, bool bFF, class<DamageType> DamType )
 {
@@ -496,13 +498,13 @@ simulated final function string ParseKillMsg( string Victim, string Killer, bool
 	if( Left(S,15)~="KFDT_Ballistic_" )
 	{
 		S = Mid(S,15); // Weapon name.
-		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$Chr(6)$"M的 "$S$"M 杀死了";
+		return Chr(6)$"O"$Victim$Chr(6)$localizedStr[5]$Chr(6)$T$Killer$Chr(6)$localizedStr[6]$S$localizedStr[7];
 	}
 	else if( class<KFDT_Fire>(DamType)!=None )
-		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 烧成了灰烬";
+		return Chr(6)$"O"$Victim$Chr(6)$localizedStr[8]$Chr(6)$T$Killer$localizedStr[9];
 	else if( class<KFDT_Explosive>(DamType)!=None )
-		return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 炸成了碎片";
-	return Chr(6)$"O"$Victim$Chr(6)$"M 被 "$Chr(6)$T$Killer$"M 残忍的杀害了";
+		return Chr(6)$"O"$Victim$Chr(6)$localizedStr[10]$Chr(6)$T$Killer$localizedStr[11];
+	return Chr(6)$"O"$Victim$Chr(6)$localizedStr[12]$Chr(6)$T$Killer$localizedStr[13];
 }
 
 reliable server function ServerCamera( name NewMode )

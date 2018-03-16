@@ -12,7 +12,7 @@ replication
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return (IsWeaponOnPerk(KFW) ? Modifiers[5]<0.65 : false);
+	return (bTacticalReload && IsWeaponOnPerk(KFW));
 }
 
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
@@ -52,7 +52,6 @@ simulated function float GetZedTimeExtensions( byte Level )
 
 defaultproperties
 {
-	PerkName="Í»»÷±ø"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
 	DefTraitList.Add(class'Ext_TraitWPComm')
 	DefTraitList.Add(class'Ext_TraitUnCloak')

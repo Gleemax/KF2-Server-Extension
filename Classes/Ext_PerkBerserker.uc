@@ -40,7 +40,6 @@ function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DT )
 
 defaultproperties
 {
-	PerkName="¿ñÕ½Ê¿"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 	DefTraitList.Add(class'Ext_TraitWPBers')
 	DefTraitList.Add(class'Ext_TraitUnGrab')

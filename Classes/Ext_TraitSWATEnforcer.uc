@@ -21,8 +21,6 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 
 defaultproperties
 {
-	TraitName="丧尸时间 - 执法者"
 	TraitGroup=class'Ext_TGroupZEDTime'
 	DefLevelCosts(0)=50
-	Description="在丧尸时间内，你可以实时移动并且可以撞倒移动路径上的丧尸。"
 }

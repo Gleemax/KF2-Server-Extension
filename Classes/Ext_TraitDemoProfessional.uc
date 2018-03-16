@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|天赋需要转生等级： #{FF4000}1";
+	S $= Default.ExtraDesc;
 	return S;
 }
 
@@ -13,7 +13,7 @@ static function bool MeetsRequirements( byte Lvl, Ext_PerkBase Perk )
 {
 	local int i;
 
-	if( Perk.CurrentLevel<Default.MinLevel || Perk.CurrentPrestige<3 )
+	if( Perk.CurrentLevel<Default.MinLevel || Perk.CurrentPrestige<2 )
 		return false;
 	
 	if( Lvl==0 )
@@ -39,8 +39,6 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkDemolition'
-	TraitName="爆破专家"
 	DefLevelCosts(0)=100
 	DefMinLevel=100
-	Description="爆破职业武器的弹头会在任意距离引爆。||-需求：至少拥有30点装填速度属性"
 }

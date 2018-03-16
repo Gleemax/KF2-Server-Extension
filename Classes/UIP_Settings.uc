@@ -6,6 +6,8 @@ var KFGUI_TextLable KeyBindLabel;
 var name CurKeybind;
 var bool bSetKeybind,bDelayedSet;
 
+var Localized string localizedStr[21];
+
 function InitMenu()
 {
 	Super.InitMenu();
@@ -14,18 +16,17 @@ function InitMenu()
 	SettingsBox = KFGUI_ComponentList(FindComponentID('SettingsBox'));
 	
 	//AddCheckBox("Text-To-Speech:","Enable Text-to-Speech talk for player chat messages",'TTS', bool bDefault );
-	AddCheckBox("第一人称显示腿:","第一人称显示身体",'FP',class'ExtPlayerController'.Default.bShowFPLegs);
+	AddCheckBox(localizedStr[0],localizedStr[1],'FP',class'ExtPlayerController'.Default.bShowFPLegs);
 	if( class'ExtPlayerController'.Default.bShowFPLegs )
 		ExtPlayerController(GetPlayer()).ToggleFPBody(false);
-	AddCheckBox("隐藏名称标签:","隐藏玩家名称标签",'NB',class'ExtPlayerController'.Default.bHideNameBeacons);
-	AddCheckBox("隐藏击杀信息:","隐藏玩家击杀信息",'KM',class'ExtPlayerController'.Default.bHideKillMsg);
-	AddCheckBox("隐藏伤害信息:","隐藏玩家伤害信息",'DM',class'ExtPlayerController'.Default.bHideDamageMsg);
-	AddCheckBox("隐藏浮动伤害:","隐藏浮动伤害信息",'PP',class'ExtPlayerController'.Default.bHideNumberMsg);
-	AddCheckBox("使用官方死亡信息:","使用官方死亡信息",'K2DM',class'ExtPlayerController'.Default.bUseKF2DeathMessages);
-	AddCheckBox("使用官方击杀信息:","使用官方击杀信息",'K2KM',class'ExtPlayerController'.Default.bUseKF2KillMessages);
-	//KeyBindButton = AddButton("","视角切换按键:","此按钮可以切换视角(点击修改按键)",'KB',KeyBindLabel);
-	AddCheckBox("禁用成为丧尸:","禁用玩家丧尸模式(需要游戏模式支持)",'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
-	AddCheckBox("无屏幕抖动:","禁用屏幕抖动 (来自爆炸)",'NS',class'ExtPlayerController'.Default.bNoScreenShake);
+	AddCheckBox(localizedStr[2],localizedStr[3],'NB',class'ExtPlayerController'.Default.bHideNameBeacons);
+	AddCheckBox(localizedStr[4],localizedStr[5],'KM',class'ExtPlayerController'.Default.bHideKillMsg);
+	AddCheckBox(localizedStr[6],localizedStr[7],'DM',class'ExtPlayerController'.Default.bHideDamageMsg);
+	AddCheckBox(localizedStr[8],localizedStr[9],'PP',class'ExtPlayerController'.Default.bHideNumberMsg);
+	AddCheckBox(localizedStr[10],localizedStr[11],'K2DM',class'ExtPlayerController'.Default.bUseKF2DeathMessages);
+	AddCheckBox(localizedStr[12],localizedStr[13],'K2KM',class'ExtPlayerController'.Default.bUseKF2KillMessages);
+	KeyBindButton = AddButton("",localizedStr[14],localizedStr[15],'KB',KeyBindLabel);	AddCheckBox(localizedStr[16],localizedStr[17],'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
+	AddCheckBox(localizedStr[18],localizedStr[19],'NS',class'ExtPlayerController'.Default.bNoScreenShake);
 	InitBehindviewKey();
 }
 final function InitBehindviewKey()
@@ -131,7 +132,7 @@ function ButtonClicked( KFGUI_Button Sender )
 	switch( Sender.ID )
 	{
 	case 'KB':
-		KeyBindButton.ButtonText = "按下一个按钮";
+		KeyBindButton.ButtonText = localizedStr[20];
 		KeyBindButton.SetDisabled(true);
 		GrabKeyFocus();
 		bSetKeybind = true;

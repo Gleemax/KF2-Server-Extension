@@ -8,6 +8,8 @@ var int TraitIndex;
 var Ext_PerkBase MyPerk;
 var int OldPoints,OldLevel;
 
+var() Localized string localizedStr[2];
+
 function InitMenu()
 {
 	TraitInfo = KFGUI_TextField(FindComponentID('Info'));
@@ -45,12 +47,13 @@ function Timer()
 		OldLevel = MyPerk.PerkTraits[TraitIndex].CurrentLevel;
 		if( OldLevel>=MyTrait.Default.NumLevels )
 		{
-			YesButton.ButtonText = "最大等级";
+			YesButton.ButtonText = localizedStr[0];
 			YesButton.SetDisabled(true);
 			return;
 		}
 		Cost = MyTrait.Static.GetTraitCost(OldLevel);
-		YesButton.ButtonText = "购买 ("$Cost$")";
+		YesButton.ButtonText = localizedStr[1]$" ("$Cost$")";
+		
 		if( Cost>OldPoints || !MyTrait.Static.MeetsRequirements(OldLevel,MyPerk) )
 			YesButton.SetDisabled(true);
 		else YesButton.SetDisabled(false);
@@ -87,7 +90,7 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=BuyButten
 		ID="Yes"
-		Tooltip="购买此技能（无法撤销）"
+		Tooltip="Purchase this trait (you can not undo this action!)"
 		XPosition=0.3
 		YPosition=0.91
 		XSize=0.19
@@ -98,8 +101,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=CancelButten
 		ID="No"
-		ButtonText="取消"
-		Tooltip="放弃购买技能"
+		ButtonText="Cancel"
+		Tooltip="Abort without doing anything"
 		XPosition=0.5
 		YPosition=0.91
 		XSize=0.19

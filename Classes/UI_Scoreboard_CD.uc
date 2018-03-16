@@ -95,7 +95,7 @@ function DrawMenu()
 	XPos = XPosCenter;
 	YPos += YL;
 
-	S = " " $Class'KFCommon_LocalizedStrings'.Static.GetDifficultyString (KFGRI.GameDifficulty) $"  |  当前波数 " $KFGRI.WaveNum $"  |  " $PC.WorldInfo.Title $"  |  00 : 00 : 00 ";
+	S = " " $Class'KFCommon_LocalizedStrings'.Static.GetDifficultyString (KFGRI.GameDifficulty) $localizedStr[0] $KFGRI.WaveNum $"  |  " $PC.WorldInfo.Title $"  |  00 : 00 : 00 ";
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
 
 	XPos -= (XL * 0.5);
@@ -112,7 +112,7 @@ function DrawMenu()
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
 
 	XPos += XL;
-	S = "  | 当前波数 " $KFGRI.WaveNum;
+	S = localizedStr[1] $KFGRI.WaveNum;
 	Canvas.SetPos (XPos, YPos);
 	Canvas.DrawText (S, , FontScalar, FontScalar);
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
@@ -133,7 +133,7 @@ function DrawMenu()
 	XPos = XPosCenter;
 	YPos += YL;
 
-	S = " 玩家总数 : " $NumPlayer $"  |  存活 : " $NumAlivePlayer $"  |  旁观者 : " $NumSpec $" ";
+	S = localizedStr[2] $NumPlayer $localizedStr[3] $NumAlivePlayer $localizedStr[4] $NumSpec $" ";
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
 
 	XPos -= (XL * 0.5);
@@ -144,19 +144,19 @@ function DrawMenu()
 	Canvas.DrawColor = MakeColor (250, 250, 0, 255);
 	XPos += 5;
 
-	S = "玩家总数 : " $NumPlayer;
+	S = localizedStr[5] $NumPlayer;
 	Canvas.SetPos (XPos, YPos);
 	Canvas.DrawText (S, , FontScalar, FontScalar);
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
 
 	XPos += XL;
-	S = "  |  存活 : " $NumAlivePlayer;
+	S = localizedStr[6] $NumAlivePlayer;
 	Canvas.SetPos (XPos, YPos);
 	Canvas.DrawText (S, , FontScalar, FontScalar);
 	Canvas.TextSize (S, XL, YL, FontScalar, FontScalar);
 
 	XPos += XL;
-	S = "  |  旁观者 : " $NumSpec;
+	S = localizedStr[7] $NumSpec;
 	Canvas.SetPos (XPos, YPos);
 	Canvas.DrawText (S, , FontScalar, FontScalar);
 	
@@ -185,29 +185,29 @@ function DrawMenu()
 	if( !bShowSpectatorsOnly )
 	{
 		Canvas.SetPos (XPos + PerkXPos, YPos);
-		Canvas.DrawText ("职业", , FontScalar, FontScalar);
+		Canvas.DrawText (localizedStr[8], , FontScalar, FontScalar);
 
 		Canvas.SetPos (XPos + KillsXPos, YPos);
-		Canvas.DrawText ("击杀", , FontScalar, FontScalar);
+		Canvas.DrawText (localizedStr[9], , FontScalar, FontScalar);
 
 		Canvas.SetPos (XPos + AssistXPos, YPos);
-		Canvas.DrawText ("助攻", , FontScalar, FontScalar);
+		Canvas.DrawText (localizedStr[10], , FontScalar, FontScalar);
 		
 		Canvas.SetPos (XPos + CashXPos, YPos);
-		Canvas.DrawText ("金钱", , FontScalar, FontScalar);
+		Canvas.DrawText (localizedStr[11], , FontScalar, FontScalar);
 
 		Canvas.SetPos (XPos + StateXPos, YPos);
-		Canvas.DrawText ("状态", , FontScalar, FontScalar);
+		Canvas.DrawText (localizedStr[12], , FontScalar, FontScalar);
 	}
 	
 	Canvas.SetPos (XPos, YPos);
-	Canvas.DrawText ("等级", , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[13], , FontScalar, FontScalar);
 	
 	Canvas.SetPos (XPos + PlayerXPos, YPos);
-	Canvas.DrawText ("玩家", , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[14], , FontScalar, FontScalar);
 
 	Canvas.SetPos (XPos + PingXPos, YPos);
-	Canvas.DrawText ("PING", , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[15], , FontScalar, FontScalar);
 	
 	PRIList.Length = (bShowSpectatorsOnly ? NumSpec : NumPlayer);
 	j = PRIList.Length;
@@ -326,12 +326,12 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 	}
 	else if( KFPRI.bIsDev )
 	{
-		S = "开发者";
+		S = localizedStr[16];
 		C.DrawColor = MakeColor(130,255,235,255);
 	}
 	else
 	{
-		S = "玩家";
+		S = localizedStr[17];
 		C.DrawColor = MakeColor(255,255,255,255);
 	}
 	
@@ -367,7 +367,7 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 		if (KFPRI.PlayerHealth <= 0 || KFPRI.PlayerHealthPercent <= 0)
 		{
 			C.DrawColor = MakeColor (250, 0, 0, 255);
-			S = "死亡";
+			S = localizedStr[18];
 		}
 		else
 		{
@@ -421,10 +421,10 @@ function ShowPlayerTooltip( int Index )
 			ToolTipItem.ParentComponent = Self;
 			ToolTipItem.InitMenu();
 		}
-		S = "玩家: "$PRI.TaggedPlayerName$"|生命值: "$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
+		S = localizedStr[19]$PRI.TaggedPlayerName$localizedStr[20]$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
 		if( PRI.ShowAdminName() )
 			S = S$"|"$PRI.GetAdminName();
-		S = S$"|(右键查看选项)";
+		S = S$localizedStr[21];
 		ToolTipItem.SetText(S);
 		ToolTipItem.ShowMenu();
 		ToolTipItem.CompPos[0] = Owner.MousePosition.X;
@@ -497,8 +497,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button_CD Name=B_ShowSpecs
 		ID="Spec"
-		ButtonText="显示旁观者"
-		Tooltip="显示当前旁观者"
+		ButtonText="Show Spectators"
+		Tooltip="Toggle show server spectators"
 		XPosition=0.67
 		YPosition=0.965
 		XSize=0.09
@@ -510,10 +510,10 @@ defaultproperties
 	Components.Add(B_ShowSpecs)
 	
 	Begin Object Class=KFGUI_RightClickMenu_CD Name=PlayerContextMenu
-		ItemRows.Add((Text="旁观此玩家"))
-		ItemRows.Add((Text="查看Steam个人主页"))
-		ItemRows.Add((Text="静音"))
-		ItemRows.Add((Text="投票踢出"))
+		ItemRows.Add((Text="Spectate this player"))
+		ItemRows.Add((Text="View player Steam profile"))
+		ItemRows.Add((Text="Mute Player"))
+		ItemRows.Add((Text="Vote kick player"))
 		ItemRows.Add((bSplitter=true))
 		OnSelectedItem=SelectedRCItem
 		OnBecameHidden=HidRightClickMenu

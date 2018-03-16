@@ -1,3 +1,453 @@
+[Ext_TraitAcidicCompound]
+TraitName="酸性弹头"
+Description="在该天赋激活的时候你的武器会使丧尸中毒."
+[Ext_TraitAirborne]
+TraitName="扩散药剂"
+Description="使你的治疗针在子弹时间中获得额外的医疗速率, 并且会获得范围治疗能力. |每级会获得额外的治疗速度加成: |Lv 1-3: +5%, +10%, +20%|Lv 4: +15%, 在丧失时间外同样生效"
+[Ext_TraitAirborneAgent]
+TraitName="丧尸时间 - 悬浮剂"
+Description="在丧尸时间内, 你会释放一股治疗气体, 治疗接近你的队友. ||-需求: 手雷升级天赋"
+ExtraDesc="|特性需求转生等级: #{FF4000}1"
+[Ext_TraitAmmoReg]
+TraitName="弹药再生"
+Description="该天赋会使你所有武器的弹药（除手榴弹）每半分钟按以下效率恢复: |Lv1-3: 2%, 5%, 10% 的总弹药"
+[Ext_TraitAPShots]
+TraitName="穿甲弹"
+Description="极大的增加职业武器的护甲穿透能力, 穿透强度每级按以下程度增长: |Lv1-4: 25%, 30%, 35%, 40%"
+[Ext_TraitArmorReg]
+TraitName="护甲再生"
+Description="该天赋会使你的护甲每十秒钟按以下效率恢复: |Lvl1-3: +7点, +12点, +25点"
+[Ext_TraitArmorRep]
+TraitName="护甲修复"
+Description="你能够在你治疗别人时修复其护甲, 每级你会拥有更高的护甲修复比例: |Lv1-5: +5%, +10%, +15%, +20%, +25%"
+[Ext_TraitAutoFire]
+TraitName="自动开火"
+Description="使你的所有武器都能够全自动开火."
+[Ext_TraitBase]
+localizedStr[0]="最大等级"
+localizedStr[1]="等级消耗"
+localizedStr[2]="最小职业等级"
+TraitName=""
+Description=""
+ExtraDesc=""
+[Ext_TraitBoomWeld]
+TraitName="焊接陷阱"
+Description="你焊接的自动门会在被丧尸破坏时爆炸, 你对同一个门的焊接程度越高, 爆炸就越强."
+[Ext_TraitBunnyHop]
+TraitName="兔子跳"
+Description="允许玩家进行兔子跳, 使得你在向前移动时能通过连续的向前跳跃使移动速度不断增加."
+[Ext_TraitCarryCap]
+TraitName="负重上限"
+Description="通过该天赋你可以拥有更高的负重上限. |Lv1-5: +2,+4,+6,+8,+15 负重上限"
+[Ext_TraitContactNade]
+TraitName="接触式引线"
+Description="使你的1/2炸药在接触丧尸时能够立刻爆炸."
+[Ext_TraitDemoAOE]
+TraitName="范围伤害"
+Description="增加你的爆破职业武器的伤害范围, 其增加的伤害范围随每等级提升: |Lv1-4: 15%, 20%, 25%, 30%"
+[Ext_TraitDemoCriticalHit]
+TraitName="破甲弹头"
+Description="爆破职业武器将会对丧尸的弱点额外造成50%伤害."
+[Ext_TraitDemoDirectHit]
+TraitName="强烈冲击"
+Description="爆破职业武器直击将会额外造成25%的伤害."
+[Ext_TraitDemoNuke]
+TraitName="丧尸时间 - 核爆"
+Description="爆破武器将会在丧尸时间中制造核爆. |每等级增加核爆的威力和辐射的持续时间. ||-需求: 拥有至少30点职业伤害属性"
+ExtraDesc="|天赋需要转生等级:  #{FF4000}3"
+[Ext_TraitDemoProfessional]
+TraitName="爆破专家"
+Description="爆破职业武器的弹头会在任意距离引爆. ||-需求: 至少拥有30点装填速度属性"
+ExtraDesc="|天赋需要转生等级:  #{FF4000}1"
+[Ext_TraitDemoReactiveArmor]
+TraitName="反应装甲"
+Description="当你濒临死亡时你将会产生一次大爆炸并使你剩余5点生命值."
+[Ext_TraitDireReload]
+TraitName="急迫装填"
+Description="当你的生命值低于40点时你将会极大的增加你的装填速度."
+[Ext_TraitDoorRepair]
+TraitName="自动门维修"
+Description="允许你使用焊枪维修自动门."
+[Ext_TraitDuracell]
+TraitName="霸王电池"
+Description="该天赋会使你的手电筒的电池更加耐用. |Lv1-4: +30,+100,+300,+1000% 最大时间"
+[Ext_TraitEliteReload]
+TraitName="战术装填"
+Description="该天赋会使你的职业武器拥有额外的战术装填动作和装填速度."
+[Ext_TraitEnemyHP]
+TraitName="生命值探测"
+Description="让你能够探测敌人的生命值, 探测距离随等级上升: |Lv1-4: 12, 18, 32, 48"
+[Ext_TraitFanfire]
+TraitName="丧尸时间 - 扇火"
+Description="在丧尸时间中, 你的枪手职业武器可以实时射击和装填."
+[Ext_TraitFireExplode]
+TraitName="丧尸弹片"
+Description="使你烧死的丧尸有时会产生爆炸, 击倒其他丧尸."
+[Ext_TraitFireRange]
+TraitName="火焰延伸"
+Description="为你的火焰喷射器增加额外的火焰喷射距离."
+[Ext_TraitGhost]
+TraitName="救赎"
+Description="该天赋会使你在死亡时转为一个幽灵并且随后在地图的另一个点复活. |Level 1: 50%几率生效, 死亡前只会出现一次. |Level 2: 每三分钟必定生效一次."
+[Ext_TraitGrenadeCap]
+TraitName="手雷上限"
+Description="该天赋使你能够携带额外的手雷. |Lv1-5: +1,+2,+3,+5,+8 手雷上限"
+[Ext_TraitGrenadeSUpg]
+TraitName="手雷升级"
+Description="使用特定的超级职业手雷替换你的通用手雷. |Level 1: 超级手雷"
+[Ext_TraitGrenadeUpg]
+TraitName="手雷升级"
+Description="使用特定的职业手雷替换你的通用手雷. |Level 1: 普通职业手雷|Level 2: 超级职业手雷（需求: 50级）"
+[Ext_TraitHealthReg]
+TraitName="生命再生"
+Description="该天赋会使你的生命值每十秒钟按以下效率恢复: |Lvl1-3: +5HP, +10HP, +20HP"
+[Ext_TraitHeavyArmor]
+TraitName="重型护甲"
+Description="Level 1: 使你重生时拥有100点护甲值. |Level 2: 使你重生时拥有最大护甲. |Level 3: 你的护甲会吸收尖叫和跌落外的所有伤害."
+[Ext_TraitKnockback]
+TraitName="击退抗性"
+Description="按以下比例减少丧尸对你造成的击退强度: |Lv1-4: -20%, -50%, -70%, -90%"
+[Ext_TraitMachineGunner]
+TraitName="丧尸时间 - 机枪手"
+Description="在丧失时间中, 你的职业武器会造成3%的额外伤害而且会以三倍射速射击！"
+ExtraDesc="|天赋需要转生等级:  #{FF4000}1"
+[Ext_TraitMedBoost]
+TraitName="肾上腺素注射"
+Description="治疗玩家将会增加他们的移动速度至30%, 每次治疗提供的加成随等级增加: |Lv1-5: 10%, 15%, 20%, 25%, 30%"
+[Ext_TraitMedDamBoost]
+TraitName="焦点注射"
+Description="治疗玩家将会增加他们的伤害至最大最大到15%, 其增幅百分比按等级增加: |Lv1-3: 5%, 10%, 15%"
+[Ext_TraitMedicPistol]
+TraitName="医疗手枪"
+Description="将重生时携带的基础9mm手枪替换成101医疗手枪."
+[Ext_TraitMedShield]
+TraitName="促凝剂"
+Description="治疗玩家会增加他们的伤害抗性, 其增幅随等级增加: |Lv1-5: 10%, 15%, 20%, 25%, 30%"
 [Ext_TraitMetronome]
-TraitName="精确节拍器 CHN"
-Description="每隔一段时间你将会获得一次机会，让你能够通过使用职业武器对同一目标进行五次爆头来触发一个丧尸时间。|每级你的触发间隔将会更短：|Lv1-4: 30s, 20s, 15s, 额外触发机会"
+TraitName="精确节拍器"
+Description="每隔一段时间你将会获得一次机会, 让你能够通过使用职业武器对同一目标进行五次爆头来触发一个丧尸时间. |每级你的触发间隔将会更短: |Lv1-4: 30s, 20s, 15s, 额外触发机会"
+[Ext_TraitNapalm]
+TraitName="凝固汽油"
+Description="使得你点燃的丧尸能够点燃其他的丧尸."
+[Ext_TraitNightvision]
+TraitName="夜视仪"
+Description="使你重生的时候携带夜视仪."
+[Ext_TraitPenetrator]
+TraitName="丧尸时间 - 穿刺者"
+Description="在丧尸时间中, 你的职业武器将能够穿透任何击中的目标. ||-需求: 至少拥有1级穿甲弹技能"
+ExtraDesc="|天赋需要转生等级:  #{FF4000}2"
+[Ext_TraitRackEmUp]
+TraitName="连击起来"
+Description="每次爆头都会在几秒钟内提升对僵尸的伤害, 最高五层. |每级你的每层连击可以造成更高伤害以及持续更长时间: |Lv1-5: +5%/1.5s, +7.5%/1.75s, +10%/2s, +12.5%/2.5s, +15%/3s"
+[Ext_TraitRagdoll]
+TraitName="击倒抗性"
+Description="降低你的被击倒几率. 每级降低几率: |Lv1-3: 20%, 50%, 80%||-服务器未启用击倒时无效"
+[Ext_TraitRanger]
+TraitName="丧尸时间 - 精准射手"
+Description="在丧尸时间中, 你对丧尸爆头将会造成非常有效的击晕效果."
+[Ext_TraitRapidAssault]
+TraitName="丧尸时间 - 急速突击"
+Description="在丧尸时间中, 使玩家的职业武器拥有无限弹药而且能够实时开火."
+[Ext_TraitRetali]
+TraitName="复仇"
+Description="用一次大爆炸来结束你光辉的一生！"
+[Ext_TraitSirenResistance]
+TraitName="女妖抗性"
+Description="使你的所有投射物对女妖尖叫产生抗性."
+[Ext_TraitSpartan]
+TraitName="丧尸时间 - 斯巴达！"
+Description="在丧尸时间中, 你可以实时移动并且会以更快速度进行攻击: |Lv1-3: +50,+120,+300% 攻击速度"
+[Ext_TraitSupply]
+TraitName="弹药补给"
+Description="你可以每隔一段时间为你的队友提供弹药, 每次提供都会使你获得少量的经验值."
+[Ext_TraitSupplyData]
+[Ext_TraitSupplyGren]
+TraitName="手雷补给"
+Description="你可以每隔一段时间为你的队友提供手雷, 每次提供都会使你获得少量的经验值."
+[Ext_TraitSWATEnforcer]
+TraitName="丧尸时间 - 执法者"
+Description="在丧尸时间内, 你可以实时移动并且可以撞倒移动路径上的丧尸."
+[Ext_TraitTacticalMove]
+TraitName="战术移动"
+Description="该天赋会使你在机械瞄准和蹲伏时拥有额外的移动速度: |Lv 1-3: +30%,+50%,+100%"
+[Ext_TraitTactician]
+TraitName="丧尸时间 - 战术家"
+Description="在丧失时间中. 你可以实时装填你的职业武器并且能够以两倍速度切换武器！||-需求: 拥有至少30点职业伤害属性"
+[Ext_TraitToxicDart]
+TraitName="毒液注射"
+Description="使你的治疗飞镖能够对丧尸造成毒素伤害, 伤害随等级增加: :|Lv 1-3: 15, 35, 70点伤害"
+[Ext_TraitUberAmmo]
+TraitName="丧尸时间 - 子弹风暴"
+Description="在丧尸时间中, 你的枪手职业武器有无限弹药."
+[Ext_TraitUnCloak]
+TraitName="隐身侦测"
+Description="让你能够探测隐身敌人, 探测距离随等级上升: |Lv1-5: 8m, 12m, 18m, 30m, 60m"
+[Ext_TraitUnGrab]
+TraitName="欺诈"
+Description="该天赋会使你无法被丧尸抓取."
+[Ext_TraitVampire]
+TraitName="吸血鬼"
+Description="该天赋会使你在使用近战武器击杀丧尸时按如下百分比恢复生命值: |Lv1-4: +2%, +3%, +4%, +5%"
+[Ext_TraitWeapons]
+[Ext_TraitWPBers]
+TraitName="狂战初始武器"
+Description="使你重生时携带特定狂战士职业武器. |Level 1: 粉碎机|Level 2: 钉枪|Level 3: |Level 4: 以上全部3种"
+[Ext_TraitWPComm]
+TraitName="突击初始武器"
+Description="使你重生时携带特定突击手职业武器. |Level 1: 小牛式步枪|Level 2: AK12|Level 3: SCAR|Level 4: 以上全部3种"
+[Ext_TraitWPDemo]
+TraitName="爆破初始武器"
+Description="使你重生时携带特定爆破手职业武器. |Level 1: C4|Level 2: M79榴弹发射器|Level 3: RPG火箭发射器|Level 4: 以上全部3种"
+[Ext_TraitWPFire]
+TraitName="纵火初始武器"
+Description="使你重生时携带特定纵火狂职业武器. |Level 1: 龙息霰弹枪|Level 2: 火焰喷射器|Level 3: 微波枪|Level 4: 以上全部3种"
+[Ext_TraitWPGuns]
+TraitName="枪手初始武器"
+Description="使你重生时携带特定枪手职业武器. |Level 1: M1911手枪|Level 2: 沙漠之鹰|Level 3: 马格南左轮|Level 4: 全部3种"
+[Ext_TraitWPMedic]
+TraitName="医疗初始武器"
+Description="使你重生时携带特定医疗职业武器. |Level 1: 201冲锋枪|Level 2: 301霰弹枪|Level 3: 401突击步枪|Level 4: 以上全部3种"
+[Ext_TraitWPSharp]
+TraitName="神射初始武器"
+Description="使你重生时携带特定神射职业武器. |Level 1: 十字弩|Level 2: M14|Level 3: 轨道枪|Level 4: 以上全部3种"
+[Ext_TraitWPSupp]
+TraitName="支援初始武器"
+Description="使你重生时携带特定支援职业武器. |Level 1: M4霰弹枪|Level 2: 双管霰弹枪|Level 3: AA12|Level 4: 以上全部3种"
+[Ext_TraitWPSurv]
+TraitName="生存初始武器"
+Description="使你重生时携带特定生存专家职业武器. |Level 1: 龙息霰弹枪|Level 2: M16突击步枪|Level 3: 401突击步枪|Level 4: 以上全部3种"
+[Ext_TraitWPSWAT]
+TraitName="特警初始武器"
+Description="使你重生时携带特定特警职业武器. |Level 1: MP5冲锋枪|Level 2: P90冲锋枪|Level 3: Kriss冲锋枪|Level 4: 以上全部3种"
+[Ext_TraitZED_Damage]
+TraitName="丧尸伤害"
+Description="增加你的协助僵尸所造成的伤害: |Lv1-5: +10%, +25%, +50%, +100%, +200%||-需求: 丧尸爪牙天赋"
+[Ext_TraitZED_Health]
+TraitName="丧尸生命"
+Description="增加你的协助丧尸的最大生命值: |Lv1-4: +25%, +50%, +75%, +100%||-需求: 丧尸爪牙天赋"
+[Ext_TraitZED_Summon]
+TraitName="丧尸爪牙"
+Description="你能够通过该天赋召唤一个协助僵尸, 该天赋的等级越高, 你就能召唤一个越强大的僵尸. ||-需求: 拥有至少30点职业伤害属性"
+[Ext_TraitZED_SummonExt]
+TraitName="替补爪牙"
+Description="该天赋会使你能够召唤额外的协助丧尸. |Lv 1: 一个普通丧尸. |Lv 2: 一个强大丧尸. |Lv 3: 一个普通丧尸和一个强大丧尸. |Lv 4: 两个强大丧尸||-需求: 丧尸爪牙天赋"
+[Ext_TraitZedative]
+TraitName="丧尸时间 - 丧尸狂"
+Description="在丧尸时间中, 使用医疗职业武器伤害丧尸会使其减速30%并且造成大量毒素伤害. ||-需求: 拥有至少30点治疗速率属性"
+ExtraDesc="|天赋需要转生等级:  #{FF4000}2"
+[Ext_TraitZEDBase]
+[Ext_TraitZedTExt]
+TraitName="丧尸时间扩展"
+Description="为你的职业增加额外的丧尸时间长度, 其扩展的长度为每级增加1秒."
+
+[Ext_TGroupBase]
+GroupInfo="组"
+localizedStr[0]="最大 "
+localizedStr[1]=" 技能组"
+[Ext_TGroupMonster]
+GroupInfo="丧尸"
+[Ext_TGroupRegen]
+GroupInfo="再生"
+localizedStr[1]="|完成下列要求更买额外再生技能: |-一转 + 100级 = 最大两个技能|-五转 + 150级 = 最大三个技能"
+[Ext_TGroupZEDTime]
+GroupInfo="丧尸时间"
+
+[Ext_PerkBase]
+PerkName=""
+StatStr[0]="移动速度 (+&%)"
+StatStr[1]="职业伤害 (+&%)"
+StatStr[2]="后坐力 (-&%)"
+StatStr[3]="武器散射 (-&%)"
+StatStr[4]="武器射速 (+&%)"
+StatStr[5]="装填时间 (-&%)"
+StatStr[6]="生命值 (+&HP)"
+StatStr[7]="击退 (+&%)"
+StatStr[8]="焊接速度 (+&%)"
+StatStr[9]="治疗效率 (+&%)"
+StatStr[10]="弹夹容量 (+&%)"
+StatStr[11]="最大备弹 (+&%)"
+StatStr[12]="非职业伤害 (+&%)"
+StatStr[13]="自伤减免 (+&%)"
+StatStr[14]="护甲 (+&)"
+StatStr[15]="毒素抗性 (+&%)"
+StatStr[16]="音波抗性 (+&%)"
+StatStr[17]="火焰抗性 (+&%)"
+StatStr[18]="全体抗性 (+&%)"
+StatStr[19]="切换速度 (+&%)"
+[Ext_PerkSupport]
+PerkName="支援兵"
+[Ext_PerkSurvivalist]
+PerkName="生存专家"
+[Ext_PerkSWAT]
+PerkName="特警"
+[Ext_PerkBerserker]
+PerkName="狂战士"
+[Ext_PerkCommando]
+PerkName="突击兵"
+[Ext_PerkDemolition]
+PerkName="爆破手"
+[Ext_PerkFieldMedic]
+PerkName="战地医生"
+[Ext_PerkFirebug]
+PerkName="纵火狂"
+[Ext_PerkGunslinger]
+PerkName="枪手"
+[Ext_PerkMetronomeBase]
+[Ext_PerkRhythmPerkBase]
+[Ext_PerkSharpshooter]
+PerkName="神射手"
+
+[UIP_Settings]
+localizedStr[0]="第一人称显示腿:"
+localizedStr[1]="第一人称显示身体"
+localizedStr[2]="隐藏名称标签:"
+localizedStr[3]="隐藏玩家名称标签"
+localizedStr[4]="隐藏击杀信息:"
+localizedStr[5]="隐藏玩家击杀信息"
+localizedStr[6]="隐藏伤害信息:"
+localizedStr[7]="隐藏玩家伤害信息"
+localizedStr[8]="隐藏浮动伤害:"
+localizedStr[9]="隐藏浮动伤害信息"
+localizedStr[10]="使用官方死亡信息:"
+localizedStr[11]="使用官方死亡信息"
+localizedStr[12]="使用官方击杀信息:"
+localizedStr[13]="使用官方击杀信息"
+localizedStr[14]="视角切换按键:"
+localizedStr[15]="此按钮可以切换视角(点击修改按键)"
+localizedStr[16]="禁用成为丧尸:"
+localizedStr[17]="禁用玩家丧尸模式(需要游戏模式支持)"
+localizedStr[18]="无屏幕抖动:"
+localizedStr[19]="禁用屏幕抖动 (来自爆炸)"
+localizedStr[20]="按下一个按钮"
+
+[UIP_PlayerSpecs]
+[UIR_PerkStat]
+[UIR_PerkTraitList]
+[UIR_TraitInfoPopup]
+localizedStr[0]="最大等级"
+localizedStr[1]="购买"
+[UI_AdminMOTD]
+localizedStr="每日讯息预览:|"
+[UI_AdminPerkLevel]
+localizedStr[0]="设置等级"
+localizedStr[1]="设置转生等级"
+localizedStr[2]="设置等级为"
+localizedStr[3]="设置转生等级为"
+
+[UI_MidGameMenu]
+localizedStr[0]="地图投票"
+localizedStr[1]="显示地图投票菜单"
+localizedStr[2]="设置"
+localizedStr[3]="打开游戏设置"
+localizedStr[4]="断开连接"
+localizedStr[5]="断开服务器连接"
+localizedStr[6]="关闭"
+localizedStr[7]="关闭菜单"
+localizedStr[8]="退出"
+localizedStr[9]="退出游戏"
+localizedStr[10]="加入战斗"
+localizedStr[11]="冷眼旁观"
+localizedStr[12]="点击此处加入游戏"
+localizedStr[13]="点击此处开始旁观"
+
+[UI_Scoreboard]
+localizedStr[0]="时间: "
+localizedStr[1]=" | 玩家总数: "
+localizedStr[2]=" | 存活: "
+localizedStr[3]=" | 旁观者: "
+localizedStr[4]="当前波数"
+localizedStr[5]="玩家"
+localizedStr[6]="金钱"
+localizedStr[7]="击杀"
+localizedStr[8]="助攻"
+localizedStr[9]="延迟"
+localizedStr[10]="未选择职业"
+localizedStr[11]="重生于: "
+localizedStr[12]="电脑"
+localizedStr[13]="死亡"
+localizedStr[14]="取消静音玩家"
+localizedStr[15]="静音玩家"
+localizedStr[16]="你将该玩家静音: "
+localizedStr[17]="你取消对该玩家的静音:  "
+localizedStr[18]="玩家: "
+localizedStr[19]="|生命: "
+localizedStr[20]="|(右键查看选项)"
+
+[UI_Scoreboard_CD]
+localizedStr[0]="  |  当前波数 "
+localizedStr[1]="  | 当前波数 "
+localizedStr[2]=" 玩家总数 : "
+localizedStr[3]="  |  存活 "
+localizedStr[4]="  |  旁观者 : "
+localizedStr[5]="玩家总数 : "
+localizedStr[6]="  |  存活 : "
+localizedStr[7]="  |  旁观者 : "
+localizedStr[8]="职业"
+localizedStr[9]="击杀"
+localizedStr[10]="助攻"
+localizedStr[11]="金钱"
+localizedStr[12]="状态"
+localizedStr[13]="等级"
+localizedStr[14]="玩家"
+localizedStr[15]="延迟"
+localizedStr[16]="开发者"
+localizedStr[17]="玩家"
+localizedStr[18]="死亡"
+localizedStr[19]="玩家: "
+localizedStr[20]="|生命值: "
+localizedStr[21]="|(右键查看选项)"
+
+[UI_ResetWarning]
+localizedStr[0]="警告: 重置"
+[UI_UnloadInfo]
+localizedStr[0]="警告: 重置职业状态"
+localizedStr[1]="请稍等..."
+localizedStr[2]="错误: 服务器禁止重置加点！"
+localizedStr[3]="错误: 你需要至少 #{FFFF00}"
+localizedStr[4]="#{DEF} 级才能进行该操作！"
+localizedStr[5]="#{FF0000}警告: #{DEF} 使用该功能后您将失去 #{FFFF00}"
+localizedStr[6]="#{DEF} 点经验值,  将降低你的 #{FF0000}"
+localizedStr[7]="#{DEF} 个等级！|此外, 你将被迫自杀来重置属性数据. ||你确定要继续吗？"
+[UI_PrestigeNote]
+localizedStr[0]="提示: 转生"
+localizedStr[1]="提示: 如果你进行转生, 你将不能撤消这个操作！|你的经验和等级将重置为 #{FF0000}0#{DEF}.|但这会令你每次升级增加 #{F7FE2E} "
+localizedStr[2]="#{DEF} 点数. ||你确定要这样做吗？"
+
+[UIP_About]
+[UIP_AdminMenu]
+[UIP_MiniGame]
+[UIP_News]
+
+[UIP_PerkSelection]
+localizedStr[0]="等级"
+localizedStr[1]="技能点"
+localizedStr[2]="此职业禁止转生"
+localizedStr[3]="转生此职业. |最小等级: "
+localizedStr[4]="<没有选择职业>"
+[UIP_PerkSelectionLobby]
+localizedStr[0]="等级"
+localizedStr[1]="技能点"
+localizedStr[2]="此职业禁止转生"
+localizedStr[3]="转生此职业. |最小等级: "
+localizedStr[4]="<没有选择职业>"
+
+[MX_PongGame]
+localizedStr[0]="按下鼠标左键开始游戏"
+localizedStr[1]="得分: "
+localizedStr[2]="场数: "
+
+[ExtPlayerController]
+localizedStr[0]=" 使用 "
+localizedStr[1]=" 杀死了自己"
+localizedStr[2]=" 被活活烧死"
+localizedStr[3]=" 被炸成了碎片"
+localizedStr[4]=" 心脏病突发去世"
+localizedStr[5]=" 被 "
+localizedStr[6]=" 的 "
+localizedStr[7]=" 杀死了"
+localizedStr[8]=" 被 "
+localizedStr[9]=" 烧成了灰烬"
+localizedStr[10]=" 被 "
+localizedStr[11]=" 炸成了碎片"
+localizedStr[12]=" 被 "
+localizedStr[13]=" 残忍的杀害了"

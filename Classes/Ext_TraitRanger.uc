@@ -13,7 +13,5 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkSharpshooter'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="丧尸时间 - 精准射手"
 	DefLevelCosts(0)=40
-	Description="在丧尸时间中，你对丧尸爆头将会造成非常有效的击晕效果。"
 }

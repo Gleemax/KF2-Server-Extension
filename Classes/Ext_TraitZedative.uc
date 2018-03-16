@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|天赋需要转生等级： #{FF4000}2";
+	S $= Default.ExtraDesc;
 	return S;
 }
 
@@ -40,9 +40,7 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="丧尸时间 - 丧尸狂"
 	NumLevels=1
 	DefLevelCosts(0)=50
 	DefMinLevel=65
-	Description="在丧尸时间中，使用医疗职业武器伤害丧尸会使其减速30%并且造成大量毒素伤害。||-需求：拥有至少30点治疗速率属性"
 }

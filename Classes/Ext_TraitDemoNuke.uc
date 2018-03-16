@@ -5,7 +5,7 @@ static function string GetPerkDescription()
 	local string S;
 
 	S = Super.GetPerkDescription();
-	S $= "|天赋需要转生等级： #{FF4000}3";
+	S $= Default.ExtraDesc;
 	return S;
 }
 
@@ -35,7 +35,7 @@ static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_Trait
 		return;
 	
 	MyPRI.bNukeActive = true;
-	Ext_PerkDemolition(Perk).NukeDamageMult = 1.0 + (((float(Level) - 1.f) * 5.f) / 100.f);
+	Ext_PerkDemolition(Perk).NukeDamageMult = 1.0 + (((float(Level) - 1.f) * 50.f) / 100.f);
 }
 
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
@@ -54,12 +54,10 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkDemolition'
 	TraitGroup=class'Ext_TGroupZEDTime'
-	TraitName="丧尸时间 - 核爆"
 	NumLevels=4
 	DefLevelCosts(0)=100
 	DefLevelCosts(1)=150
 	DefLevelCosts(2)=200
 	DefLevelCosts(3)=250
 	DefMinLevel=100
-	Description="爆破武器将会在丧尸时间中制造核爆。|每等级增加核爆的威力和辐射的持续时间。||-需求：拥有至少30点职业伤害属性"
 }

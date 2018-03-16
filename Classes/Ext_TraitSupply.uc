@@ -17,9 +17,7 @@ static function PlayerDied( Ext_PerkBase Perk, byte Level, optional Ext_TraitDat
 
 defaultproperties
 {
-	TraitName="弹药补给"
 	DefLevelCosts(0)=50
-	Description="你可以每隔一段时间为你的队友提供弹药，每次提供都会使你获得少量的经验值。"
 	TraitData=class'Ext_TraitSupplyData'
 	
 	SupplyIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'

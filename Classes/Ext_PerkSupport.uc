@@ -39,7 +39,6 @@ simulated function bool IsPerforateActive()
 
 defaultproperties
 {
-	PerkName="Ö§Ô®±ø"
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
 	DefTraitList.Add(class'Ext_TraitGrenadeSUpg')
 	DefTraitList.Add(class'Ext_TraitWPSupp')

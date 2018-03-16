@@ -161,8 +161,6 @@ defaultproperties
 {
 	bIsSummoner=true
 	NumLevels=6
-	TraitName="丧尸爪牙"
-	Description="你能够通过该天赋召唤一个协助僵尸，该天赋的等级越高，你就能召唤一个越强大的僵尸。||-需求：拥有至少30点职业伤害属性"
 	DefLevelCosts(0)=20
 	DefLevelCosts(1)=10
 	DefLevelCosts(2)=10

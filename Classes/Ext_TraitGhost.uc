@@ -26,9 +26,7 @@ defaultproperties
 	bHighPriorityDeath=true
 	NumLevels=2
 	TraitData=class'Ext_T_GhostHelper'
-	TraitName="救赎"
 	DefLevelCosts(0)=30
 	DefLevelCosts(1)=30
 	DefMinLevel=30
-	Description="该天赋会使你在死亡时转为一个幽灵并且随后在地图的另一个点复活。|Level 1: 50%几率生效，死亡前只会出现一次。|Level 2: 每三分钟必定生效一次。"
 }

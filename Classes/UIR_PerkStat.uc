@@ -123,7 +123,7 @@ defaultproperties
 		XSize=0.18
 		YSize=0.8
 		OnTextChange=EditBoxChange
-		ToolTip="在此处指定购买多少个点属性。"
+		ToolTip="Here you can specify how many stat points to buy"
 		MaxValue=100
 		MinValue=1
 		bScaleByFontSize=false
@@ -135,7 +135,7 @@ defaultproperties
 		XSize=0.08
 		YSize=0.8
 		ButtonText="+"
-		ToolTip="点击为本职业购买该属性"
+		ToolTip="Click here to buy stats for this perk"
 		OnClickLeft=BuyStatPoint
 		OnClickRight=BuyStatPoint
 	End Object

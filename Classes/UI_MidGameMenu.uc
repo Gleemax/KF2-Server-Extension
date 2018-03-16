@@ -14,6 +14,8 @@ var transient KFGUI_Button PrevButton;
 var transient int NumButtons,NumButtonRows;
 var transient bool bInitSpectate,bOldSpectate;
 
+var() Localized string localizedStr[14];
+
 function InitMenu()
 {
 	local int i;
@@ -21,12 +23,12 @@ function InitMenu()
 
 	PageSwitcher = KFGUI_SwitchMenuBar(FindComponentID('Pager'));
 	Super(KFGUI_Page).InitMenu();
-	AddMenuButton('Mapvote',"地图投票","显示地图投票菜单");
-	AddMenuButton('Settings',"设置","打开游戏设置");
-	AddMenuButton('Disconnect',"断开连接","断开服务器连接");
+	AddMenuButton('Mapvote',localizedStr[0],localizedStr[1]);
+	AddMenuButton('Settings',localizedStr[2],localizedStr[3]);
+	AddMenuButton('Disconnect',localizedStr[4],localizedStr[5]);
 	SpectateButton = AddMenuButton('Spectate',"","");
-	AddMenuButton('Close',"关闭","关闭菜单");
-	AddMenuButton('Exit',"退出","退出游戏");
+	AddMenuButton('Close',localizedStr[6],localizedStr[7]);
+	AddMenuButton('Exit',localizedStr[8],localizedStr[9]);
 	
 	for( i=0; i<Pages.Length; ++i )
 	{
@@ -48,8 +50,8 @@ function Timer()
 	{
 		bInitSpectate = true;
 		bOldSpectate = PRI.bOnlySpectator;
-		SpectateButton.ButtonText = (bOldSpectate ? "加入战斗" : "冷眼旁观");
-		SpectateButton.ChangeToolTip(bOldSpectate ? "点击此处加入游戏" : "点击此处开始旁观");
+		SpectateButton.ButtonText = (bOldSpectate ? localizedStr[10] : localizedStr[11]);
+		SpectateButton.ChangeToolTip(bOldSpectate ? localizedStr[12] : localizedStr[13]);
 	}
 }
 
@@ -133,19 +135,19 @@ final function KFGUI_Button AddMenuButton( name ButtonID, string Text, optional 
 
 defaultproperties
 {
-	WindowTitle="杀戮空间2 - 生存"
+	WindowTitle="Killing Floor 2 - Survival"
 	XPosition=0.1
 	YPosition=0.1
 	XSize=0.8
 	YSize=0.8
 	
-	Pages.Add((PageClass=Class'UIP_News',Caption="新闻",Hint="服务器新闻页面"))
-	Pages.Add((PageClass=Class'UIP_PerkSelection',Caption="职业",Hint="选择和升级你的职业"))
-	Pages.Add((PageClass=Class'UIP_Settings',Caption="设置",Hint="显示更多设置"))
-	Pages.Add((PageClass=Class'UIP_PlayerSpecs',Caption="状态",Hint="显示所有玩家状态"))
-	Pages.Add((PageClass=Class'UIP_AdminMenu',Caption="管理员",Hint=""))
-	Pages.Add((PageClass=Class'UIP_About',Caption="关于",Hint="关于该MOD"))
-	//Pages.Add((PageClass=Class'UIP_MiniGame',Caption="Minigame",Hint="Play a minigame while at it"))
+	Pages.Add((PageClass=Class'UIP_News',Caption="News",Hint="Server news page"))
+	Pages.Add((PageClass=Class'UIP_PerkSelection',Caption="Perk",Hint="Select and upgrade your perks"))
+	Pages.Add((PageClass=Class'UIP_Settings',Caption="Settings",Hint="Show additional ServerExt settings"))
+	Pages.Add((PageClass=Class'UIP_PlayerSpecs',Caption="Stats",Hint="Show all players server stats"))
+	Pages.Add((PageClass=Class'UIP_AdminMenu',Caption="Admin",Hint=""))
+	Pages.Add((PageClass=Class'UIP_About',Caption="About",Hint="About this mod on this server"))
+	Pages.Add((PageClass=Class'UIP_MiniGame',Caption="Minigame",Hint="Play a minigame while at it"))
 
 	Begin Object Class=KFGUI_SwitchMenuBar Name=MultiPager
 		ID="Pager"

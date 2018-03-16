@@ -17,7 +17,5 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 defaultproperties
 {
-	TraitName="自动开火"
 	DefLevelCosts(0)=50
-	Description="使你的所有武器都能够全自动开火。"
 }

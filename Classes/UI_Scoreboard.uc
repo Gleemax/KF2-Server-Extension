@@ -17,6 +17,8 @@ var KFGUI_Tooltip ToolTipItem;
 
 var transient bool bHasSelectedPlayer,bMeAdmin,bShowSpectatorsOnly;
 
+var() Localized string localizedStr[22];
+
 function InitMenu()
 {
 	Super.InitMenu();
@@ -161,7 +163,7 @@ function DrawMenu()
 
 	Y+=YL;
 	Canvas.SetPos(XPos+26,Y);
-	Canvas.DrawText("时间: "$FormatTimeSM(KFGRI.ElapsedTime)$" | 玩家总数: "$NumPlayer$" | 存活: "$NumAlivePlayer$" | 旁观者: "$NumSpec,,FontScalar,FontScalar);
+	Canvas.DrawText(localizedStr[0]$FormatTimeSM(KFGRI.ElapsedTime)$localizedStr[1]$NumPlayer$localizedStr[2]$NumAlivePlayer$localizedStr[3]$NumSpec,,FontScalar,FontScalar);
 	
 	XPos += XScale*0.75-1;
 	XScale *= 0.25;
@@ -171,7 +173,7 @@ function DrawMenu()
 	Canvas.Font = Owner.CurrentStyle.PickFont(DefFont+3,FontScalar);
 	Canvas.TextSize("A",XL,YL,FontScalar,FontScalar);
 	Y = YPos+4;
-	DrawCenteredText("当前波数",XPos+XScale*0.5,Y,FontScalar);
+	DrawCenteredText(localizedStr[4],XPos+XScale*0.5,Y,FontScalar);
 	Y += YL;
 	DrawCenteredText(KFGRI.WaveNum$"/"$(KFGRI.WaveMax-1),XPos+XScale*0.5,Y,FontScalar*1.1);
 	
@@ -205,15 +207,15 @@ function DrawMenu()
 	Canvas.DrawColor = SBTextColor;
 	Y = YPos+4;
 	Canvas.SetPos(XPos+18,Y);
-	Canvas.DrawText("玩家",,FontScalar,FontScalar);
+	Canvas.DrawText(localizedStr[5],,FontScalar,FontScalar);
 	if( !bShowSpectatorsOnly )
 	{
 		Canvas.SetPos(XPos+CashXPos,Y);
-		Canvas.DrawText("金钱",,FontScalar,FontScalar);
-		DrawCenteredText("击杀",XPos+KillsXPos,Y,FontScalar);
-		DrawCenteredText("助攻",XPos+AssistXPos,Y,FontScalar);
+		Canvas.DrawText(localizedStr[6],,FontScalar,FontScalar);
+		DrawCenteredText(localizedStr[7],XPos+KillsXPos,Y,FontScalar);
+		DrawCenteredText(localizedStr[8],XPos+AssistXPos,Y,FontScalar);
 	}
-	DrawCenteredText("PING",XPos+PingXPos,Y,FontScalar);
+	DrawCenteredText(localizedStr[9],XPos+PingXPos,Y,FontScalar);
 
 	// Check how many players to draw.
 	YPos+=(YHeight-1);
@@ -410,14 +412,14 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 		else
 		{
 			C.DrawColor = SBTextColor;
-			S = "未选择职业";
+			S = localizedStr[10];
 		}
 		YPos = SBFontSize*0.9;
 		C.SetPos(XPos+Height*0.5,YOffset+Height*0.495);
 		if( PRI.RespawnCounter>=0 )
 		{
 			C.DrawColor = SBTextColor;
-			S = "重生于: "$FormatTimeSM(PRI.RespawnCounter);
+			S = localizedStr[11]$FormatTimeSM(PRI.RespawnCounter);
 		}
 		while( true ) // Make sure too long name doesn't overleap.
 		{
@@ -445,7 +447,7 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 	}
 		
 	// Ping
-	DrawCenteredText(PRI.bBot ? "BOT" : string(PRI.Ping*4),PingXPos,YPos,SBFontSize);
+	DrawCenteredText(PRI.bBot ? localizedStr[12] : string(PRI.Ping*4),PingXPos,YPos,SBFontSize);
 	
 	// Draw health.
 	if( !bShowSpectatorsOnly )
@@ -456,7 +458,7 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 			C.DrawTile(HealthIcon,(Height-12)*0.5,(Height-12)*0.5,0,0,256,256);
 		}
 		if( PRI.PlayerHealth<=0 || PRI.PlayerHealthPercent<=0 )
-			DrawCenteredText("死亡",6+(Height-12)*0.5,YOffset+Height*0.45,SBFontSize*0.95);
+			DrawCenteredText(localizedStr[13],6+(Height-12)*0.5,YOffset+Height*0.45,SBFontSize*0.95);
 		else DrawCenteredText(string(PRI.PlayerHealth),6+(Height-12)*0.5,YOffset+Height*0.45,SBFontSize*0.95);
 	}
 }
@@ -475,7 +477,7 @@ function ClickedPlayer( int Index, bool bRight, int MouseX, int MouseY )
 	PlayerContext.ItemRows[0].bDisabled = (PlayerIndex==Index || !PC.IsSpectating());
 	PlayerContext.ItemRows[1].bDisabled = RightClickPlayer.bBot;
 	PlayerContext.ItemRows[2].bDisabled = (PlayerIndex==Index || RightClickPlayer.bBot);
-	PlayerContext.ItemRows[2].Text = (PlayerContext.ItemRows[2].bDisabled || PC.IsPlayerMuted(RightClickPlayer.UniqueId)) ? "取消静音玩家" : "静音玩家";
+	PlayerContext.ItemRows[2].Text = (PlayerContext.ItemRows[2].bDisabled || PC.IsPlayerMuted(RightClickPlayer.UniqueId)) ? localizedStr[14] : localizedStr[15];
 
 	if( PlayerIndex==Index ) // Selected self.
 	{
@@ -510,13 +512,13 @@ function SelectedRCItem( int Index )
 	case 2: // Mute voice.
 		if( !PC.IsPlayerMuted(RightClickPlayer.UniqueId) )
 		{
-			PC.ClientMessage("你将该玩家静音："$RightClickPlayer.TaggedPlayerName);
+			PC.ClientMessage(localizedStr[16]$RightClickPlayer.TaggedPlayerName);
 			PC.ClientMutePlayer(RightClickPlayer.UniqueId);
 			RightClickPlayer.bIsMuted = true;
 		}
 		else
 		{
-			PC.ClientMessage("你取消对该玩家的静音： "$RightClickPlayer.TaggedPlayerName);
+			PC.ClientMessage(localizedStr[17]$RightClickPlayer.TaggedPlayerName);
 			PC.ClientUnmutePlayer(RightClickPlayer.UniqueId);
 			RightClickPlayer.bIsMuted = false;
 		}
@@ -542,10 +544,10 @@ function ShowPlayerTooltip( int Index )
 			ToolTipItem.ParentComponent = Self;
 			ToolTipItem.InitMenu();
 		}
-		S = "玩家: "$PRI.TaggedPlayerName$"|生命: "$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
+		S = localizedStr[18]$PRI.TaggedPlayerName$localizedStr[19]$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
 		if( PRI.ShowAdminName() )
 			S = S$"|"$PRI.GetAdminName();
-		S = S$"|(右键查看选项)";
+		S = S$localizedStr[20];
 		ToolTipItem.SetText(S);
 		ToolTipItem.ShowMenu();
 		ToolTipItem.CompPos[0] = Owner.MousePosition.X;
@@ -580,8 +582,8 @@ defaultproperties
 	End Object
 	Begin Object Class=KFGUI_Button Name=B_ShowSpecs
 		ID="Spec"
-		ButtonText="显示旁观者"
-		Tooltip="显示当前旁观者"
+		ButtonText="Show Spectators"
+		Tooltip="Toggle show server spectators"
 		XPosition=0.67
 		YPosition=0.95
 		XSize=0.09
@@ -594,9 +596,9 @@ defaultproperties
 	Components.Add(B_ShowSpecs)
 	
 	Begin Object Class=KFGUI_RightClickMenu Name=PlayerContextMenu
-		ItemRows.Add((Text="旁观此玩家"))
-		ItemRows.Add((Text="查看Steam个人主页"))
-		ItemRows.Add((Text="静音"))
+		ItemRows.Add((Text="Spectate this player"))
+		ItemRows.Add((Text="View player Steam profile"))
+		ItemRows.Add((Text="Mute"))
 		ItemRows.Add((bSplitter=true))
 		OnSelectedItem=SelectedRCItem
 		OnBecameHidden=HidRightClickMenu

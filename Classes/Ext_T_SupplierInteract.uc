@@ -197,7 +197,7 @@ DefaultProperties
 	RemoteRole=ROLE_SimulatedProxy
 	bSkipActorPropertyReplication=true
 	bHidden=false
-	ReuseTime=90
+	ReuseTime=60
 	bProjTarget=false
 	
 	Components.Empty()

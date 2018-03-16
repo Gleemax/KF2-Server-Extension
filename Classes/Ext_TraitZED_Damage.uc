@@ -21,8 +21,6 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 defaultproperties
 {
 	NumLevels=5
-	TraitName="丧尸伤害"
-	Description="增加你的协助僵尸所造成的伤害：|Lv1-5: +10%, +25%, +50%, +100%, +200%||-需求：丧尸爪牙天赋"
 	DefLevelCosts(0)=10
 	DefLevelCosts(1)=20
 	DefLevelCosts(2)=30

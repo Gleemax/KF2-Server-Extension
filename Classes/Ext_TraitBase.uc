@@ -6,7 +6,7 @@ Class Ext_TraitBase extends Object
 var array<FWebAdminConfigInfo> WebConfigs;
 
 var() class<Ext_TGroupBase> TraitGroup; // With groups you can prevent player from buying multiple traits of same group.
-var() Localized string TraitName,Description; // UI name.
+var() Localized string TraitName,Description,ExtraDesc; // UI name.
 var() byte NumLevels; // Maximum number of levels.
 var config array<int> LevelCosts;
 var() array<int> DefLevelCosts; // Point price tag for each level.
@@ -26,6 +26,8 @@ var() bool bGroupLimitToOne, // TraitGroup should limit so you can only buy one 
 			bHighPriorityDeath, // Should receive PreventDeath call before any other trait.
 			bPostApplyEffect; // Apply effects on second pass (relies on that another trait is activated first).
 
+var() Localized string localizedStr[3];
+			
 // Check if trait is enabled and usable on this perk.
 static function bool IsEnabled( Ext_PerkBase Perk )
 {
@@ -57,9 +59,9 @@ static function string GetPerkDescription()
 			S = string(GetTraitCost(i));
 		else S $= ", "$GetTraitCost(i);
 	}
-	S = "最大等级: #{9FF781}"$Default.NumLevels$"#{DEF}|等级花费: #{F3F781}"$S$"#{DEF}";
+	S = Default.localizedStr[0]$": #{9FF781}"$Default.NumLevels$"#{DEF}|"$Default.localizedStr[1]$": #{F3F781}"$S$"#{DEF}";
 	if( Default.MinLevel>0 )
-		S = "最小职业等级: #{FF4000}"$Default.MinLevel$"#{DEF}|"$S;
+		S = Default.localizedStr[3]$": #{FF4000}"$Default.MinLevel$"#{DEF}|"$S;
 	return Default.Description$"||"$S;
 }
 

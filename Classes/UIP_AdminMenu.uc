@@ -58,30 +58,30 @@ defaultproperties
 {
 	Begin Object Class=KFGUI_RightClickMenu Name=PlayerContextMenu
 		ItemRows.Add((Text="",Value=-1))
-		ItemRows.Add((Text="显示调试信息",Value=9))
+		ItemRows.Add((Text="Show Debug Info",Value=9))
 		ItemRows.Add((bSplitter=true))
-		ItemRows.Add((Text="增加 1000 经验",Value=2))
-		ItemRows.Add((Text="增加 10000 经验",Value=3))
-		ItemRows.Add((Text="增加职业等级",Value=4))
-		ItemRows.Add((Text="设置职业等级",Value=-1))
-		ItemRows.Add((Text="设置转生等级",Value=-2))
+		ItemRows.Add((Text="Add 1,000 XP",Value=2))
+		ItemRows.Add((Text="Add 10,000 XP",Value=3))
+		ItemRows.Add((Text="Advance Perk Level",Value=4))
+		ItemRows.Add((Text="Set Perk Level",Value=-1))
+		ItemRows.Add((Text="Set Prestige Level",Value=-2))
 		ItemRows.Add((bSplitter=true))
-		ItemRows.Add((Text="重置所有属性",Value=5))
-		ItemRows.Add((Text="重置所有技能",Value=6))
+		ItemRows.Add((Text="Unload all stats",Value=5))
+		ItemRows.Add((Text="Unload all traits",Value=6))
 		ItemRows.Add((bSplitter=true))
-		ItemRows.Add((Text="移除 1000 经验",Value=7))
-		ItemRows.Add((Text="移除 10000 经验",Value=8))
+		ItemRows.Add((Text="Remove 1,000 XP",Value=7))
+		ItemRows.Add((Text="Remove 10,000 XP",Value=8))
 		ItemRows.Add((bSplitter=true))
-		ItemRows.Add((Text="重置所有状态",Value=0))
-		ItemRows.Add((Text="重置当前状态",Value=1))
+		ItemRows.Add((Text="Reset ALL Stats",Value=0))
+		ItemRows.Add((Text="Reset Current Perk Stats",Value=1))
 		OnSelectedItem=SelectedRCItem
 	End Object
 	PlayerContext=PlayerContextMenu
 	
 	Begin Object Class=KFGUI_Button Name=EditMOTDButton
 		ID="MOTD"
-		ButtonText="编辑每日消息"
-		Tooltip="编辑服务器的每日消息"
+		ButtonText="Edit MOTD"
+		Tooltip="Edit the server Message of the Day"
 		XPosition=0.2
 		YPosition=0.997
 		XSize=0.1
@@ -97,10 +97,10 @@ defaultproperties
 		YPosition=0.05
 		XSize=0.9
 		YSize=0.92
-		Columns.Add((Text="玩家",Width=0.55))
-		Columns.Add((Text="击杀",Width=0.15))
-		Columns.Add((Text="经验",Width=0.15))
-		Columns.Add((Text="游戏时间",Width=0.15))
+		Columns.Add((Text="Player",Width=0.55))
+		Columns.Add((Text="Total Kills",Width=0.15))
+		Columns.Add((Text="Total EXP",Width=0.15))
+		Columns.Add((Text="Total PlayTime",Width=0.15))
 		OnSelectedRow=SelectedRow
 	End Object
 	Components.Add(PlayerList)

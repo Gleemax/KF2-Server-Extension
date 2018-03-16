@@ -16,8 +16,6 @@ static function bool PreventDeath( KFPawn_Human Player, Controller Instigator, C
 
 defaultproperties
 {
-	TraitName="复仇"
 	DefLevelCosts(0)=50
 	DefMinLevel=40
-	Description="用一次大爆炸来结束你光辉的一生！"
 }

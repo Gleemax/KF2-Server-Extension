@@ -2,11 +2,11 @@ class Ext_TGroupRegen extends Ext_TGroupBase;
 
 static function string GetUIInfo( Ext_PerkBase Perk )
 {
-	return Default.GroupInfo$" (最大 "$GetMaxLimit(Perk)$")";
+	return Default.GroupInfo$" ("$Default.localizedStr[0]$GetMaxLimit(Perk)$")";
 }
 static function string GetUIDesc()
 {
-	return Super.GetUIDesc()$"|完成下列要求更买额外再生技能：|-一转 + 100级 = 最大两个技能|-五转 + 150级 = 最大三个技能";
+	return Super.GetUIDesc()$Default.localizedStr[1];
 }
 
 static function bool GroupLimited( Ext_PerkBase Perk, class<Ext_TraitBase> Trait )
@@ -30,5 +30,4 @@ static final function byte GetMaxLimit( Ext_PerkBase Perk )
 
 defaultproperties
 {
-	GroupInfo="再生"
 }

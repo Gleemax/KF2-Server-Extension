@@ -10,7 +10,9 @@ var array<FWebAdminConfigInfo> WebConfigs;
 var ExtPerkManager PerkManager;
 var Controller PlayerOwner;
 
-var() string PerkName;
+var() Localized string PerkName;
+var() Localized string StatStr[20];
+
 var() Texture2D PerkIcon;
 var() class<KFPerk> BasePerk; // KF perk that this perk is based on.
 var() class<KFWeapon> PrimaryMelee,PrimaryWeapon;
@@ -152,6 +154,7 @@ simulated function PostBeginPlay()
 		for( j=0; j<PerkStats.Length; ++j )
 		{
 			i = DefPerkStats.Find('StatType',PerkStats[j].StatType);
+			DefPerkStats[i].UIName = StatStr[i];
 			if( i>=0 )
 				PerkStats[j].UIName = DefPerkStats[i].UIName;
 			else
@@ -1427,26 +1430,26 @@ defaultproperties
 	WebConfigs.Add((PropType=0,PropName="MaxPrestige",UIName="Max Prestige",UIDesc="Maximum prestige level"))
 	WebConfigs.Add((PropType=0,PropName="PrestigeXPReduce",UIName="Prestige XP Reduce",UIDesc="Percent amount of XP cost is reduced for each prestige (1.0 = 1/2, or 50 % of XP)"))
 	
-	DefPerkStats(0)=(MaxValue=50,CostPerValue=1,StatType="Speed",UIName="移动速度 (+&%)",Progress=0.4)
-	DefPerkStats(1)=(MaxValue=1000,CostPerValue=1,StatType="Damage",UIName="职业伤害 (+&%)",Progress=0.5)
-	DefPerkStats(2)=(MaxValue=90,CostPerValue=1,StatType="Recoil",UIName="后坐力 (-&%)",Progress=1)
-	DefPerkStats(3)=(MaxValue=80,CostPerValue=1,StatType="Spread",UIName="武器散射 (-&%)",Progress=0.75)
-	DefPerkStats(4)=(MaxValue=1000,CostPerValue=1,StatType="Rate",UIName="武器射速 (+&%)",Progress=0.5)
-	DefPerkStats(5)=(MaxValue=1000,CostPerValue=1,StatType="Reload",UIName="装填时间 (-&%)",Progress=0.5)
-	DefPerkStats(6)=(MaxValue=150,CostPerValue=1,StatType="Health",UIName="生命值 (+&HP)",Progress=1)
-	DefPerkStats(7)=(MaxValue=100,CostPerValue=1,StatType="KnockDown",UIName="击退 (+&%)",Progress=1)
-	DefPerkStats(8)=(MaxValue=200,CostPerValue=1,StatType="Welder",UIName="焊接速度 (+&%)",bHiddenConfig=true,Progress=0.5)
-	DefPerkStats(9)=(MaxValue=400,CostPerValue=1,StatType="Heal",UIName="治疗效率 (+&%)",bHiddenConfig=true,Progress=0.5)
-	DefPerkStats(10)=(MaxValue=400,CostPerValue=1,StatType="Mag",UIName="弹夹容量 (+&%)",Progress=1)
-	DefPerkStats(11)=(MaxValue=500,CostPerValue=1,StatType="Spare",UIName="最大备弹 (+&%)",Progress=1)
-	DefPerkStats(12)=(MaxValue=1000,CostPerValue=1,StatType="OffDamage",UIName="非职业伤害 (+&%)",Progress=0.25)
-	DefPerkStats(13)=(MaxValue=1000,CostPerValue=1,StatType="SelfDamage",UIName="自伤减免 (+&%)",Progress=1,bHiddenConfig=true)
-	DefPerkStats(14)=(MaxValue=150,CostPerValue=1,StatType="Armor",UIName="护甲 (+&)",Progress=1)
-	DefPerkStats(15)=(MaxValue=1000,CostPerValue=1,StatType="PoisonDmg",UIName="毒素抗性 (+&%)",Progress=1.5,bHiddenConfig=true)
-	DefPerkStats(16)=(MaxValue=1000,CostPerValue=1,StatType="SonicDmg",UIName="音波抗性 (+&%)",Progress=1.5,bHiddenConfig=true)
-	DefPerkStats(17)=(MaxValue=1000,CostPerValue=1,StatType="FireDmg",UIName="火焰抗性 (+&%)",Progress=1.5,bHiddenConfig=true)
-	DefPerkStats(18)=(MaxValue=500,CostPerValue=1,StatType="AllDmg",UIName="全体抗性 (+&%)",Progress=0.25)
-	DefPerkStats(19)=(MaxValue=500,CostPerValue=1,StatType="Switch",UIName="切换速度 (+&%)",Progress=1.00)
+	DefPerkStats(0)=(MaxValue=50,CostPerValue=1,StatType="Speed",UIName="Movement Speed (+&%)",Progress=0.4)
+	DefPerkStats(1)=(MaxValue=1000,CostPerValue=1,StatType="Damage",UIName="Perk Damage (+&%)",Progress=0.5)
+	DefPerkStats(2)=(MaxValue=90,CostPerValue=1,StatType="Recoil",UIName="Fire Recoil (-&%)",Progress=1)
+	DefPerkStats(3)=(MaxValue=80,CostPerValue=1,StatType="Spread",UIName="Fire Spread (-&%)",Progress=0.75)
+	DefPerkStats(4)=(MaxValue=1000,CostPerValue=1,StatType="Rate",UIName="Perk Rate of Fire (+&%)",Progress=0.5)
+	DefPerkStats(5)=(MaxValue=1000,CostPerValue=1,StatType="Reload",UIName="Perk Reload Time (-&%)",Progress=0.5)
+	DefPerkStats(6)=(MaxValue=150,CostPerValue=1,StatType="Health",UIName="Health (+&HP)",Progress=1)
+	DefPerkStats(7)=(MaxValue=100,CostPerValue=1,StatType="KnockDown",UIName="Knockback (+&%)",Progress=1)
+	DefPerkStats(8)=(MaxValue=200,CostPerValue=1,StatType="Welder",UIName="Welding Rate (+&%)",bHiddenConfig=true,Progress=0.5)
+	DefPerkStats(9)=(MaxValue=400,CostPerValue=1,StatType="Heal",UIName="Heal Efficiency (+&%)",bHiddenConfig=true,Progress=0.5)
+	DefPerkStats(10)=(MaxValue=400,CostPerValue=1,StatType="Mag",UIName="Magazine Capacity (+&%)",Progress=1)
+	DefPerkStats(11)=(MaxValue=500,CostPerValue=1,StatType="Spare",UIName="Max Ammo (+&%)",Progress=1)
+	DefPerkStats(12)=(MaxValue=1000,CostPerValue=1,StatType="OffDamage",UIName="Off-Perk Damage (+&%)",Progress=0.25)
+	DefPerkStats(13)=(MaxValue=1000,CostPerValue=1,StatType="SelfDamage",UIName="Self Damage Reduction (+&%)",Progress=1,bHiddenConfig=true)
+	DefPerkStats(14)=(MaxValue=150,CostPerValue=1,StatType="Armor",UIName="Armor (+&)",Progress=1)
+	DefPerkStats(15)=(MaxValue=1000,CostPerValue=1,StatType="PoisonDmg",UIName="Toxic Resistance (+&%)",Progress=1.5,bHiddenConfig=true)
+	DefPerkStats(16)=(MaxValue=1000,CostPerValue=1,StatType="SonicDmg",UIName="Sonic Resistance (+&%)",Progress=1.5,bHiddenConfig=true)
+	DefPerkStats(17)=(MaxValue=1000,CostPerValue=1,StatType="FireDmg",UIName="Fire Resistance (+&%)",Progress=1.5,bHiddenConfig=true)
+	DefPerkStats(18)=(MaxValue=500,CostPerValue=1,StatType="AllDmg",UIName="Zed Damage Reduction (+&%)",Progress=0.25)
+	DefPerkStats(19)=(MaxValue=500,CostPerValue=1,StatType="Switch",UIName="Weapon Switch (+&%)",Progress=1.00)
 	
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)

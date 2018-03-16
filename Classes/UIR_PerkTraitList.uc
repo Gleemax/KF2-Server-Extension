@@ -110,8 +110,8 @@ function NotifyMousePaused()
 
 defaultproperties
 {
-	Columns.Add((Text="技能名称",Width=0.6))
-	Columns.Add((Text="等级",Width=0.2))
-	Columns.Add((Text="费用",Width=0.2))
+	Columns.Add((Text="Trait name",Width=0.6))
+	Columns.Add((Text="Level",Width=0.2))
+	Columns.Add((Text="Cost",Width=0.2))
 	bCanSortColumn=false
 }

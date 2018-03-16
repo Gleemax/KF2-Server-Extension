@@ -1374,7 +1374,6 @@ simulated function Ext_PerkFieldMedic GetMedicPerk(ExtPlayerController Healer)
 defaultproperties
 {
 	KnockbackResist=1
-	PoolIndex=-1
 	
 	// Ragdoll mode:
 	bReplicateRigidBodyLocation=true

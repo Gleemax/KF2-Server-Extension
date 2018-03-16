@@ -12,8 +12,6 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkDemolition'
-	TraitName="破甲弹头"
 	DefLevelCosts(0)=100
 	DefMinLevel=50
-	Description="爆破职业武器将会对丧尸的弱点额外造成50%伤害。"
 }

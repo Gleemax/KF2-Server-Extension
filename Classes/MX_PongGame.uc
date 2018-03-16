@@ -17,6 +17,8 @@ var int HitSoundIndex[2];
 var float EnemyPadVel,AITactic,AITacticTimer,AITrajOffset;
 var bool bAIRandom;
 
+var() Localized string localizedStr[3];
+
 const PadWidth=0.015;
 const PadHeight=0.15;
 const LevelBoarderSize=0.05;
@@ -90,15 +92,15 @@ function Render( float XPos, float YPos, float XSize, float YSize )
 	{
 		Canvas.SetDrawColor(128,64,64,Abs(Sin(H))*96.f+128);
 		Canvas.SetPos(XPos+XSize*0.4,YPos+YSize*0.2);
-		Canvas.DrawText("按下鼠标左键开始游戏",,W,W);
+		Canvas.DrawText(localizedStr[0],,W,W);
 	}
 	else
 	{
 		Canvas.SetDrawColor(255,255,128,Abs(Sin(H))*96.f);
 		Canvas.SetPos(XPos+XSize*0.2,YPos+YSize*0.22);
-		Canvas.DrawText("得分: "$string(Score),,W,W);
+		Canvas.DrawText(localizedStr[1]$string(Score),,W,W);
 		Canvas.SetPos(XPos+XSize*0.2,YPos+YSize*0.68);
-		Canvas.DrawText("玩家: "$string(NumPlays),,W,W);
+		Canvas.DrawText(localizedStr[2]$string(NumPlays),,W,W);
 	}
 	
 	// Borders
