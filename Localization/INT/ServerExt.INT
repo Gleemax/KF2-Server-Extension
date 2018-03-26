@@ -190,6 +190,7 @@ Description="With this trait you are ungrabbable by the zeds."
 TraitName="Vampire"
 Description="With this trait you will recover some of your health by every kill (with a melee weapon), in a rate of:|Lv1-4: +2%, +3%, +4%, +6%"
 [Ext_TraitWeapons]
+ExtraDesc="|- Level 4 requires perk level 50 and level 3 carry capacity trait!"
 [Ext_TraitWPBers]
 TraitName="Berserker Weapon Loadout"
 Description="This will grant you berserker weapon loadout to spawn with.|Level 1: Pulverizer|Level 2: Nailgun|Level 3: Sawblade Gun|Level 4: All 3"

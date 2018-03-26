@@ -189,6 +189,7 @@ Description="该天赋会使你无法被丧尸抓取."
 TraitName="吸血鬼"
 Description="该天赋会使你在使用近战武器击杀丧尸时按如下百分比恢复生命值: |Lv1-4: +2%, +3%, +4%, +5%"
 [Ext_TraitWeapons]
+ExtraDesc="|- 等级4需要职业等级50级以及至少3级的负重上限技能"
 [Ext_TraitWPBers]
 TraitName="狂战初始武器"
 Description="使你重生时携带特定狂战士职业武器. |Level 1: 粉碎机|Level 2: 钉枪|Level 3: |Level 4: 以上全部3种"

@@ -51,11 +51,11 @@ defaultproperties
 {
 	bCanDisintegrate=false
 	DrawScale=2
-	NumClusters=5
+	NumClusters=6
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 
 	Begin Object Name=ExploTemplate0
-		Damage=170
-		DamageRadius=800
+		Damage=270
+		DamageRadius=450
 	End Object
 }
