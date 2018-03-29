@@ -574,7 +574,7 @@ function DrawHUD()
 	DrawActorOverlays(PLCameraLoc, PLCameraRot);
 }
 
-function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldLocation )
+function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldLocation,  float NormalizedAngle )
 {
     local vector ScreenPos;
     local float IconSizeMult;

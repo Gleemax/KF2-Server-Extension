@@ -62,7 +62,7 @@ function DoAutoPurchase()
 
 	if(bUpgradeSuccess)
 	{
-		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.WeaponUpgradeComepleteString;
+		AutoFillMessageString = class'KFCommon_LocalizedStrings'.default.AutoTradeCompleteString;
 	}
 	else if(bSecondaryWeaponPurchased)
 	{
