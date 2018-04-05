@@ -577,6 +577,11 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int SpareAmmoCapa
 	if( CurrentPerk!=None )
 		CurrentPerk.ModifySpareAmmoAmount(KFW,SpareAmmoCapacity,TraderItem,bSecondary);
 }
+simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
+{
+	if( CurrentPerk!=None )
+		CurrentPerk.ModifyWeaponSwitchTime(ModifiedSwitchTime);
+}
 simulated function bool ShouldMagSizeModifySpareAmmo( KFWeapon KFW, optional Class<KFPerk> WeaponPerkClass )
 {
 	return (CurrentPerk!=None ? CurrentPerk.ShouldMagSizeModifySpareAmmo(KFW,WeaponPerkClass) : false);

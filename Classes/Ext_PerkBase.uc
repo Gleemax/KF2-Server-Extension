@@ -11,8 +11,7 @@ var ExtPerkManager PerkManager;
 var Controller PlayerOwner;
 
 var() Localized string PerkName;
-var() Localized string StatStr[20];
-
+var() Localized string StatStr[21];
 var() Texture2D PerkIcon;
 var() class<KFPerk> BasePerk; // KF perk that this perk is based on.
 var() class<KFWeapon> PrimaryMelee,PrimaryWeapon;
@@ -102,7 +101,7 @@ replication
 simulated function InitLocalization()
 {
 	local int i;
-	for ( i=0; i<20; ++i )
+	for ( i=0; i<21; ++i )
 		DefPerkStats[i].UIName = StatStr[i];
 }
 
@@ -648,6 +647,8 @@ static function UpdateConfigs( int OldVer )
 			AddStatsCfg(16); // Add sonic/fire damage.
 		else if( OldVer<=12 )
 			AddStatsCfg(18); // Add all damage.
+		else if( OldVer<=13 )
+			AddStatsCfg(20); // Add all damage.
 		if( OldVer<=5 )
 		{
 			// Add prestige
@@ -1159,6 +1160,17 @@ simulated function float ApplyEffect( name Type, float Value, float Progress )
 	case 'Switch':
 		Modifiers[19] = 1.f / (1.f+Value*Progress);
 		break;
+	case 'Scalar':
+		Modifiers[20] = pow(1.f / (1.f+Value*Progress), 1.f/3.f);
+		if( bActivePerk && PlayerOwner.Pawn!=None )
+		{
+			PlayerOwner.Pawn.SetDrawScale(1.f*Modifiers[20]);
+			PlayerOwner.SetCollisionSize(
+				PlayerOwner.Pawn.Default.CollisionHeight*Modifiers[20],
+				PlayerOwner.Pawn.Default.CollisionHeight*Modifiers[20]
+			);
+		}
+		break;
 	}
 	return (Value*Progress);
 }
@@ -1273,7 +1285,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 }
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 {
-	ModifiedSwitchTime = ModifiedSwitchTime*Modifiers[19];
+	ModifiedSwitchTime *= Modifiers[19];
 }
 simulated function bool ShouldMagSizeModifySpareAmmo( KFWeapon KFW, optional Class<KFPerk> WeaponPerkClass )
 {
@@ -1389,7 +1401,7 @@ simulated function float GetZedTimeExtensions( byte Level )
 
 defaultproperties
 {
-	CurrentConfigVer=13
+	CurrentConfigVer=14
 	bOnlyRelevantToOwner=true
 	bCanBeGrabbed=true
 	NetUpdateFrequency=1
@@ -1458,6 +1470,7 @@ defaultproperties
 	DefPerkStats(17)=(MaxValue=1000,CostPerValue=1,StatType="FireDmg",UIName="Fire Resistance (+&%)",Progress=1.5,bHiddenConfig=true)
 	DefPerkStats(18)=(MaxValue=500,CostPerValue=1,StatType="AllDmg",UIName="Zed Damage Reduction (+&%)",Progress=0.25)
 	DefPerkStats(19)=(MaxValue=500,CostPerValue=1,StatType="Switch",UIName="Weapon Switch (+&%)",Progress=1.00)
+	DefPerkStats(20)=(MaxValue=10000,CostPerValue=1,StatType="Scalar",UIName="Bodysize Scalar (+&%)",Progress=0.10)
 	
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
