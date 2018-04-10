@@ -87,6 +87,8 @@ var transient float NextAuthTime;
 
 var int ToxicDartDamage;
 var byte EnemyHealthRange;
+var float DefaultCollisionRadius;
+var float DefaultCollisionHeight;
 var() array<float> EnemyDistDraw;
 
 var bool bOwnerNetClient,bClientAuthorized,bPerkNetReady,bHasNightVision,bCanBeGrabbed,bExplosiveWeld,bExplodeOnContact,bNapalmFire,bFireExplode,bToxicDart,bTacticalReload,bHeavyArmor,bHasSWATEnforcer;
@@ -576,8 +578,10 @@ function int GetNeededExp( int LevelNum )
 		return 0;
 	LevelNum-=MinimumLevel;
 	LevelNum = (FirstLevelExp+(LevelNum*LevelUpExpCost)+(LevelNum*LevelNum*LevelUpIncCost));
-	if( CurrentPrestige>0 && PrestigeXPReduce!=0 )
+	if( CurrentPrestige>0 && PrestigeXPReduce>=0 )
 		LevelNum *= (1.f / (1.f + PrestigeXPReduce*CurrentPrestige));
+	else
+		LevelNum *= Loge(2.71828 * (1 - PrestigeXPReduce*CurrentPrestige));
 	return LevelNum;
 }
 
@@ -648,7 +652,7 @@ static function UpdateConfigs( int OldVer )
 		else if( OldVer<=12 )
 			AddStatsCfg(18); // Add all damage.
 		else if( OldVer<=13 )
-			AddStatsCfg(20); // Add all damage.
+			AddStatsCfg(20); // Add Switch Speed/Bodsysize Scalar
 		if( OldVer<=5 )
 		{
 			// Add prestige
@@ -830,7 +834,7 @@ function ApplyEffectsTo( KFPawn_Human P )
 {
 	local int i;
 	local bool bSec;
-	
+
 	for( i=0; i<PerkTraits.Length; ++i )
 	{
 		if( PerkTraits[i].CurrentLevel>0 )
@@ -848,6 +852,9 @@ function ApplyEffectsTo( KFPawn_Human P )
 				PerkTraits[i].TraitType.Static.ApplyEffectOn(P,Self,PerkTraits[i].CurrentLevel,PerkTraits[i].Data);
 		}
 	}
+
+	if ( PlayerOwner.Pawn!= none )
+		ModifyBodySize(PlayerOwner.Pawn);
 }
 
 // Player joined/perk changed.
@@ -1161,15 +1168,9 @@ simulated function float ApplyEffect( name Type, float Value, float Progress )
 		Modifiers[19] = 1.f / (1.f+Value*Progress);
 		break;
 	case 'Scalar':
-		Modifiers[20] = pow(1.f / (1.f+Value*Progress), 1.f/3.f);
+		Modifiers[20] = (1.f / (1.f+Value*Progress)) ** (1.f /3.f);
 		if( bActivePerk && PlayerOwner.Pawn!=None )
-		{
-			PlayerOwner.Pawn.SetDrawScale(1.f*Modifiers[20]);
-			PlayerOwner.SetCollisionSize(
-				PlayerOwner.Pawn.Default.CollisionHeight*Modifiers[20],
-				PlayerOwner.Pawn.Default.CollisionHeight*Modifiers[20]
-			);
-		}
+			ModifyBodySize(PlayerOwner.Pawn);
 		break;
 	}
 	return (Value*Progress);
@@ -1286,6 +1287,14 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 {
 	ModifiedSwitchTime *= Modifiers[19];
+}
+simulated function ModifyBodySize( out Pawn Pawn  )
+{
+	Pawn.SetDrawScale(1.f*Modifiers[20]);
+	Pawn.SetCollisionSize(
+		Pawn.Default.CylinderComponent.CollisionRadius*Modifiers[20],
+		Pawn.Default.CylinderComponent.CollisionHeight*Modifiers[20]
+	);
 }
 simulated function bool ShouldMagSizeModifySpareAmmo( KFWeapon KFW, optional Class<KFPerk> WeaponPerkClass )
 {
@@ -1470,7 +1479,7 @@ defaultproperties
 	DefPerkStats(17)=(MaxValue=1000,CostPerValue=1,StatType="FireDmg",UIName="Fire Resistance (+&%)",Progress=1.5,bHiddenConfig=true)
 	DefPerkStats(18)=(MaxValue=500,CostPerValue=1,StatType="AllDmg",UIName="Zed Damage Reduction (+&%)",Progress=0.25)
 	DefPerkStats(19)=(MaxValue=500,CostPerValue=1,StatType="Switch",UIName="Weapon Switch (+&%)",Progress=1.00)
-	DefPerkStats(20)=(MaxValue=10000,CostPerValue=1,StatType="Scalar",UIName="Bodysize Scalar (+&%)",Progress=0.10)
+	DefPerkStats(20)=(MaxValue=10000,CostPerValue=1,StatType="Scalar",UIName="Bodysize Scalar (-&%)",Progress=0.25)
 	
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
@@ -1487,6 +1496,7 @@ defaultproperties
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
 	Modifiers.Add(0.f)
+	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
 	Modifiers.Add(1.f)
