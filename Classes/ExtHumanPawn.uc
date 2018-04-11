@@ -1273,6 +1273,48 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 	}
 }
 
+function SacrificeExplode()
+{
+	local KFExplosionActorReplicated ExploActor;
+	local GameExplosion	ExplosionTemplate;
+	local Ext_PerkBase BasePerk;
+
+	if ( Role < ROLE_Authority )
+	{
+		return;
+	}
+
+	// Survivalist Sacrifice Regen
+	BasePerk = Ext_PerkSurvivalist(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
+	if (BasePerk != None)
+	{
+		Health = Min( HealthMax * 0.25, HealthMax) ;
+		Armor = Min( Armor+MaxArmor * 0.25, MaxArmor );
+
+		if ( BasePerk != None )
+			BasePerk.bUsedSacrifice = true;
+	}
+
+	// Demolition Sacrifice Explode
+	BasePerk = Ext_PerkDemolition(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
+	if (BasePerk != None)
+	{
+		ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
+		if( ExploActor != None )
+		{
+			ExploActor.InstigatorController = Controller;
+			ExploActor.Instigator = self;
+
+			ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
+			ExplosionTemplate.Damage = 1800;
+			ExplosionTemplate.bIgnoreInstigator = true;
+			ExploActor.Explode( ExplosionTemplate );
+		}
+		if ( BasePerk != None )
+				BasePerk.bUsedSacrifice = true;
+	}
+}
+
 simulated function UpdateHealingSpeedBoostMod(ExtPlayerController Healer)
 {
 	local Ext_PerkFieldMedic MedPerk;
@@ -1347,17 +1389,6 @@ simulated function ResetHealingShield()
 	HealingShieldMod = 0;
 	if( IsTimerActive( nameOf( ResetHealingShield ) ) )
 		ClearTimer( nameOf( ResetHealingShield ) );
-}
-
-function SacrificeExplode()
-{
-	local Ext_PerkDemolition DemoPerk;
-	
-	Super.SacrificeExplode();
-	
-	DemoPerk = Ext_PerkDemolition(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
-	if( DemoPerk != none )
-		DemoPerk.bUsedSacrifice = true;
 }
 
 simulated function Ext_PerkFieldMedic GetMedicPerk(ExtPlayerController Healer)

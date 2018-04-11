@@ -1,5 +1,10 @@
 Class Ext_PerkSurvivalist extends Ext_PerkBase;
 
+function OnWaveEnded()
+{
+	bUsedSacrifice = false;
+}
+
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	return ( (bTacticalReload && IsWeaponOnPerkLight( KFW )) || bTacticalReload && IsWeaponOnPerkHeavy( KFW ));
@@ -35,6 +40,7 @@ defaultproperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Survivalist'
 	DefTraitList.Add(class'Ext_TraitWPSurv')
+	DefTraitList.Add(class'Ext_TraitCardiac')
 	//DefTraitList.Add(class'Ext_TraitHeavyArmor')
 	BasePerk=class'KFPerk_Survivalist'
 

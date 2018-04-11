@@ -91,7 +91,7 @@ var float DefaultCollisionRadius;
 var float DefaultCollisionHeight;
 var() array<float> EnemyDistDraw;
 
-var bool bOwnerNetClient,bClientAuthorized,bPerkNetReady,bHasNightVision,bCanBeGrabbed,bExplosiveWeld,bExplodeOnContact,bNapalmFire,bFireExplode,bToxicDart,bTacticalReload,bHeavyArmor,bHasSWATEnforcer;
+var bool bOwnerNetClient,bClientAuthorized,bPerkNetReady,bHasNightVision,bCanBeGrabbed,bExplosiveWeld,bExplodeOnContact,bNapalmFire,bFireExplode,bToxicDart,bTacticalReload,bHeavyArmor,bHasSWATEnforcer,bCanUseSacrifice,bUsedSacrifice;
 
 replication
 {
@@ -855,6 +855,9 @@ function ApplyEffectsTo( KFPawn_Human P )
 
 	if ( PlayerOwner.Pawn!= none )
 		ModifyBodySize(PlayerOwner.Pawn);
+	
+	if ( bCanUseSacrifice )
+		bUsedSacrifice = false;
 }
 
 // Player joined/perk changed.
@@ -1213,6 +1216,13 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 	if( IsWeaponOnPerk(KFW) )
 		InRate *= Modifiers[4];
 }
+
+simulated function ModifyHardAttackDamage( out int InDamage );
+
+simulated function ModifyLightAttackDamage( out int InDamage );
+
+simulated function SetSuccessfullParry();
+
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
 	return (IsWeaponOnPerk(KFW) ? Modifiers[5] : 1.f);

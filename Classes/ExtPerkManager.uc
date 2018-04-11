@@ -502,7 +502,22 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 	if( CurrentPerk!=None )
 		CurrentPerk.ModifyRateOfFire(InRate,KFW);
 }
-simulated function float GetReloadRateScale(KFWeapon KFW)
+simulated function ModifyHardAttackDamage( out int InDamage )
+{
+	if( CurrentPerk!=None )
+		CurrentPerk.ModifyHardAttackDamage(InDamage);
+}
+simulated function ModifyLightAttackDamage( out int InDamage )
+{
+	if( CurrentPerk!=None )
+		CurrentPerk.ModifyLightAttackDamage(InDamage);
+}
+simulated function SetSuccessfullParry()
+{
+	if( CurrentPerk!=None )
+		CurrentPerk.SetSuccessfullParry();
+}
+simulated function float GetReloadRateScale( KFWeapon KFW )
 {
 	return (CurrentPerk!=None ? CurrentPerk.GetReloadRateScale(KFW) : 1.f);
 }
@@ -719,7 +734,7 @@ simulated function bool IsAoEActive()
 }
 simulated function bool ShouldSacrifice()
 {
-	return (Ext_PerkDemolition(CurrentPerk)!=None ? (Ext_PerkDemolition(CurrentPerk).bCanUseSacrifice && !Ext_PerkDemolition(CurrentPerk).bUsedSacrifice) : false);
+	return (CurrentPerk!=None ? (CurrentPerk.bCanUseSacrifice && !CurrentPerk.bUsedSacrifice) : false);
 }
 simulated function bool ShouldNeverDud()
 {
@@ -727,7 +742,7 @@ simulated function bool ShouldNeverDud()
 }
 function NotifyPerkSacrificeExploded()
 {
-	if( Ext_PerkDemolition(CurrentPerk) != none ) Ext_PerkDemolition(CurrentPerk).bUsedSacrifice = true;
+	if( CurrentPerk != none ) CurrentPerk.bUsedSacrifice = true;
 }
 simulated function float GetAoERadiusModifier()
 {

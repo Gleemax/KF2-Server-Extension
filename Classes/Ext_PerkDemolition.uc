@@ -1,7 +1,6 @@
 Class Ext_PerkDemolition extends Ext_PerkBase;
 
-var bool bSirenResistance,bCanUseSacrifice,bDirectHit,bCriticalHit,bProfessionalActive;
-var bool bUsedSacrifice;
+var bool bSirenResistance,bDirectHit,bCriticalHit,bProfessionalActive;
 var float AOEMult, NukeDamageMult;
 
 replication

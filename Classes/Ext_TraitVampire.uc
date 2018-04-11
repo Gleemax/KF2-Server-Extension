@@ -4,11 +4,11 @@ var() array<float> RegenRate;
 
 static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkBerserker(Perk).VampRegenRate = Default.RegenRate[Level-1];
+	Ext_PerkBerserker(Perk).VampRegenAmount = Default.RegenRate[Level-1];
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkBerserker(Perk).VampRegenRate = 0;
+	Ext_PerkBerserker(Perk).VampRegenAmount = 0;
 }
 
 defaultproperties
@@ -18,9 +18,9 @@ defaultproperties
 	DefLevelCosts(0)=25
 	DefLevelCosts(1)=15
 	DefLevelCosts(2)=20
-	DefLevelCosts(3)=25
-	RegenRate.Add(0.02)
-	RegenRate.Add(0.03)
-	RegenRate.Add(0.04)
-	RegenRate.Add(0.05)
+	DefLevelCosts(3)=35
+	RegenRate.Add(2)
+	RegenRate.Add(3)
+	RegenRate.Add(4)
+	RegenRate.Add(6)
 }
