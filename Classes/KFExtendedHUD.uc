@@ -65,6 +65,8 @@ var string BadConnectionStr;
 
 var transient bool bShowProgress,bProgressDC,bConfirmDisconnect,bMeAdmin,bLoadedInitItems;
 
+var Localized string localizedStr[8];
+
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
@@ -287,7 +289,7 @@ event PostRender()
 			bShowProgress = false;
 			if( PlayerOwner.Player==None )
 			{
-				ShowProgressMsg("正在下载下一个地图的内容, 请稍等...|按[Escape] 取消连接!");
+				ShowProgressMsg(localizedStr[0]);
 				RenderProgress();
 			}
 			else if( bProgressDC )
@@ -313,7 +315,7 @@ final function DrawRespawnCounter()
 	local string S;
 
 	Canvas.Font = GUIStyle.PickFont(GUIStyle.DefaultFontSize+1,Sc);
-	S = "你剩余重生时间 "$class'UI_Scoreboard'.Static.FormatTimeSM(EPRI.RespawnCounter);
+	S = localizedStr[1]$class'UI_Scoreboard'.Static.FormatTimeSM(EPRI.RespawnCounter);
 	Canvas.SetDrawColor(250,150,150,255);
 	Canvas.TextSize(S,XL,YL,Sc,Sc);
 	Canvas.SetPos((Canvas.ClipX-XL)*0.5,Canvas.ClipY*0.075);
@@ -351,10 +353,10 @@ final function RenderKillMsg()
 		}
 
 		if( KillMessages[i].bDamage )
-			S = "-"$KillMessages[i].Counter$" HP "$KillMessages[i].Name;
+			S = "-"$KillMessages[i].Counter$localizedStr[2]$KillMessages[i].Name;
 		else if( KillMessages[i].bLocal )
-			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " 被击杀" : " 被击杀");
-		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : "Someone")$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? " 被击杀" : " 被击杀");
+			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[3] : localizedStr[4]);
+		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : localizedStr[5])$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[3] : localizedStr[4]);
 		Canvas.SetPos(X,Y);
 		Canvas.DrawColor = KillMessages[i].MsgColor;
 		T = (1.f - (T/6.f)) * 255.f;
@@ -588,31 +590,34 @@ function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldL
     if( KFPRI == None )
     	return;
 
-    // Project world pos to canvas
-    ScreenPos = Canvas.Project( IconWorldLocation + vect(0,0,2.2f) * class'KFPAwn_Human'.default.CylinderComponent.CollisionHeight );
+	if ( NormalizedAngle > 0)
+	{
+		// Project world pos to canvas
+		ScreenPos = Canvas.Project( IconWorldLocation + vect(0,0,2.2f) * class'KFPAwn_Human'.default.CylinderComponent.CollisionHeight );
 
-    // Fudge by icon size
-    IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
-    ScreenPos.X -= IconSizeMult;
-    ScreenPos.Y -= IconSizeMult;
+		// Fudge by icon size
+		IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
+		ScreenPos.X -= IconSizeMult;
+		ScreenPos.Y -= IconSizeMult;
 
-    if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
-    {
-        return;
-    }
-	
-	ExtPRI = ExtPlayerReplicationInfo(KFPRI);
-	if( ExtPRI == None )
-		return;
+		if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
+		{
+			return;
+		}
+		
+		ExtPRI = ExtPlayerReplicationInfo(KFPRI);
+		if( ExtPRI == None )
+			return;
 
-	HumanIcon = ExtPRI.ECurrentPerk != None ? ExtPRI.ECurrentPerk.Default.PerkIcon : GenericHumanIconTexture;
-    PlayerIcon = PlayerOwner.GetTeamNum() == 0 ? HumanIcon : GenericHumanIconTexture;
-	PerkColor = ExtPRI.HUDPerkColor;
-	
-    // Draw human icon
-	Canvas.SetDrawColor( PerkColor.R, PerkColor.G, PerkColor.B, PerkColor.A );
-    Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
-    Canvas.DrawTile( PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
+		HumanIcon = ExtPRI.ECurrentPerk != None ? ExtPRI.ECurrentPerk.Default.PerkIcon : GenericHumanIconTexture;
+		PlayerIcon = PlayerOwner.GetTeamNum() == 0 ? HumanIcon : GenericHumanIconTexture;
+		PerkColor = ExtPRI.HUDPerkColor;
+		
+		// Draw human icon
+		Canvas.SetDrawColor( PerkColor.R, PerkColor.G, PerkColor.B, PerkColor.A );
+		Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
+		Canvas.DrawTile( PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
+	}
 }
 
 simulated static final function color GetHPColorScale( Pawn P )
@@ -1068,7 +1073,7 @@ simulated final function DrawItemsList()
 		else XS = XPos-XS;
 		
 		Canvas.SetPos(XS,YPos);
-		Canvas.DrawText("新物品:",,FontScale,FontScale);
+		Canvas.DrawText(localizedStr[6],,FontScale,FontScale);
 		Canvas.SetPos(XS,YPos+(YSize*0.5));
 		Canvas.DrawText(NewItems[i].Item,,FontScale,FontScale);
 
@@ -1103,5 +1108,5 @@ defaultproperties
 	HealthBarCutoffDist=3500
 	DamagePopupFadeOutTime=3.000000
 	
-	BadConnectionStr="警告: 连接问题!"
+	BadConnectionStr=localizedStr[7]
 }

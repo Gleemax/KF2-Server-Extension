@@ -700,6 +700,10 @@ function NotifyZedTimeStarted()
 {
 	CurrentPerk.NotifyZedTimeStarted();
 }
+function NotifyZedTimeEnded()
+{
+	CurrentPerk.NotifyZedTimeEnded();
+}
 simulated function float GetZedTimeExtensions( byte Level )
 {
 	return CurrentPerk.GetZedTimeExtensions(Level);

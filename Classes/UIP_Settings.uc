@@ -25,9 +25,12 @@ function InitMenu()
 	AddCheckBox(localizedStr[8],localizedStr[9],'PP',class'ExtPlayerController'.Default.bHideNumberMsg);
 	AddCheckBox(localizedStr[10],localizedStr[11],'K2DM',class'ExtPlayerController'.Default.bUseKF2DeathMessages);
 	AddCheckBox(localizedStr[12],localizedStr[13],'K2KM',class'ExtPlayerController'.Default.bUseKF2KillMessages);
-	KeyBindButton = AddButton("",localizedStr[14],localizedStr[15],'KB',KeyBindLabel);	AddCheckBox(localizedStr[16],localizedStr[17],'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
+	if( ExtPlayerController(GetPlayer()).bThirdPersonEnabled )
+		KeyBindButton = AddButton("",localizedStr[14],localizedStr[15],'KB',KeyBindLabel);
+	AddCheckBox(localizedStr[16],localizedStr[17],'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
 	AddCheckBox(localizedStr[18],localizedStr[19],'NS',class'ExtPlayerController'.Default.bNoScreenShake);
-	InitBehindviewKey();
+	if( ExtPlayerController(GetPlayer()).bThirdPersonEnabled )
+		InitBehindviewKey();
 }
 final function InitBehindviewKey()
 {
@@ -224,4 +227,6 @@ defaultproperties
 	End Object
 	
 	Components.Add(ClientSettingsBox)
+
+	bThirdPersonEnabled=false
 }

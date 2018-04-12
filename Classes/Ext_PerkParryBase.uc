@@ -1,32 +1,30 @@
 Class Ext_PerkParryBase extends Ext_PerkBase;
 
-var bool bParryEnabled,bParryActive;
-var float ParryDuration,MeleeSpdModifier,HardAtkDmgModifier,HeadDmgModifier;
+var bool bParryActive;
+var float ParryDuration,HardAtkDmgModifier,HeadDmgModifier;
+
+replication
+{
+	// Things the server should send to the client.
+	if ( true )
+		bParryActive,ParryDuration,HardAtkDmgModifier,HeadDmgModifier;
+}
 
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
-    if( bParryActive && HeadDmgModifier>0 && HitZoneIdx == HZI_HEAD && BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser))  )
-		InDamage += InDamage*HeadDmgModifier;
+    if( bParryActive && HeadDmgModifier>0 && HitZoneIdx == HZI_HEAD && ( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) ) )
+		InDamage *= (1.f+HeadDmgModifier);
 }
 simulated function ModifyHardAttackDamage( out int InDamage )
 {
     if( bParryActive )
         InDamage += InDamage*HeadDmgModifier;
 }
-simulated function ModifyMeleeAttackSpeed( out float InDuration )
-{
-    if( bParryActive && HardAtkDmgModifier>0 )
-        InDuration *= MeleeSpdModifier;
-}
 
 final function SetDuration( float Duration )
 {
 	ParryDuration = Duration;
-}
-final function SetMeleeSpeed( float Speed )
-{
-	MeleeSpdModifier = Speed;
 }
 final function SetHardAtkDmg( float Modifier )
 {
@@ -37,26 +35,18 @@ final function SetHeadDmg( float Modifier )
 	HeadDmgModifier = Modifier;
 }
 
-final function EnableParry( bool bEnabled )
+final function ResetParry()
 {
-	if (!bEnabled) 
-	{
-		bParryEnabled = false;
-		ParryDuration = 1.0;
-		MeleeSpdModifier = 0;
-		HardAtkDmgModifier = 0;
-		HeadDmgModifier = 0;
-	} else 
-    {
-        bParryEnabled = true;
-    }
+	ParryDuration = 0;
+	HardAtkDmgModifier = 0;
+	HeadDmgModifier = 0;
 }
 
 simulated function SetSuccessfullParry()
 {
     local KFPlayerController PC;
 
-    if( bParryEnabled )
+    if( ParryDuration > 0 )
 	{
 		bParryActive = true;
 		SetTimer( ParryDuration, false, nameOf( ParryTimer ));
@@ -68,6 +58,7 @@ simulated function SetSuccessfullParry()
 		}
 
 		PC.PlaySoundBase( AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode', true );
+		
 	}
 }
 

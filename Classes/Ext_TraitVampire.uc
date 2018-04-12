@@ -22,5 +22,5 @@ defaultproperties
 	RegenRate.Add(2)
 	RegenRate.Add(3)
 	RegenRate.Add(4)
-	RegenRate.Add(6)
+	RegenRate.Add(5)
 }

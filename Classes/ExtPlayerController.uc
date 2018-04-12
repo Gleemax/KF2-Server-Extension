@@ -37,7 +37,7 @@ var transient bool bEndGameCamFocus;
 
 var globalconfig bool bShowFPLegs,bHideNameBeacons,bHideKillMsg,bHideDamageMsg,bHideNumberMsg,bNoMonsterPlayer,bNoScreenShake,bRenderModes,bUseKF2DeathMessages,bUseKF2KillMessages;
 var globalconfig int SelectedEmoteIndex;
-var bool bMOTDReceived,bNamePlateShown,bNamePlateHidden,bClientHideKillMsg,bClientHideDamageMsg,bClientHideNumbers,bNoDamageTracking,bClientNoZed,bSetPerk;
+var bool bMOTDReceived,bNamePlateShown,bNamePlateHidden,bClientHideKillMsg,bClientHideDamageMsg,bClientHideNumbers,bNoDamageTracking,bClientNoZed,bSetPerk,bThirdPersonEnabled;
 
 struct SavedSkins
 {
@@ -518,7 +518,10 @@ reliable server function ServerCamera( name NewMode )
 }
 exec function Camera( name NewMode )
 {
-	ServerCamera( PlayerCamera.CameraStyle=='FirstPerson' ? 'ThirdPerson' : 'FirstPerson' );
+	if ( bThirdPersonEnabled )
+		ServerCamera( PlayerCamera.CameraStyle=='FirstPerson' ? 'ThirdPerson' : 'FirstPerson' );
+	else
+		Super.Camera( NewMode );
 }
 simulated final function ToggleFPBody( bool bEnable )
 {

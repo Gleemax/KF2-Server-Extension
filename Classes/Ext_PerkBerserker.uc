@@ -54,6 +54,7 @@ defaultproperties
 	PrimaryMelee=class'KFWeap_Knife_Berserker'
 	PrimaryWeapon=class'KFWeap_Blunt_Crovel'
 	PerkGrenade=class'KFProj_EMPGrenade'
+	SuperGrenade=class'ExtProj_SUPEREmpGrenade'
 	
 	PrimaryWeaponDef=class'KFWeapDef_Crovel'
 	KnifeWeaponDef=class'KFweapDef_Knife_Berserker'

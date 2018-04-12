@@ -1277,7 +1277,8 @@ function SacrificeExplode()
 {
 	local KFExplosionActorReplicated ExploActor;
 	local GameExplosion	ExplosionTemplate;
-	local Ext_PerkBase BasePerk;
+	local Ext_PerkSurvivalist SurvPerk;
+	local Ext_PerkDemolition DemoPerk;
 
 	if ( Role < ROLE_Authority )
 	{
@@ -1285,19 +1286,19 @@ function SacrificeExplode()
 	}
 
 	// Survivalist Sacrifice Regen
-	BasePerk = Ext_PerkSurvivalist(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
-	if (BasePerk != None)
+	SurvPerk = Ext_PerkSurvivalist(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
+	if (SurvPerk != None)
 	{
 		Health = Min( HealthMax * 0.25, HealthMax) ;
-		Armor = Min( Armor+MaxArmor * 0.25, MaxArmor );
-
-		if ( BasePerk != None )
-			BasePerk.bUsedSacrifice = true;
+		Armor = Min( Armor + MaxArmor * 0.25, MaxArmor );
+		HealDamage( 5, Controller, class'KFDT_Healing', false, false);
+		
+		SurvPerk.bUsedSacrifice = true;
 	}
 
 	// Demolition Sacrifice Explode
-	BasePerk = Ext_PerkDemolition(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
-	if (BasePerk != None)
+	DemoPerk = Ext_PerkDemolition(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
+	if (DemoPerk != None)
 	{
 		ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
 		if( ExploActor != None )
@@ -1306,12 +1307,12 @@ function SacrificeExplode()
 			ExploActor.Instigator = self;
 
 			ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
-			ExplosionTemplate.Damage = 1800;
+			ExplosionTemplate.Damage = 1200;
 			ExplosionTemplate.bIgnoreInstigator = true;
 			ExploActor.Explode( ExplosionTemplate );
 		}
-		if ( BasePerk != None )
-				BasePerk.bUsedSacrifice = true;
+		if ( DemoPerk != None )
+			DemoPerk.bUsedSacrifice = true;
 	}
 }
 

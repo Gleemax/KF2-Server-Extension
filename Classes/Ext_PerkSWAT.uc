@@ -41,6 +41,7 @@ defaultproperties
 	PrimaryMelee=class'KFWeap_Knife_SWAT'
 	PrimaryWeapon=class'KFWeap_SMG_MP7'
 	PerkGrenade=class'KFProj_FlashBangGrenade'
+	SuperGrenade=class'ExtProj_SUPERFlashBang'
 
 	PrimaryWeaponDef=class'KFWeapDef_MP7'
 	KnifeWeaponDef=class'KFweapDef_Knife_SWAT'

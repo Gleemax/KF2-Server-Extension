@@ -36,7 +36,8 @@ defaultproperties
 	PrimaryMelee=class'KFWeap_Knife_Sharpshooter'
 	PrimaryWeapon=class'KFWeap_Rifle_Winchester1894'
 	PerkGrenade=class'KFProj_FreezeGrenade'
-	
+	SuperGrenade=class'ExtProj_SUPERFreezeGrenade'
+
 	PrimaryWeaponDef=class'KFWeapDef_Winchester1894'
 	KnifeWeaponDef=class'KFWeapDef_Knife_Sharpshooter'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Sharpshooter'
