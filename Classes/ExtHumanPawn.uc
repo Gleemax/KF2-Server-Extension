@@ -19,6 +19,7 @@ var byte HealingShieldMod,HealingSpeedBoostMod,HealingDamageBoostMod;
 var byte PoolIndex;
 var array<float> RegenRatePool;
 var array<int> HealthToRegenPool;
+var int BontyExp,BaseBontyExp;
 
 replication
 {
@@ -35,6 +36,14 @@ function TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vec
 	if( KnockbackResist<1 )
 		Momentum *= KnockbackResist;
 	Super.TakeDamage(Damage,InstigatedBy,HitLocation,Momentum,DamageType,HitInfo,DamageCauser);
+}
+
+function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+{
+	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+
+	if ( InDamage > 0 && HitZoneIdx == HZI_Head && InstigatedBy.GetTeamNum()==255 && InstigatedBy!=PlayerOwner)
+		InDamage *= 2.0;
 }
 
 simulated function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
@@ -71,6 +80,10 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 		if ( bDeleteMe || WorldInfo.Game == None || WorldInfo.Game.bLevelChange )
 			return FALSE;
 		bPendingRedead = true;
+
+		if ( Killer.GetTeamNum()==255 && bPlayerHaveBounty)
+			ExtPlayerController(Killer).AddBountyPoints(ExtPlayerController(Controller));
+			
 		if ( WorldInfo.Game.PreventDeath(self, Killer, damageType, HitLocation) )
 		{
 			bPendingRedead = false;
@@ -86,7 +99,7 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 		
 		if ( InvManager != None )
 			InvManager.OwnerDied();
-		
+
 		Health = 1;
 		if( !bFeigningDeath )
 			PlayFeignDeath(true,,true);

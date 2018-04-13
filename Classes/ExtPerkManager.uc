@@ -31,7 +31,11 @@ var Controller PlayerOwner;
 // Stats
 var int TotalEXP,TotalKills,TotalPlayTime;
 
-var bool bStatsDirty,bServerReady,bUserStatsBroken,bCurrentlyHealing;
+// Bounty Exp
+var int BountyExp; 
+var float BountyTransRatio; 
+
+var bool bStatsDirty,bServerReady,bUserStatsBroken,bCurrentlyHealing,bUseBounty;
 
 replication
 {
@@ -251,8 +255,28 @@ function EarnedEXP( int EXP, optional byte Mode )
 			TotalEXP+=EXP;
 			PRIOwner.RepEXP+=EXP;
 			bStatsDirty = true;
+			if( bUseBounty )
+				BountyExp+=EXP*BountyTransRatio;
 		}
 	}
+}
+
+function SetBountyEXP( int BaseBountyExp )
+{
+	local float LevelRatio,PrestigeRatio;
+
+	if ( BaseBountyExp <= 0 )
+		return;
+	BountyExp = BaseBountyExp;
+
+	LevelRatio = (CurrentPerk.CurrentLevel-CurrentPerk.MinimumLevel)
+				/(CurrentPerk.MaximumLevel-CurrentPerk.MinimumLevel);
+	if( LevelRatio > 0 && LevelRatio <= 1.f )
+		BountyExp *= (1.f + LevelRatio * 2.f);
+
+	PrestigeRatio = CurrentPerk.CurrentPrestige/MaxPrestige;
+	if( PrestigeRatio > 0 && PrestigeRatio <= 1.f )
+		BountyExp *= (1.f + LevelRatio / 2.f);
 }
 
 // XML stat writing
@@ -695,6 +719,8 @@ function GameExplosion GetExplosionTemplate()
 function OnWaveEnded()
 {
 	CurrentPerk.OnWaveEnded();
+	if( bUseBounty )
+		ExtPlayerController(Owner).AddBountyPoints(Owner);
 }
 function NotifyZedTimeStarted()
 {

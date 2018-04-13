@@ -19,8 +19,11 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration )
 }
 simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
 {
-	if ( (InstigatedBy.GetTeamNum()==255 && InstigatedBy!=PlayerOwner ) && class<KFDamageType>(DamageType)!=None )
-		InDamage *= 0.5f;
+	if( InDamage>0 )
+	{
+		if ( (InstigatedBy.GetTeamNum()==255 && InstigatedBy!=PlayerOwner ) && class<KFDamageType>(DamageType)!=None )
+			InDamage = Max(Indamage*0.5f, 1);
+	}
 		
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }

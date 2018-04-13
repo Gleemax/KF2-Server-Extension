@@ -37,7 +37,8 @@ var config int FirstLevelExp, // How much EXP needed for first level.
 				StarPointsPerLevel,
 				MinLevelForPrestige, // Minimum level required for perk prestige.
 				PrestigeSPIncrease, // Starpoint increase per prestige levelup.
-				MaxPrestige; // Maximum prestige level.
+				MaxPrestige, // Maximum prestige level.
+				BaseBountyExp; // Base Bounty Exp when player getting killed.
 var config float PrestigeXPReduce; // Amount of XP cost is reduced for each prestige.
 var config array<string> TraitClasses;
 
@@ -49,6 +50,7 @@ var int CurrentLevel, // Current level player is on.
 		CurrentSP, // Current amount of star points.
 		LastLevelEXP, // Number of XP was needed for last level.
 		CurrentPrestige; // Current prestige level.
+
 
 struct FPerkStat
 {
@@ -647,13 +649,7 @@ static function UpdateConfigs( int OldVer )
 			AddStatsCfg(13); // Add self damage.
 		else if( OldVer<=4 )
 			AddStatsCfg(15); // Add poison damage.
-		else if( OldVer<=7 )
-			AddStatsCfg(16); // Add sonic/fire damage.
-		else if( OldVer<=12 )
-			AddStatsCfg(18); // Add all damage.
-		else if( OldVer<=13 )
-			AddStatsCfg(20); // Add Switch Speed/Bodsysize Scalar
-		if( OldVer<=5 )
+		else if( OldVer<=5 )
 		{
 			// Add prestige
 			Default.MinLevelForPrestige = 140;
@@ -661,6 +657,16 @@ static function UpdateConfigs( int OldVer )
 			Default.MaxPrestige = 20;
 			Default.PrestigeXPReduce = 0.05;
 		}
+		else if( OldVer<=7 )
+			AddStatsCfg(16); // Add sonic/fire damage.
+		else if( OldVer<=12 )
+		{
+			AddStatsCfg(18); // Add all damage.
+			AddStatsCfg(20); // Add Switch Speed/Bodsysize Scalar
+		}
+		else if( OldVer<=14 )
+			Default.BaseBountyExp = 1000;
+		
 
 		Default.TraitClasses.Length = Default.DefTraitList.Length;
 		for( i=0; i<Default.DefTraitList.Length; ++i )
@@ -853,11 +859,15 @@ function ApplyEffectsTo( KFPawn_Human P )
 		}
 	}
 
-	if ( PlayerOwner.Pawn!= none )
+	if( PlayerOwner.Pawn!= none )
 		ModifyBodySize(PlayerOwner.Pawn);
 	
-	if ( bCanUseSacrifice )
+	if( bCanUseSacrifice )
 		bUsedSacrifice = false;
+
+	if( bBountyEnabled+ && BoutnyExp<=0 )
+		PerkManager.SetBountyEXP(BaseBountyExp);
+
 }
 
 // Player joined/perk changed.
@@ -1420,7 +1430,7 @@ simulated function float GetZedTimeExtensions( byte Level )
 
 defaultproperties
 {
-	CurrentConfigVer=14
+	CurrentConfigVer=15
 	bOnlyRelevantToOwner=true
 	bCanBeGrabbed=true
 	NetUpdateFrequency=1

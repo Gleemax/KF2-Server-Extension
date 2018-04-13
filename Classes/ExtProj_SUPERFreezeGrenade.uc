@@ -9,7 +9,7 @@ defaultproperties
 	DrawScale=2.5
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 
-	Begin Object Name=ExploTemplate0
+	Begin Object Name=ExplosionPointLight
 		Radius=2500.f
 	End Object
 
