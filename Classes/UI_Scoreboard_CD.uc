@@ -58,6 +58,8 @@ function DrawMenu()
 
         if (KFPRI.PlayerHealth > 0 && KFPRI.PlayerHealthPercent > 0 && KFPRI.GetTeamNum () == 0)
             ++NumAlivePlayer;
+
+
         ++NumPlayer;
     }
 
@@ -176,9 +178,10 @@ function DrawMenu()
 	PerkXPos = Width * 0.1;
 	PlayerXPos = Width * 0.3;
 	KillsXPos = Width * 0.5;
-	AssistXPos = Width * 0.6;
-	CashXPos = Width * 0.7;
-	StateXPos = Width * 0.8;
+	AssistXPos = Width * 0.575;
+	CashXPos = Width * 0.65;
+	BountyXPos = Width * 0.75;
+	StateXPos = Width * 0.85;
 	PingXPos = Width * 0.95;
 
 	// Header texts
@@ -198,16 +201,19 @@ function DrawMenu()
 
 		Canvas.SetPos (XPos + StateXPos, YPos);
 		Canvas.DrawText (localizedStr[12], , FontScalar, FontScalar);
+
+		Canvas.SetPos (XPos + BountyXPos, YPos);
+		Canvas.DrawText (localizedStr[13], , FontScalar, FontScalar);
 	}
-	
+		
 	Canvas.SetPos (XPos, YPos);
-	Canvas.DrawText (localizedStr[13], , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[14], , FontScalar, FontScalar);
 	
 	Canvas.SetPos (XPos + PlayerXPos, YPos);
-	Canvas.DrawText (localizedStr[14], , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[15], , FontScalar, FontScalar);
 
 	Canvas.SetPos (XPos + PingXPos, YPos);
-	Canvas.DrawText (localizedStr[15], , FontScalar, FontScalar);
+	Canvas.DrawText (localizedStr[16], , FontScalar, FontScalar);
 	
 	PRIList.Length = (bShowSpectatorsOnly ? NumSpec : NumPlayer);
 	j = PRIList.Length;
@@ -326,12 +332,12 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 	}
 	else if( KFPRI.bIsDev )
 	{
-		S = localizedStr[16];
+		S = localizedStr[17];
 		C.DrawColor = MakeColor(130,255,235,255);
 	}
 	else
 	{
-		S = localizedStr[17];
+		S = localizedStr[18];
 		C.DrawColor = MakeColor(255,255,255,255);
 	}
 	
@@ -362,12 +368,18 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 		C.SetPos (0.f + CashXPos, YOffset);
 		StrValue = ConvertValueLarge(KFPRI.Score);
 		C.DrawText (StrValue, , FontScalar, FontScalar);
+		
+		// Bounty
+		C.SetDrawColor(51,255,51,255);
+		C.SetPos (0.f + BountyXPos, YOffset);
+		StrValue = ConvertValueLarge(KFPRI.BountyExp);
+		C.DrawText (StrValue, , FontScalar, FontScalar);
 
 		// State
 		if (KFPRI.PlayerHealth <= 0 || KFPRI.PlayerHealthPercent <= 0)
 		{
 			C.DrawColor = MakeColor (250, 0, 0, 255);
-			S = localizedStr[18];
+			S = localizedStr[19];
 		}
 		else
 		{
@@ -382,7 +394,7 @@ function DrawPlayerEntry( Canvas C, int Index, float YOffset, float Height, floa
 
 		C.SetPos (0.f + StateXPos, YOffset);
 		C.DrawText (S, , FontScalar, FontScalar);
-		
+
 		C.DrawColor = MakeColor (250, 250, 250, 255);
 	}
 
@@ -421,10 +433,10 @@ function ShowPlayerTooltip( int Index )
 			ToolTipItem.ParentComponent = Self;
 			ToolTipItem.InitMenu();
 		}
-		S = localizedStr[19]$PRI.TaggedPlayerName$localizedStr[20]$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
+		S = localizedStr[20]$PRI.TaggedPlayerName$localizedStr[21]$(PRI.PlayerHealthPercent<=0 ? "0" : string(PRI.PlayerHealth));
 		if( PRI.ShowAdminName() )
 			S = S$"|"$PRI.GetAdminName();
-		S = S$localizedStr[21];
+		S = S$localizedStr[22];
 		ToolTipItem.SetText(S);
 		ToolTipItem.ShowMenu();
 		ToolTipItem.CompPos[0] = Owner.MousePosition.X;

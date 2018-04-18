@@ -26,9 +26,9 @@ struct FCustomTraderItem
 	var class<KFWeapon> WeaponClass;
 };
 
-var bool bIsMuted,bInitialPT,bIsDev,bHiddenUser,bClientUseCustom,bClientFirstChar,bClientCharListDone,bClientInitChars;
+var bool bIsMuted,bInitialPT,bIsDev,bHiddenUser,bClientUseCustom,bClientFirstChar,bClientCharListDone,bClientInitChars,bUseBounty;
 
-var int RespawnCounter;
+var int RespawnCounter,ProtectCounter,BountyExp;
 var byte AdminType;
 var class<Ext_PerkBase> ECurrentPerk;
 var Ext_PerkBase FCurrentPerk;
@@ -71,7 +71,7 @@ replication
 {
 	// Things the server should send to the client.
 	if ( true )
-		RespawnCounter,AdminType,ECurrentPerk,ECurrentPerkLevel,ECurrentPerkPrestige,RepKills,RepEXP,RepLevelProgress,bIsDev,NameTag,FixedData,bHiddenUser,CustomCharacter,HasSupplier;
+		RespawnCounter,ProtectCounter,BountyExp,AdminType,ECurrentPerk,ECurrentPerkLevel,ECurrentPerkPrestige,RepKills,RepEXP,RepLevelProgress,bIsDev,NameTag,FixedData,bHiddenUser,CustomCharacter,HasSupplier,bUseBounty;
 	if (bNetInitial || bInitialPT)
 		RepPlayTime;
 }
@@ -777,6 +777,7 @@ event BeginState(Name N)
 defaultproperties
 {
 	RespawnCounter=-1
+	ProtectCounter=-1
 	AdminType=255
 	TaggedPlayerName="Player"
 }

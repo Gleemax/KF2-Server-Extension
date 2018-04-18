@@ -10,14 +10,14 @@ var array<ExtPlayerReplicationInfo> PRIList;
 var ExtPlayerReplicationInfo RightClickPlayer;
 var int PlayerIndex;
 var Font SBFont;
-var transient float SBFontSize,CashXPos,KillsXPos,AssistXPos,PingXPos,SBFontHeight;
+var transient float SBFontSize,CashXPos,KillsXPos,AssistXPos,PingXPos,BountyXPos,SBFontHeight;
 var transient int InitAdminSize;
 
 var KFGUI_Tooltip ToolTipItem;
 
 var transient bool bHasSelectedPlayer,bMeAdmin,bShowSpectatorsOnly;
 
-var() Localized string localizedStr[22];
+var() Localized string localizedStr[23];
 
 function InitMenu()
 {
@@ -199,8 +199,9 @@ function DrawMenu()
 	
 	// Calc X offsets
 	CashXPos = XScale*0.5;
-	KillsXPos = XScale*0.7;
-	AssistXPos = XScale*0.8;
+	KillsXPos = XScale*0.6;
+	AssistXPos = XScale*0.7;
+	BountyXPos = XScale*0.8;
 	PingXPos = XScale*0.9;
 	
 	// Header texts

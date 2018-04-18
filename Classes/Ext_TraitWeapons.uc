@@ -9,7 +9,7 @@ var array<FLevelFX> LevelEffects;
 
 static function bool MeetsRequirements( byte Lvl, Ext_PerkBase Perk )
 {
-	if( Lvl>=3 && (Perk.CurrentLevel<50 || !HasMaxCarry(Perk)) )
+	if( Lvl>=3 && (!HasMaxCarry(Perk)) )
 		return false;
 	return Super.MeetsRequirements(Lvl,Perk);
 }

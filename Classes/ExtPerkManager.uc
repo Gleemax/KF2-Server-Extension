@@ -34,6 +34,7 @@ var int TotalEXP,TotalKills,TotalPlayTime;
 // Bounty Exp
 var int BountyExp; 
 var float BountyTransRatio; 
+var bool bEarnedSelfBounty;
 
 var bool bStatsDirty,bServerReady,bUserStatsBroken,bCurrentlyHealing,bUseBounty;
 
@@ -187,6 +188,7 @@ simulated function InitPerks()
 			PRIOwner.RepEXP = TotalEXP;
 			PRIOwner.SetInitPlayTime(TotalPlayTime);
 			PRIOwner.PerkManager = Self;
+			PRIOwner.bUseBounty = bUseBounty;
 		}
 	}
 }
@@ -255,28 +257,20 @@ function EarnedEXP( int EXP, optional byte Mode )
 			TotalEXP+=EXP;
 			PRIOwner.RepEXP+=EXP;
 			bStatsDirty = true;
-			if( bUseBounty )
-				BountyExp+=EXP*BountyTransRatio;
+		}
+		if( EXP>0 && bUseBounty )
+		{
+			BountyExp+=EXP*BountyTransRatio;
+			PRIOwner.BountyExp=BountyExp;
 		}
 	}
 }
 
-function SetBountyEXP( int BaseBountyExp )
+function ResetBountyExp()
 {
-	local float LevelRatio,PrestigeRatio;
-
-	if ( BaseBountyExp <= 0 )
-		return;
-	BountyExp = BaseBountyExp;
-
-	LevelRatio = (CurrentPerk.CurrentLevel-CurrentPerk.MinimumLevel)
-				/(CurrentPerk.MaximumLevel-CurrentPerk.MinimumLevel);
-	if( LevelRatio > 0 && LevelRatio <= 1.f )
-		BountyExp *= (1.f + LevelRatio * 2.f);
-
-	PrestigeRatio = CurrentPerk.CurrentPrestige/MaxPrestige;
-	if( PrestigeRatio > 0 && PrestigeRatio <= 1.f )
-		BountyExp *= (1.f + LevelRatio / 2.f);
+	bEarnedSelfBounty = true;
+	BountyExp = CurrentPerk.CalcBountyExp();
+	PRIOwner.BountyExp = BountyExp;
 }
 
 // XML stat writing
@@ -720,8 +714,17 @@ function OnWaveEnded()
 {
 	CurrentPerk.OnWaveEnded();
 	if( bUseBounty )
-		ExtPlayerController(Owner).AddBountyPoints(Owner);
+	{
+		if( bEarnedSelfBounty )
+			ExtPlayerController(Owner).AddBountyPoints(BountyExp);
+		ResetBountyExp();
+	}
 }
+function OnWaveStart()
+{
+	CurrentPerk.OnWaveStart();
+}
+
 function NotifyZedTimeStarted()
 {
 	CurrentPerk.NotifyZedTimeStarted();

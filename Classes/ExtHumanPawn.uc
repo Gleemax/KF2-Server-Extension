@@ -12,14 +12,13 @@ var AnimSet WakeUpAnimSet;
 var name FeignRecoverAnim;
 var byte UnfeignFailedCount,RepRegenHP,BHopAccelSpeed;
 var repnotify bool bFeigningDeath;
-var bool bPlayingFeignDeathRecovery,bRagdollFromFalling,bRagdollFromBackhit,bRagdollFromMomentum,bCanBecomeRagdoll,bRedeadMode,bPendingRedead,bHasBunnyHop,bOnFirstPerson,bFPLegsAttached,bFPLegsInit;
+var bool bPlayingFeignDeathRecovery,bRagdollFromFalling,bRagdollFromBackhit,bRagdollFromMomentum,bCanBecomeRagdoll,bRedeadMode,bPendingRedead,bHasBunnyHop,bOnFirstPerson,bFPLegsAttached,bFPLegsInit,bRespawnProtect;
 
 var byte HealingShieldMod,HealingSpeedBoostMod,HealingDamageBoostMod;
 
 var byte PoolIndex;
 var array<float> RegenRatePool;
 var array<int> HealthToRegenPool;
-var int BontyExp,BaseBontyExp;
 
 replication
 {
@@ -40,21 +39,47 @@ function TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vec
 
 function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
-	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+	local int HitZoneIdx;
+	local ExtHumanPawn HP;
 
-	if ( InDamage > 0 && HitZoneIdx == HZI_Head && InstigatedBy.GetTeamNum()==255 && InstigatedBy!=PlayerOwner)
-		InDamage *= 2.0;
+	HP = ExtHumanPawn(InstigatedBy.Pawn);
+	if ( HP != none && InstigatedBy!=Owner && ( bRespawnProtect || HP.bRespawnProtect ) )
+	{
+		InDamage = 0;
+		return;
+	}
+
+	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+	
+	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
+	if ( InDamage > 0 && HP != none && HitZoneIdx==HZI_Head && InstigatedBy!=Owner)
+		InDamage *= 2.5;
+	if ( HP != none && InDamage > HealthMax*0.5 && Health >= HealthMax*0.75 && InstigatedBy!=Owner && HitZoneIdx != HZI_Head )
+		InDamage = Max(HealthMax*0.5,1);
 }
 
 simulated function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
 	local ExtPlayerController C;
+	local ExtPerkManager PM;
 	local class<Pawn> KillerPawn;
 	local PlayerReplicationInfo KillerPRI;
 	local SeqAct_Latent Action;
 
 	if( WorldInfo.NetMode!=NM_Client && PlayerReplicationInfo!=None )
 	{
+		PM = ExtPlayerController(Controller).ActivePerkManager;
+		if ( PM.bUseBounty && PM.BountyExp > 0 )
+		{
+			if ( Killer.GetTeamNum()!=0  || Killer==Controller )
+				PM.bEarnedSelfBounty = false;
+			else 
+			{
+				ExtPlayerController(Killer).AddBountyPoints(PM.BountyExp);
+				PM.BountyExp = 0;
+				PM.PRIOwner.BountyExp = 0;
+			}
+		}
 		if( Killer==None || Killer==Controller )
 		{
 			KillerPRI = PlayerReplicationInfo;
@@ -80,9 +105,6 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 		if ( bDeleteMe || WorldInfo.Game == None || WorldInfo.Game.bLevelChange )
 			return FALSE;
 		bPendingRedead = true;
-
-		if ( Killer.GetTeamNum()==255 && bPlayerHaveBounty)
-			ExtPlayerController(Killer).AddBountyPoints(ExtPlayerController(Controller));
 			
 		if ( WorldInfo.Game.PreventDeath(self, Killer, damageType, HitLocation) )
 		{
@@ -108,6 +130,7 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 		GoToState('TransformZed');
 		return true;
 	}
+
 	return Super.Died(Killer, DamageType, HitLocation);
 }
 simulated function BroadcastDeathMessage( Controller Killer );

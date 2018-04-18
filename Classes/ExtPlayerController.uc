@@ -186,18 +186,9 @@ function AddHealPoints( int PointsHealed )
 {
 	AwardXP(PointsHealed,2);
 }
-function AddBountyPoints( ExtPlayerController Victim )
+function AddBountyPoints( int PointsBounty )
 {
-	local ExtPerkManager VictimPerkManager;
-	local int PointsBounty;
-
-	VictimPerkManager = Victim.ActivePerkManager;
-	if ( VictimPerkManager != none )
-	{
-		PointsBounty = VictimPerkManager.BountyExp;
-		AwardXP(PointsBounty);
-		VictimPerkManager.BountyExp = 0;
-	}
+	AwardXP(PointsBounty);
 }
 
 function AddShotsHit( int AddedHits )

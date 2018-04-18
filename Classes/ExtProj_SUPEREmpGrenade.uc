@@ -61,6 +61,6 @@ defaultproperties
 
 	Begin Object Name=ExploTemplate0
 		Damage=50
-		DamageRadius=1200
+		DamageRadius=1500
 	End Object
 }

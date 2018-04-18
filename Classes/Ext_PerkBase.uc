@@ -475,6 +475,23 @@ final function int CalcLevelForExp( int InExp )
 	return Clamp(a,MinimumLevel,MaximumLevel);
 }
 
+final function int CalcBountyExp()
+{
+	local float BountyExp,LevelRatio,PrestigeRatio;
+
+	BountyExp = BaseBountyExp;
+
+	LevelRatio = (float(CurrentLevel)-float(MinimumLevel))/(float(MaximumLevel)-float(MinimumLevel));
+	if( LevelRatio > 0 && LevelRatio <= 1.f )
+		BountyExp *= (1.f + LevelRatio * 2.f);
+
+	PrestigeRatio = float(CurrentPrestige)/float(MaxPrestige);
+	if( PrestigeRatio > 0 && PrestigeRatio <= 1.f )
+		BountyExp *= (1.f + LevelRatio / 2.f);
+
+	return round(BountyExp);
+}
+
 // Initialize perk after stats have been loaded.
 function SetInitialLevel()
 {
@@ -665,7 +682,7 @@ static function UpdateConfigs( int OldVer )
 			AddStatsCfg(20); // Add Switch Speed/Bodsysize Scalar
 		}
 		else if( OldVer<=14 )
-			Default.BaseBountyExp = 1000;
+			Default.BaseBountyExp = 500;
 		
 
 		Default.TraitClasses.Length = Default.DefTraitList.Length;
@@ -865,9 +882,8 @@ function ApplyEffectsTo( KFPawn_Human P )
 	if( bCanUseSacrifice )
 		bUsedSacrifice = false;
 
-	if( bBountyEnabled+ && BoutnyExp<=0 )
-		PerkManager.SetBountyEXP(BaseBountyExp);
-
+	if ( PerkManager.bUseBounty && PerkManager.BountyExp <= 0 )
+		PerkManager.ResetBountyExp();
 }
 
 // Player joined/perk changed.
@@ -1420,6 +1436,7 @@ simulated function float GetIronSightSpeedModifier( KFWeapon KFW )
 }
 
 function OnWaveEnded();
+function OnWaveStart();
 function NotifyZedTimeStarted();
 function NotifyZedTimeEnded();
 
@@ -1462,7 +1479,6 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitRetali')
 	DefTraitList.Add(class'Ext_TraitDuracell')
 	DefTraitList.Add(class'Ext_TraitRagdoll')
-	DefTraitList.Add(class'Ext_TraitAutoFire')
 	DefTraitList.Add(class'Ext_TraitBunnyHop')
 	DefTraitList.Add(class'Ext_TraitKnockback')
 

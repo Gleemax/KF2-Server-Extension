@@ -30,6 +30,8 @@ function Timer()
 					W.bNetDirty = true;
 				}
 			}
+			if ( KFWeap_AssaultRifle_M16M203(W) != none )
+				KFWeap_AssaultRifle_M16M203(W).ServerTotalAltAmmo = W.SpareAmmoCount[1];
 		}
 	}
 }

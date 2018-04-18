@@ -274,6 +274,8 @@ event PostRender()
 		EPRI = ExtPlayerReplicationInfo(KFPlayerOwner.PlayerReplicationInfo);
 	else if( EPRI.RespawnCounter>0 )
 		DrawRespawnCounter();
+	else if( EPRI.ProtectCounter>0 )
+		DrawProtectCounter();
 	bMeAdmin = (EPRI!=None && EPRI.AdminType<=1);
 	if( KillMessages.Length>0 )
 		RenderKillMsg();
@@ -321,6 +323,18 @@ final function DrawRespawnCounter()
 	Canvas.SetPos((Canvas.ClipX-XL)*0.5,Canvas.ClipY*0.075);
 	Canvas.DrawText(S,,Sc,Sc);
 }
+final function DrawProtectCounter()
+{
+	local float Sc,XL,YL;
+	local string S;
+
+	Canvas.Font = GUIStyle.PickFont(GUIStyle.DefaultFontSize+1,Sc);
+	S = localizedStr[2]$class'UI_Scoreboard'.Static.FormatTimeSM(EPRI.ProtectCounter);
+	Canvas.SetDrawColor(250,150,150,255);
+	Canvas.TextSize(S,XL,YL,Sc,Sc);
+	Canvas.SetPos((Canvas.ClipX-XL)*0.5,Canvas.ClipY*0.075);
+	Canvas.DrawText(S,,Sc,Sc);
+}
 exec function SetShowScores(bool bNewValue)
 {
 	bShowScores = bNewValue;
@@ -353,10 +367,10 @@ final function RenderKillMsg()
 		}
 
 		if( KillMessages[i].bDamage )
-			S = "-"$KillMessages[i].Counter$localizedStr[2]$KillMessages[i].Name;
+			S = "-"$KillMessages[i].Counter$localizedStr[3]$KillMessages[i].Name;
 		else if( KillMessages[i].bLocal )
-			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[3] : localizedStr[4]);
-		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : localizedStr[5])$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[3] : localizedStr[4]);
+			S = "+"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[4] : localizedStr[5]);
+		else S = (KillMessages[i].OwnerPRI!=None ? KillMessages[i].OwnerPRI.GetHumanReadableName() : localizedStr[6])$" +"$KillMessages[i].Counter@KillMessages[i].Name$(KillMessages[i].Counter>1 ? localizedStr[4] : localizedStr[5]);
 		Canvas.SetPos(X,Y);
 		Canvas.DrawColor = KillMessages[i].MsgColor;
 		T = (1.f - (T/6.f)) * 255.f;
@@ -1073,7 +1087,7 @@ simulated final function DrawItemsList()
 		else XS = XPos-XS;
 		
 		Canvas.SetPos(XS,YPos);
-		Canvas.DrawText(localizedStr[6],,FontScale,FontScale);
+		Canvas.DrawText(localizedStr[7],,FontScale,FontScale);
 		Canvas.SetPos(XS,YPos+(YSize*0.5));
 		Canvas.DrawText(NewItems[i].Item,,FontScale,FontScale);
 
@@ -1108,5 +1122,5 @@ defaultproperties
 	HealthBarCutoffDist=3500
 	DamagePopupFadeOutTime=3.000000
 	
-	BadConnectionStr=localizedStr[7]
+	BadConnectionStr=localizedStr[8]
 }
