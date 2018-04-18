@@ -35,6 +35,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 defaultproperties
 {
+	DefTraitList.Remove(class'Ext_TraitAutoFire')
 	DefTraitList.Add(class'Ext_TraitWPGuns')
 	DefTraitList.Add(class'Ext_TraitUberAmmo')
 	DefTraitList.Add(class'Ext_TraitFanfire')

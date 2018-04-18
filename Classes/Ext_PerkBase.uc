@@ -1477,6 +1477,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitZED_SummonExt')
 	DefTraitList.Add(class'Ext_TraitGhost')
 	DefTraitList.Add(class'Ext_TraitRetali')
+	DefTraitList.Add(class'Ext_TraitAutoFire')
 	DefTraitList.Add(class'Ext_TraitDuracell')
 	DefTraitList.Add(class'Ext_TraitRagdoll')
 	DefTraitList.Add(class'Ext_TraitBunnyHop')
