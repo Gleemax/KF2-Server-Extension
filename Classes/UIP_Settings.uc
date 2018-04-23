@@ -227,6 +227,4 @@ defaultproperties
 	End Object
 	
 	Components.Add(ClientSettingsBox)
-
-	bThirdPersonEnabled=false
 }

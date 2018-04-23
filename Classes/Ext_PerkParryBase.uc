@@ -1,13 +1,13 @@
 Class Ext_PerkParryBase extends Ext_PerkBase;
 
 var bool bParryActive;
-var float ParryDuration,HardAtkDmgModifier,HeadDmgModifier;
+var float ParryDuration,MeleeSpdModifier,ReductionModifier,HardAtkDmgModifier,HeadDmgModifier;
 
 replication
 {
 	// Things the server should send to the client.
 	if ( true )
-		bParryActive,ParryDuration,HardAtkDmgModifier,HeadDmgModifier;
+		bParryActive,ParryDuration,MeleeSpdModifier,HardAtkDmgModifier,HeadDmgModifier;
 }
 
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
@@ -16,15 +16,39 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
     if( bParryActive && HeadDmgModifier>0 && HitZoneIdx == HZI_HEAD && ( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) ) )
 		InDamage *= (1.f+HeadDmgModifier);
 }
+simulated function ModifyMeleeAttackSpeed( out float InDuration )
+{
+	if( bParryActive )
+		InDuration /= (1.f + MeleeSpdModifier);
+	
+	super.ModifyMeleeAttackSpeed(InDuration);
+}
+simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
+{
+	if( bParryActive )
+		InDamage *= (1.f - ReductionModifier);
+		
+	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
+}
 simulated function ModifyHardAttackDamage( out int InDamage )
 {
     if( bParryActive )
-        InDamage += InDamage*HeadDmgModifier;
+        InDamage *= (1.f + HardAtkDmgModifier);
+
+	super.ModifyHardAttackDamage(InDamage);
 }
 
 final function SetDuration( float Duration )
 {
 	ParryDuration = Duration;
+}
+final function SetMeleeSpd( float Modifier )
+{
+	MeleeSpdModifier = Modifier;
+}
+final function SetReduction( float Modifier )
+{
+	ReductionModifier = Modifier;
 }
 final function SetHardAtkDmg( float Modifier )
 {
@@ -38,6 +62,8 @@ final function SetHeadDmg( float Modifier )
 final function ResetParry()
 {
 	ParryDuration = 0;
+	MeleeSpdModifier = 0;
+	ReductionModifier = 0;
 	HardAtkDmgModifier = 0;
 	HeadDmgModifier = 0;
 }

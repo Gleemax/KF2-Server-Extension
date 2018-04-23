@@ -1,20 +1,19 @@
 Class Ext_PerkBerserker extends Ext_PerkParryBase;
 
-var float VampRegenAmount,ZedTimeMeleeAtkRate;
+var float VampRegenAmount;
+var bool bSpartanAttack;
 
 replication
 {
 	// Things the server should send to the client.
 	if ( true )
-		ZedTimeMeleeAtkRate;
+		bSpartanAttack;
 }
 
 simulated function ModifyMeleeAttackSpeed( out float InDuration )
 {
 	InDuration *= Modifiers[4];
-	if( ZedTimeMeleeAtkRate<1.f && WorldInfo.TimeDilation<1.f )
-		InDuration *= ZedTimeMeleeAtkRate;
-
+	
 	super.ModifyMeleeAttackSpeed(InDuration);
 }
 simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
@@ -32,8 +31,6 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 	if( IsWeaponOnPerk(KFW) )
 	{
 		InRate *= Modifiers[4];
-		if( ZedTimeMeleeAtkRate<1.f && WorldInfo.TimeDilation<1.f )
-			InRate *= ZedTimeMeleeAtkRate;
 	}
 }
 
@@ -41,6 +38,13 @@ function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DT )
 {
 	if( VampRegenAmount>0 && PlayerOwner.Pawn!=None && PlayerOwner.Pawn.Health>0 && class<KFDamageType>(DT)!=None && class<KFDamageType>(DT).Default.ModifierPerkList.Find(BasePerk)>=0 )
 		PlayerOwner.Pawn.HealDamage( VampRegenAmount, PlayerOwner, class'KFDT_Healing', false, false);
+}
+
+simulated function float GetZedTimeModifier( KFWeapon W )
+{
+	if( bSpartanAttack && WorldInfo.TimeDilation<1.f && IsWeaponOnPerk(W) && BasePerk.Default.ZedTimeModifyingStates.Find(W.GetStateName()) != INDEX_NONE )
+		return 1.f;
+	return 0.f;
 }
 
 defaultproperties
@@ -65,5 +69,5 @@ defaultproperties
 	
 	AutoBuyLoadOutPath=(class'KFWeapDef_Crovel', class'KFWeapDef_Nailgun', class'KFWeapDef_Pulverizer', class'KFWeapDef_Eviscerator')
 	
-	ZedTimeMeleeAtkRate=1.0
+	bSpartanAttack=false
 }

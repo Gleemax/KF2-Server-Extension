@@ -24,7 +24,7 @@ simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 simulated function float GetZedTimeModifier( KFWeapon W )
 {
 	if( bRapidAssault && WorldInfo.TimeDilation<1.f && IsWeaponOnPerk(W) && BasePerk.Default.ZedTimeModifyingStates.Find(W.GetStateName()) != INDEX_NONE )
-		return 0.51f;
+		return 0.5f;
 	return 0.f;
 }
 
