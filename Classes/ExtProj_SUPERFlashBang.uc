@@ -5,6 +5,13 @@ class ExtProj_SUPERFlashBang extends KFProj_FlashBangGrenade
 var class<KFProj_Grenade> ClusterNades;
 var() byte NumClusters;
 
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	if( Instigator!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo)!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).ECurrentPerk!=None )
+		ClusterNades = ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).FCurrentPerk.PerkGrenade;
+}
+
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
 	if( Other != Instigator && !Other.bWorldGeometry && Pawn(Other)!=None && Pawn(Other).GetTeamNum() != GetTeamNum() )
@@ -61,7 +68,6 @@ simulated function Destroyed()
 defaultproperties
 {
 	bCanDisintegrate=false
-	ClusterNades=class'KFProj_FlashBangGrenade'
 	DrawScale=2
 	NumClusters=4
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'

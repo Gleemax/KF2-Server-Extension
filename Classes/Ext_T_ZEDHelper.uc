@@ -153,7 +153,9 @@ final function SpawnHelper()
 		LiveHelper.SetWeakGrabCoolDown(28800.f); // Never get grabbed (for 80 hours).
 		LiveHelper.bWeakZedGrab = true;
 		LiveHelper.bCanGrabAttack = false;
-		
+		if( KFPawn_MonsterBoss(LiveHelper)==None )
+			LiveHelper.DamageScaling *= 2;
+
 		// Scale by previous zed HP.
 		if( PrevMonster!=None )
 		{
@@ -229,8 +231,6 @@ static final function class<KFPawn_Monster> PickRandomMonster( byte Level, bool 
 		if( !bNotBoss || class<KFPawn_MonsterBoss>(Res)==None )
 			break;
 	}
-	if( bNotBoss && class<KFPawn_MonsterBoss>(Res)!=None )
-		Res = Class'KFPawn_ZedFleshpound';
 	return Res;
 }
 
@@ -238,6 +238,6 @@ defaultproperties
 {
 	RespawnHelperTime=1
 	HPScale=0.25
-	DamageScale=5
-	FriendlyScalar=0.75
+	DamageScale=5.0
+	FriendlyScalar=0.85
 }

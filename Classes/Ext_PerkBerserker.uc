@@ -42,7 +42,7 @@ function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DT )
 
 simulated function float GetZedTimeModifier( KFWeapon W )
 {
-	if( bSpartanAttack && WorldInfo.TimeDilation<1.f && IsWeaponOnPerk(W) && BasePerk.Default.ZedTimeModifyingStates.Find(W.GetStateName()) != INDEX_NONE )
+	if( bSpartanAttack && IsWeaponOnPerk(W) && BasePerk.Default.ZedTimeModifyingStates.Find(W.GetStateName()) != INDEX_NONE )
 		return 1.f;
 	return 0.f;
 }

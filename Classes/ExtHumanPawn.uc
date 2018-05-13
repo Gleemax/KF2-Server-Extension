@@ -66,6 +66,12 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 	local PlayerReplicationInfo KillerPRI;
 	local SeqAct_Latent Action;
 
+	if( WorldInfo.Game.PreventDeath(self, Killer, damageType, HitLocation) )
+	{
+		Health = max(Health, 1);
+		return false;
+	}
+
 	if( WorldInfo.NetMode!=NM_Client && PlayerReplicationInfo!=None )
 	{
 		PM = ExtPlayerController(Controller).ActivePerkManager;
@@ -106,12 +112,6 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 			return FALSE;
 		bPendingRedead = true;
 			
-		if ( WorldInfo.Game.PreventDeath(self, Killer, damageType, HitLocation) )
-		{
-			bPendingRedead = false;
-			Health = max(Health, 1);
-			return false;
-		}
 		Health = 0;
 		foreach LatentActions(Action)
 			Action.AbortFor(self);

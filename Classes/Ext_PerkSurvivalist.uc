@@ -1,5 +1,14 @@
 Class Ext_PerkSurvivalist extends Ext_PerkBase;
 
+var() byte GrenadeLevel;
+var() array<class<KFProj_Grenade> > PGrenadeList,SGrenadeList;
+
+simulated function PostBeginPlay()
+{
+	super.PostBeginPlay();
+	SetTimer(0.25,true,nameof(SetRandomGrenade));
+}
+
 function OnWaveEnded()
 {
 	bUsedSacrifice = false;
@@ -36,6 +45,30 @@ simulated function bool IsWeaponOnPerkHeavy( KFWeapon KFW )
 	return false;
 }
 
+simulated function SetRandomGrenade()
+{
+	local int index;
+
+	if( GrenadeLevel>0 )
+	{	
+		index = Rand(Default.PGrenadeList.Length);
+		PerkGrenade = Default.PGrenadeList[index];
+		if( GrenadeLevel>1 )
+		{
+			index = Rand(Default.SGrenadeList.Length);
+			SuperGrenade = Default.SGrenadeList[index];
+			GrenadeClass = SuperGrenade;
+		} else
+			GrenadeClass = PerkGrenade;
+	}
+}
+
+simulated function Destroyed()
+{
+	ClearTimer(nameof(SetRandomGrenade));
+	super.Destroyed();
+}
+
 defaultproperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Survivalist'
@@ -47,6 +80,25 @@ defaultproperties
 	PrimaryMelee=class'KFWeap_Random'
 	PrimaryWeapon=class'KFWeap_Knife_Support'
 	PerkGrenade=class'KFProj_HEGrenade'
+
+	GrenadeLevel=0
+
+	PGrenadeList.Add(class'KFProj_FragGrenade')
+	PGrenadeList.Add(class'KFProj_HEGrenade')
+	PGrenadeList.Add(class'KFProj_DynamiteGrenade')
+	PGrenadeList.Add(class'KFProj_NailBombGrenade')
+	PGrenadeList.Add(class'KFProj_FlashBangGrenade')
+	PGrenadeList.Add(class'KFProj_EMPGrenade')
+	PGrenadeList.Add(class'KFProj_MedicGrenade')
+	PGrenadeList.Add(class'KFProj_FreezeGrenade')
+	PGrenadeList.Add(class'KFProj_MolotovGrenade')
+
+	SGrenadeList.Add(class'ExtProj_SUPERGrenade')
+	SGrenadeList.Add(class'ExtProj_SUPERFlashBang')
+	SGrenadeList.Add(class'ExtProj_SUPEREmpGrenade')
+	SGrenadeList.Add(class'ExtProj_SUPERMedGrenade')
+	SGrenadeList.Add(class'ExtProj_SUPERFreezeGrenade')
+	SGrenadeList.Add(class'ExtProj_SUPERMolotov')
 
 	PrimaryWeaponDef=class'KFWeapDef_Random'
 	KnifeWeaponDef=class'KFweapDef_Knife_Support'

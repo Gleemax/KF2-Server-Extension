@@ -1,5 +1,5 @@
 // Written by Marco.
-class ExtProj_CrackerGrenade extends KFProj_FragGrenade
+class ExtProj_CrackerGrenade extends KFProj_HEGrenade
 	hidedropdown;
 
 var() byte NumCrackers;
@@ -53,6 +53,10 @@ simulated function SmallExplosion(Vector HitLocation, Vector HitNormal, Actor Hi
 				HitNormal = vect(0,0,1);
 			}
 
+			// modify the grenade data
+			ExplosionTemplate.Damage = 400;
+			ExplosionTemplate.DamageRadius = 750;
+
 			// these are needed for the decal tracing later in GameExplosionActor.Explode()
 			ExplosionTemplate.HitActor = HitActor;
 			ExplosionTemplate.HitLocation = HitLocation;// NudgedHitLocation
@@ -89,7 +93,7 @@ simulated function Explode(vector HitLocation, vector HitNormal);
 defaultproperties
 {
 	bCanDisintegrate=false
-	FuseTime=0.35
-	NumCrackers=6
+	FuseTime=0.65
+	NumCrackers=2
 	bNetTemporary=true
 }

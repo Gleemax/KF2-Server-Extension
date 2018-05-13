@@ -4,8 +4,19 @@ static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Leve
 {
 	Ext_TraitSupplyData(Data).SpawnSupplier(Player,true);
 }
+static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
+{
+	if( Level > 1 )
+		Perk.PerkManager.SetGrenadeCap(Default.CarryAdd);
+}
+static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
+{
+	if( Level > 1 )
+		Perk.PerkManager.SetGrenadeCap(-Default.CarryAdd);
+}
 
 defaultproperties
 {
+	CarryAdd=3
 	SupplyIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
 }

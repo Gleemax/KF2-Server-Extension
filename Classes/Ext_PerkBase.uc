@@ -89,8 +89,6 @@ var transient float NextAuthTime;
 
 var int ToxicDartDamage;
 var byte EnemyHealthRange;
-var float DefaultCollisionRadius;
-var float DefaultCollisionHeight;
 var() array<float> EnemyDistDraw;
 
 var bool bOwnerNetClient,bClientAuthorized,bPerkNetReady,bHasNightVision,bCanBeGrabbed,bExplosiveWeld,bExplodeOnContact,bNapalmFire,bFireExplode,bToxicDart,bTacticalReload,bHeavyArmor,bHasSWATEnforcer,bCanUseSacrifice,bUsedSacrifice;
@@ -1293,6 +1291,11 @@ simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRa
 {
 	FastenRate *= Modifiers[8];
 	UnfastenRate *= Modifiers[8];
+}
+
+simulated function float GetTightChokeModifier()
+{
+	return Modifiers[3];
 }
 
 function bool RepairArmor( Pawn HealTarget )

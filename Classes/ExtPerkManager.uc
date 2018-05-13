@@ -47,7 +47,7 @@ replication
 
 final function SetGrenadeCap( byte AddedCap )
 {
-	MaxGrenadeCount = Default.MaxGrenadeCount + AddedCap;
+	MaxGrenadeCount += AddedCap;
 	if( RepState==REP_Done )
 		ClientSetGrenadeCap(MaxGrenadeCount);
 }
@@ -89,7 +89,17 @@ function ApplyPerk( Ext_PerkBase P )
 	
 	if( P==None )
 		return;
+	
+	if( CurrentPerk != None )
+	{
+		CurrentPerk.DeactivateTraits();
 		
+		for( i=0; i<CurrentPerk.PerkTraits.Length; ++i )
+		{
+			CurrentPerk.PerkTraits[i].TraitType.Static.CancelEffectOn(KFPawn_Human(PlayerOwner.Pawn),CurrentPerk,CurrentPerk.PerkTraits[i].CurrentLevel,CurrentPerk.PerkTraits[i].Data);
+		}
+	}
+
 	if( PlayerOwner.Pawn != None )
 	{
 		InvMan = KFInventoryManager(PlayerOwner.Pawn.InvManager);
@@ -104,16 +114,6 @@ function ApplyPerk( Ext_PerkBase P )
 		HP = KFPawn_Human(PlayerOwner.Pawn);
 		if( HP != None )
 			HP.DefaultInventory = HP.Default.DefaultInventory;
-	}
-	
-	if( CurrentPerk != None )
-	{
-		CurrentPerk.DeactivateTraits();
-		
-		for( i=0; i<CurrentPerk.PerkTraits.Length; ++i )
-		{
-			CurrentPerk.PerkTraits[i].TraitType.Static.CancelEffectOn(KFPawn_Human(PlayerOwner.Pawn),CurrentPerk,CurrentPerk.PerkTraits[i].CurrentLevel,CurrentPerk.PerkTraits[i].Data);
-		}
 	}
 		
 	bStatsDirty = true;
@@ -578,6 +578,10 @@ simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRa
 {
 	if( CurrentPerk!=None )
 		CurrentPerk.ModifyWeldingRate(FastenRate,UnfastenRate);
+}
+simulated function float GetTightChokeModifier()
+{
+	return (CurrentPerk!=None ? CurrentPerk.GetTightChokeModifier() : 1.f);
 }
 simulated function bool HasNightVision()
 {

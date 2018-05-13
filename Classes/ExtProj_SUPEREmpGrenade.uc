@@ -2,14 +2,22 @@
 class ExtProj_SUPEREmpGrenade extends KFProj_EMPGrenade
 	hidedropdown;
 
+var class<KFProj_Grenade> ClusterNades;
 var() byte RemainClusters;
 var() float ClusterInterval;
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	if( Instigator!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo)!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).ECurrentPerk!=None )
+		ClusterNades = ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).FCurrentPerk.PerkGrenade;
+}
 
 simulated function Disintegrate( rotator inDisintegrateEffectRotation ); // Nope!
 
 simulated function SpawnClusterByTime()
 {
-	local KFProj_EMPGrenade P;
+	local KFProj_Grenade P;
 
 	if ( bHasExploded || RemainClusters <= 0 )
 	{
@@ -17,7 +25,7 @@ simulated function SpawnClusterByTime()
 		return;
 	}
 
-	P = Spawn(class'KFProj_EMPGrenade',,,Location);
+	P = Spawn(ClusterNades,,,Location);
 	if( P!=None )
 		P.InstigatorController = InstigatorController;
 	

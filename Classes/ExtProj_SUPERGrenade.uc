@@ -23,7 +23,7 @@ simulated function PostBeginPlay()
 
 	Super.PostBeginPlay();
 	if( Instigator!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo)!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).ECurrentPerk!=None )
-		ClusterNades = ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).ECurrentPerk.Default.PerkGrenade;
+		ClusterNades = ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).FCurrentPerk.PerkGrenade;
 }
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
@@ -83,7 +83,6 @@ simulated function Destroyed()
 defaultproperties
 {
 	bCanDisintegrate=false
-	ClusterNades=class'KFProj_FragGrenade'
 	DrawScale=2
 	NumClusters=6
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'

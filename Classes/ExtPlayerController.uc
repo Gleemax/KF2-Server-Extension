@@ -612,7 +612,7 @@ simulated function CancelConnection()
 	else class'Engine'.Static.GetEngine().GameViewport.ConsoleCommand("Disconnect");
 }
 
-function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel);
+function NotifyLevelUp(class<KFPerk> PerkClass, byte PerkLevel, byte NewPrestigeLevel);
 
 function ShowBossNameplate( KFInterface_MonsterBoss KFBoss, optional string PlayerName)
 {

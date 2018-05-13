@@ -2,14 +2,22 @@
 class ExtProj_SUPERMedGrenade extends KFProj_MedicGrenade
 	hidedropdown;
 
+var class<KFProj_Grenade> ClusterNades;
 var() byte NumClusters;
+
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+	if( Instigator!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo)!=None && ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).ECurrentPerk!=None )
+		ClusterNades = ExtPlayerReplicationInfo(Instigator.PlayerReplicationInfo).FCurrentPerk.PerkGrenade;
+}
 
 simulated function Disintegrate( rotator inDisintegrateEffectRotation ); // Nope!
 
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
 	local byte i;
-	local KFProj_MedicGrenade P;
+	local KFProj_Grenade P;
 
 	if( bHasExploded )
 		return;
@@ -23,11 +31,11 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 	{
 		for( i=0; i<NumClusters; ++i )
 		{
-			P = Spawn(class'KFProj_MedicGrenade',,,Location);
+			P = Spawn(ClusterNades,,,Location);
 			if( P!=None )
 			{
 				P.InstigatorController = InstigatorController;
-				P.Init(VRand());
+				P.Init(Normal(VRand())*2.5f);
 			}
 		}
 	}
@@ -51,11 +59,11 @@ defaultproperties
 {
 	bCanDisintegrate=false
 	DrawScale=2
-	NumClusters=6
+	NumClusters=7
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 
 	Begin Object Name=ExploTemplate0
 		Damage=270
-		DamageRadius=450
+		DamageRadius=500
 	End Object
 }

@@ -70,7 +70,7 @@ function GiveMedicAirborneAgentHealth( KFPawn HealTarget, class<DamageType> DamT
 
 	RoundedExtraHealAmount = FCeil( float(HealAmount) * AirborneAgentHealRate );
 
-	foreach WorldInfo.Allpawns(class'KFPawn', KFP, HealTarget.Location, 500.f)
+	foreach WorldInfo.Allpawns(class'KFPawn', KFP, HealTarget.Location, 1000.f)
 	{
 		if( KFP.IsAliveAndWell() && WorldInfo.GRI.OnSameTeam( HealTarget, KFP ) )
 		{					

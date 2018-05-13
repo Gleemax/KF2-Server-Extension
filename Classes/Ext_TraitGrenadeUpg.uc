@@ -12,10 +12,15 @@ static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_Trait
 		Perk.GrenadeClass = Perk.PerkGrenade;
 	else if( Level==2 )
 		Perk.GrenadeClass = Perk.SuperGrenade;
+	
+	if( Ext_PerkSurvivalist(Perk)!=none )
+		Ext_PerkSurvivalist(Perk).GrenadeLevel = Level;
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
 	Perk.GrenadeClass = Perk.Default.GrenadeClass;
+	if( Ext_PerkSurvivalist(Perk)!=none )
+		Ext_PerkSurvivalist(Perk).GrenadeLevel = 0;
 }
 
 defaultproperties

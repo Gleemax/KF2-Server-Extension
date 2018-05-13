@@ -9,7 +9,7 @@ static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_Trait
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Perk.PerkManager.SetGrenadeCap(0);
+	Perk.PerkManager.SetGrenadeCap(-Default.CarryAdds[Level-1]);
 }
 
 defaultproperties
@@ -23,5 +23,5 @@ defaultproperties
 	CarryAdds(1)=2
 	CarryAdds(2)=3
 	CarryAdds(3)=5
-	CarryAdds(4)=8
+	CarryAdds(4)=7
 }

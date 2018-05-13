@@ -12,7 +12,7 @@ replication
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
-	return (IsWeaponOnPerk(KFW) ? Modifiers[5]<0.75 : false);
+	return (bTacticalReload && IsWeaponOnPerk(KFW));
 }
 
 simulated function bool CanRepairDoors()

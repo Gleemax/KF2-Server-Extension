@@ -28,7 +28,7 @@ function bool CanResPlayer( KFPawn_Human Other, byte Level )
 	if( SpawnPointer==None )
 		SpawnPointer = class'ExtSpawnPointHelper'.Static.FindHelper(WorldInfo);
 	ResPoint = SpawnPointer.PickBestSpawn().Location;
-	LastDied.FindSpot(vect(36,36,86),ResPoint);
+	LastDied.FindSpot(vect(41,41,96),ResPoint);
 	if( VSizeSq(LastDied.Location-ResPoint)<1.f ) // Prevent division by zero errors in future.
 		ResPoint.Z+=5;
 	Enable('Tick');
@@ -57,7 +57,7 @@ final function StartResurrect()
 	LastDied.bAmbientCreature = true;
 	LastDied.SetPhysics(PHYS_None);
 	LastDied.bCollideWorld = false;
-	TeleTime = FClamp(VSize(ResPoint-TeleStartPoint)/900.f,1.f,10.f);
+	TeleTime = FClamp(VSize(ResPoint-TeleStartPoint)/1800.f,1.f,10.f);
 	LastDiedTimer = WorldInfo.TimeSeconds+TeleTime;
 }
 
@@ -86,7 +86,7 @@ function Tick( float Delta )
 		return;
 	}
 	Delta /= TeleTime;
-	LastDied.Velocity = Normal(ResPoint-TeleStartPoint)*900.f;
+	LastDied.Velocity = Normal(ResPoint-TeleStartPoint)*1800.f;
 	LastDied.SetLocation(TeleStartPoint*Delta+ResPoint*(1.f-Delta));
 	if( LastDied.Physics!=PHYS_None )
 		LastDied.SetPhysics(PHYS_None);
