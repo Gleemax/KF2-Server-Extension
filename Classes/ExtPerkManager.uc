@@ -47,7 +47,7 @@ replication
 
 final function SetGrenadeCap( byte AddedCap )
 {
-	MaxGrenadeCount += AddedCap;
+	MaxGrenadeCount = Default.MaxGrenadeCount + AddedCap;
 	if( RepState==REP_Done )
 		ClientSetGrenadeCap(MaxGrenadeCount);
 }

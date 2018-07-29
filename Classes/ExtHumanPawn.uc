@@ -169,7 +169,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	EPRI = ExtPlayerReplicationInfo(InstigatorPC.PlayerReplicationInfo);
 	if( EPRI != none )
 	{
-		InstigatorExtPerk = ExtPlayerController(Controller).ActivePerkManager.CurrentPerk;
+		InstigatorExtPerk = ExtPlayerController(Healer).ActivePerkManager.CurrentPerk;
 		if( InstigatorExtPerk != none && Ext_PerkFieldMedic(InstigatorExtPerk) != none )
 		{
 			if( Ext_PerkFieldMedic(InstigatorExtPerk).bHealingBoost )
@@ -1450,6 +1450,10 @@ defaultproperties
 	WakeUpAnimSet=AnimSet'ZED_Clot_Anim.Alpha_Clot_Master'
 	
 	Begin Object Name=SpecialMoveHandler_0
+		SpecialMoveClasses(SM_GrappleVictim)=class'KFGame.KFSM_GrappleVictim'
+        SpecialMoveClasses(SM_DisabledGrappleVictim)=class'KFGame.KFSM_DisabledGrappleVictim'
+		SpecialMoveClasses(SM_HansGrappleVictim)=class'KFGame.KFSM_HansGrappleVictim'
+		SpecialMoveClasses(SM_DARGrappleVictim)=class'KFGame.KFSM_EvilDAR_EMPGrapple'
 		SpecialMoveClasses(SM_Emote)=class'ServerExt.ExtSM_Player_Emote'
 	End Object
 	

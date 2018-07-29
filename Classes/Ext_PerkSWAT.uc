@@ -1,14 +1,30 @@
 Class Ext_PerkSWAT extends Ext_PerkBase;
 
 var byte RepTacticalMove;
-var float MoveSpeedMods[3];
-var bool bRapidAssault;
+var bool bRapidAssault,bSuppression;
+var float MoveSpeedMods[3],SuppressTimer,SuppressModifier;
 
 replication
 {
 	// Things the server should send to the client.
 	if ( true )
 		RepTacticalMove, bRapidAssault;
+}
+
+simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
+{
+	if( bSuppression && InDamage > 16 && SuppressTimer < WorldInfo.TimeSeconds )
+		SuppressTimer = WorldInfo.TimeSeconds + 4.f; 
+		
+	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
+}
+
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
+{
+	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
+	if ( bSuppression && SuppressTimer > WorldInfo.TimeSeconds )
+		if( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) )
+			InDamage *= 1.f+SuppressModifier;
 }
 
 simulated function float GetIronSightSpeedModifier( KFWeapon KFW )
@@ -36,6 +52,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitTacticalMove')
 	DefTraitList.Add(class'Ext_TraitSWATEnforcer')
 	DefTraitList.Add(class'Ext_TraitRapidAssault')
+	DefTraitList.Add(class'Ext_TraitSuppress')
 	BasePerk=class'KFPerk_SWAT'
 
 	PrimaryMelee=class'KFWeap_Knife_SWAT'
@@ -52,4 +69,6 @@ defaultproperties
 	MoveSpeedMods(0)=1.3
 	MoveSpeedMods(1)=1.5
 	MoveSpeedMods(2)=2
+
+	SuppressModifier=0.0f
 }

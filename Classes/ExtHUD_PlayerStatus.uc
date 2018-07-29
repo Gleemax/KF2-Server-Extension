@@ -2,7 +2,6 @@ class ExtHUD_PlayerStatus extends KFGFxHUD_PlayerStatus;
 
 var ExtPlayerController ExPC;
 var class<Ext_PerkBase> ExLastPerkClass;
-var string CurPerkPath;
 
 function InitializeHUD()
 {
@@ -14,6 +13,7 @@ function UpdatePerk()
 {
 	local int CurrentPerkLevel,CurrentPerkEXP;
 	local Ext_PerkBase CurrentPerk;
+	local GFxObject PerkIconObject;
 
 	if( ExPC == none || ExPC.ActivePerkManager==None || ExPC.ActivePerkManager.CurrentPerk==None )
 		return;
@@ -25,13 +25,15 @@ function UpdatePerk()
 	// Update the perk class.
 	if( ( ExLastPerkClass != CurrentPerk.Class ) || ( LastPerkLevel != CurrentPerkLevel ) )
 	{
-		CurPerkPath = CurrentPerk.GetPerkIconPath(CurrentPerkLevel);
-		SetString("playerPerkIcon" , CurPerkPath);
+		PerkIconObject = CreateObject("Object");
+		PerkIconObject.SetString("perkIcon", CurrentPerk.GetPerkIconPath(CurrentPerkLevel));
+		PerkIconObject.SetString("prestigeIcon", CurrentPerk.GetPrestigeIconPath(CurrentPerk.CurrentPrestige, CurrentPerk.MaxPrestige));
+		SetObject("playerPerkIcon", PerkIconObject);
 		SetInt("playerPerkXPPercent", CurrentPerk.GetProgressPercent() * 100.f );
 		if( LastPerkLevel != CurrentPerkLevel && ExLastPerkClass==CurrentPerk.Class )
 		{
 			SetBool("bLevelUp", true);
-			ShowXPBark(CurrentPerkEXP-LastEXPValue,CurPerkPath,true);
+			ShowXPBark(CurrentPerkEXP-LastEXPValue,CurrentPerk.GetPerkIconPath(CurrentPerkLevel),true);
 		}
 		ExLastPerkClass = CurrentPerk.class;
 
@@ -43,7 +45,7 @@ function UpdatePerk()
 	{
 		SetBool("bLevelUp", false);
 		SetInt("playerPerkXPPercent", CurrentPerk.GetProgressPercent() * 100.f );
-		ShowXPBark(CurrentPerkEXP-LastEXPValue,CurPerkPath,true);
+		ShowXPBark(CurrentPerkEXP-LastEXPValue,CurrentPerk.GetPerkIconPath(CurrentPerkLevel),true);
 		LastEXPValue = CurrentPerkEXP;
 	}
 }

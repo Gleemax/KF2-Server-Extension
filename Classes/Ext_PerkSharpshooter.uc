@@ -1,18 +1,37 @@
 Class Ext_PerkSharpshooter extends Ext_PerkRhythmPerkBase;
 
-var bool bHasDireReload;
-var float ZEDTimeStunPower,DireReloadSpeed;
+var bool bHasDireReload,bHasSniping;
+var float ZEDTimeStunPower,DireReloadSpeed,SnipingDamage,SnipingTimer;
 
 replication
 {
 	// Things the server should send to the client.
 	if ( true )
-		bHasDireReload;
+		bHasDireReload,bHasSniping;
 }
 
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
+{
+	local float Distance;
+
+	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
+	if( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) )
+	{
+		if( RhythmComboDmg>0 )
+			InDamage *= (1.f+RhythmComboDmg);
+		if( bHasSniping && SnipingTimer<WorldInfo.TimeSeconds && MyKFPM!=None && HitZoneIdx == HZI_HEAD )
+		{
+			SnipingTimer = WorldInfo.TimeSeconds + 1.f;
+			Distance = VSize(MyKFPM.Location-PlayerOwner.Pawn.Location);
+			if( Distance>1000.f )	
+				InDamage *= 1.f+SnipingDamage*FClamp(Distance/5000.f,0.f,1.f);
+		}
+	}
+	
+}
 simulated function float GetReloadRateScale(KFWeapon KFW)
 {
-	if( bHasDireReload && PlayerOwner.Pawn!=None && PlayerOwner.Pawn.Health<40 )
+	if( bHasDireReload && PlayerOwner.Pawn!=None && PlayerOwner.Pawn.Health<=50 )
 		return Super.GetReloadRateScale(KFW)*DireReloadSpeed;
 	return Super.GetReloadRateScale(KFW);
 }
@@ -29,6 +48,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitWPSharp')
 	DefTraitList.Add(class'Ext_TraitRackEmUp')
 	DefTraitList.Add(class'Ext_TraitRanger')
+	DefTraitList.Add(class'Ext_TraitFarAway')
 	DefTraitList.Add(class'Ext_TraitDireReload')
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	BasePerk=class'KFPerk_Sharpshooter'
@@ -44,5 +64,6 @@ defaultproperties
 	
 	AutoBuyLoadOutPath=(class'KFWeapDef_Winchester1894', class'KFWeapDef_Crossbow', class'KFWeapDef_M14EBR', class'KFWeapDef_RailGun')
 	
-	DireReloadSpeed=0.25f
+	SnipingDamage=0.5f
+	DireReloadSpeed=0.4f
 }

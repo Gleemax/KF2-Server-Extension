@@ -1,7 +1,15 @@
 Class Ext_PerkSurvivalist extends Ext_PerkBase;
 
+var bool bHasMadman;
 var() byte GrenadeLevel;
 var() array<class<KFProj_Grenade> > PGrenadeList,SGrenadeList;
+
+replication
+{
+	// Things the server should send to the client.
+	if ( true )
+		bHasMadman;
+}
 
 simulated function PostBeginPlay()
 {
@@ -17,6 +25,20 @@ function OnWaveEnded()
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	return ( (bTacticalReload && IsWeaponOnPerkLight( KFW )) || bTacticalReload && IsWeaponOnPerkHeavy( KFW ));
+}
+
+simulated function float GetZedTimeModifier( KFWeapon W )
+{
+	local name StateName;
+	
+	if( bHasMadman && IsWeaponOnPerk( W ) )
+	{
+		StateName = W.GetStateName();
+		if( BasePerk.Default.ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+			return 0.5f;
+	}
+
+	return 0.f;
 }
 
 simulated function bool IsWeaponOnPerkLight( KFWeapon KFW )
@@ -75,6 +97,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitWPSurv')
 	DefTraitList.Add(class'Ext_TraitCardiac')
 	//DefTraitList.Add(class'Ext_TraitHeavyArmor')
+	DefTraitList.Add(class'Ext_TraitMadman')
 	BasePerk=class'KFPerk_Survivalist'
 
 	PrimaryMelee=class'KFWeap_Random'

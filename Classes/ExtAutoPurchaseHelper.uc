@@ -230,11 +230,11 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
    	return BestIndex;
 }
 
-function bool CanCarry( const out STraderItem Item )
+function bool CanCarry(const out STraderItem Item, optional int OverrideLevelValue = INDEX_NONE)
 {
 	local int Result;
 	
-	Result = TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item);
+	Result = TotalBlocks + MyKFIM.GetDisplayedBlocksRequiredFor(Item, OverrideLevelValue);
 	if (Result > MaxBlocks)
 	{
     	return false;

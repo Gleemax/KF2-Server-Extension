@@ -50,6 +50,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 defaultproperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
+	
 	DefTraitList.Add(class'Ext_TraitWPBers')
 	DefTraitList.Add(class'Ext_TraitUnGrab')
 	DefTraitList.Add(class'Ext_TraitVampire')

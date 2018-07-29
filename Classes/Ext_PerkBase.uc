@@ -16,8 +16,11 @@ var() Texture2D PerkIcon;
 var() class<KFPerk> BasePerk; // KF perk that this perk is based on.
 var() class<KFWeapon> PrimaryMelee,PrimaryWeapon;
 var() class<KFWeaponDefinition> PrimaryWeaponDef,SecondaryWeaponDef,KnifeWeaponDef,GrenadeWeaponDef;
+var() int ExtraGrenade;
 var() class<KFProj_Grenade> GrenadeClass,PerkGrenade,SuperGrenade;
 var() int HealExpUpNum,WeldExpUpNum; // Efficiency of healing and welding XP up.
+
+var array<Texture2D> PrestigeIcons;
 
 // For trader.
 var() array<class<KFWeaponDefinition> > AutoBuyLoadOutPath;
@@ -121,6 +124,19 @@ simulated final function bool IsWeaponOnPerk( KFWeapon W )
 simulated static function string GetPerkIconPath( int Level )
 {
 	return "img://"$PathName(Default.PerkIcon);
+}
+
+
+simulated static function string GetPrestigeIconPath( int PrestigeLevel, int MaxPrestige )
+{
+	local int PrestigeProgress;
+	if( PrestigeLevel>0 )
+	{
+		PrestigeProgress = (PrestigeLevel-1)*5/MaxPrestige;
+		return "img://"$PathName(default.PrestigeIcons[PrestigeProgress]);
+	}
+	else
+		return "";
 }
 
 simulated function PostBeginPlay()
@@ -1454,6 +1470,7 @@ defaultproperties
 	bOnlyRelevantToOwner=true
 	bCanBeGrabbed=true
 	NetUpdateFrequency=1
+	ExtraGrenade=0
 	GrenadeClass=class'KFProj_FragGrenade'
 	PerkGrenade=class'KFProj_FragGrenade'
 	SuperGrenade=class'ExtProj_SUPERGrenade'
@@ -1466,11 +1483,18 @@ defaultproperties
 	KnifeWeaponDef=class'KFWeapDef_Knife_Commando'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Support'
 	
+	PrestigeIcons(0)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_1'
+	PrestigeIcons(1)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_2'
+	PrestigeIcons(2)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_3'
+	PrestigeIcons(3)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_4'
+	PrestigeIcons(4)=Texture2D'UI_PerkIcons_TEX.Prestige_Rank_5'
+
 	DefTraitList.Add(class'Ext_TraitGrenadeUpg')
 	DefTraitList.Add(class'Ext_TraitNightvision')
 	DefTraitList.Add(class'Ext_TraitAmmoReg')
 	DefTraitList.Add(class'Ext_TraitHealthReg')
 	DefTraitList.Add(class'Ext_TraitArmorReg')
+	DefTraitList.Add(class'Ext_TraitGrenadeReg')
 	DefTraitList.Add(class'Ext_TraitCarryCap')
 	DefTraitList.Add(class'Ext_TraitGrenadeCap')
 	DefTraitList.Add(class'Ext_TraitMedicPistol')

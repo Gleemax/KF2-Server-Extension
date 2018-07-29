@@ -23,9 +23,10 @@ static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_Tra
 defaultproperties
 {
 	SupportedPerk=class'Ext_PerkFieldMedic'
-	NumLevels=3
+	NumLevels=4
 	DefLevelCosts(0)=40
-	DefLevelCosts(1)=50
-	DefLevelCosts(2)=60
+	DefLevelCosts(1)=15
+	DefLevelCosts(2)=20
+	DefLevelCosts(3)=25
 	DefMinLevel=85
 }

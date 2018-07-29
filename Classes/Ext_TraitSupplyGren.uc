@@ -7,12 +7,18 @@ static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Leve
 static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
 	if( Level > 1 )
-		Perk.PerkManager.SetGrenadeCap(Default.CarryAdd);
+	{
+		Perk.ExtraGrenade += Default.CarryAdd;
+		Perk.PerkManager.SetGrenadeCap(Perk.ExtraGrenade);
+	}
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
 	if( Level > 1 )
-		Perk.PerkManager.SetGrenadeCap(-Default.CarryAdd);
+	{
+		Perk.ExtraGrenade -= Default.CarryAdd;
+		Perk.PerkManager.SetGrenadeCap(Perk.ExtraGrenade);
+	}
 }
 
 defaultproperties

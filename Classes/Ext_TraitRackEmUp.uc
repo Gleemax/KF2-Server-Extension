@@ -19,22 +19,22 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkRhythmPerkBase'
 	DefLevelCosts(0)=15
-	DefLevelCosts(1)=20
+	DefLevelCosts(1)=35
 	DefLevelCosts(2)=25
-	DefLevelCosts(3)=45
-	DefLevelCosts(4)=75
+	DefLevelCosts(3)=35
+	DefLevelCosts(4)=55
 	ComboSize.Add(5)
 	ComboSize.Add(5)
 	ComboSize.Add(5)
 	ComboSize.Add(5)
 	ComboSize.Add(5)
 	IntervallSize.Add(1.5)
-	IntervallSize.Add(1.75)
-	IntervallSize.Add(2)
-	IntervallSize.Add(2.5)
-	IntervallSize.Add(3)
+	IntervallSize.Add(1.5)
+	IntervallSize.Add(2.0)
+	IntervallSize.Add(2.0)
+	IntervallSize.Add(2.0)
 	MultiplierSize.Add(0.05)
-	MultiplierSize.Add(0.075)
+	MultiplierSize.Add(0.1)
 	MultiplierSize.Add(0.1)
 	MultiplierSize.Add(0.125)
 	MultiplierSize.Add(0.15)

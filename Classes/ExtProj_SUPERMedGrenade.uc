@@ -35,7 +35,7 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 			if( P!=None )
 			{
 				P.InstigatorController = InstigatorController;
-				P.Init(Normal(VRand())*2.5f);
+				P.Init(Normal(VRand())*1.5f);
 			}
 		}
 	}
@@ -59,11 +59,11 @@ defaultproperties
 {
 	bCanDisintegrate=false
 	DrawScale=2
-	NumClusters=7
+	NumClusters=5
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 
 	Begin Object Name=ExploTemplate0
-		Damage=270
-		DamageRadius=500
+		Damage=240
+		DamageRadius=425
 	End Object
 }

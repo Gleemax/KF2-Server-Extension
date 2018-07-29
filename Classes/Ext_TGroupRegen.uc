@@ -23,9 +23,11 @@ static function bool GroupLimited( Ext_PerkBase Perk, class<Ext_TraitBase> Trait
 
 static final function byte GetMaxLimit( Ext_PerkBase Perk )
 {
-	if( Perk.CurrentPrestige<1 || Perk.CurrentLevel<100 )
+	if( Perk.CurrentPrestige<1 || Perk.CurrentLevel<75 )
 		return 1;
-	return ((Perk.CurrentPrestige<5 || Perk.CurrentLevel<150) ? 2 : 3);
+	if( Perk.CurrentPrestige<5 || Perk.CurrentLevel<125 )
+		return 2;
+	return ((Perk.CurrentPrestige<Perk.MaxPrestige || Perk.CurrentLevel<150) ? 3 : 4);
 }
 
 defaultproperties

@@ -5,11 +5,13 @@ static function CancelEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Lev
 
 static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Perk.PerkManager.SetGrenadeCap(Default.CarryAdds[Level-1]);
+	Perk.ExtraGrenade += Default.CarryAdds[Level-1];
+	Perk.PerkManager.SetGrenadeCap(Perk.ExtraGrenade);
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Perk.PerkManager.SetGrenadeCap(-Default.CarryAdds[Level-1]);
+	Perk.ExtraGrenade -= Default.CarryAdds[Level-1];
+	Perk.PerkManager.SetGrenadeCap(Perk.ExtraGrenade);
 }
 
 defaultproperties
