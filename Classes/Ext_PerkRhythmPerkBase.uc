@@ -7,8 +7,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 {
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
 	if( RhythmComboDmg>0 && BasePerk==None || IsWeaponOnPerk(KFWeapon(DamageCauser)) ||
-		(DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0 && 
-		HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell())
+	  ( DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0 && HitZoneIdx == HZI_Head ) )
 		InDamage *= (1.f+RhythmComboDmg);
 }
 
