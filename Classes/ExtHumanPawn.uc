@@ -163,13 +163,15 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	InstigatorPC = ExtPlayerController(Healer);
 	InstigatorPerk = InstigatorPC.GetPerk();
 	
+	if( InstigatorPerk != None )
+		InstigatorExtPerk = InstigatorPC.ActivePerkManager.CurrentPerk;
+	
 	if( InstigatorPerk != None && bCanRepairArmor )
 		bRepairedArmor = InstigatorPC.GetPerk().RepairArmor( self );
 	
 	EPRI = ExtPlayerReplicationInfo(InstigatorPC.PlayerReplicationInfo);
 	if( EPRI != none )
 	{
-		InstigatorExtPerk = ExtPlayerController(Healer).ActivePerkManager.CurrentPerk;
 		if( InstigatorExtPerk != none && Ext_PerkFieldMedic(InstigatorExtPerk) != none )
 		{
 			if( Ext_PerkFieldMedic(InstigatorExtPerk).bHealingBoost )
@@ -200,9 +202,9 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 			ScDelay = HealthRegenRate;
 			if( InstigatorPerk != none )
 			{
-				
 				InstigatorPerk.ModifyHealAmount( ScAmount );
-				InstigatorExtPerk.ModifyHealDelay( ScDelay );
+				if( InstigatorExtPerk != none )
+					InstigatorExtPerk.ModifyHealDelay( ScDelay );
 			}
 			UsedHealAmount = ScAmount;
 
