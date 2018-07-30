@@ -6,7 +6,9 @@ var float RhythmComboDmg,CountdownIntervall,HeadShotMultiplier;
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
-	if( RhythmComboDmg>0 && BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser))  )
+	if( RhythmComboDmg>0 && BasePerk==None || IsWeaponOnPerk(KFWeapon(DamageCauser)) ||
+		(DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0 && 
+		HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell())
 		InDamage *= (1.f+RhythmComboDmg);
 }
 

@@ -19,7 +19,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	TempDamage = InDamage;
 
 	if( bUseSlug && WorldInfo.TimeDilation < 1.f && DamageType != none && ClassIsChildOf( DamageType, class'KFDT_Toxic' ) )
-		TempDamage += InDamage * 100;
+		TempDamage += InDamage * 10;
 
 	InDamage = Round(TempDamage);
 	
@@ -90,7 +90,7 @@ static function int ModifyToxicDmg(int ToxicDamage)
 {
 	local float TempDamage;
 
-	TempDamage = float(ToxicDamage) * 1.2;
+	TempDamage = float(ToxicDamage) * 1.25;
 	return FCeil( TempDamage );
 }
 

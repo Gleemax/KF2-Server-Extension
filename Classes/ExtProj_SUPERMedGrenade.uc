@@ -63,7 +63,7 @@ defaultproperties
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 
 	Begin Object Name=ExploTemplate0
-		Damage=240
-		DamageRadius=425
+		Damage=120
+		DamageRadius=475
 	End Object
 }
