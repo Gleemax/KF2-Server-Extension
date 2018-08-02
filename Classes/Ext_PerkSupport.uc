@@ -10,11 +10,6 @@ replication
 		bCanRepairDoors, bUseAPShot, bUsePerforate, APShotMul;
 }
 
-simulated function bool GetUsingTactialReload( KFWeapon KFW )
-{
-	return (bTacticalReload && IsWeaponOnPerk(KFW));
-}
-
 simulated function bool CanRepairDoors()
 {
 	return bCanRepairDoors;
@@ -45,6 +40,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitSupply')
 	DefTraitList.Add(class'Ext_TraitAPShots')
 	DefTraitList.Add(class'Ext_TraitDoorRepair')
+	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitPenetrator')
 	BasePerk=class'KFPerk_Support'
 	WeldExpUpNum=80

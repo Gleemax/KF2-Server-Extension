@@ -52,6 +52,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitTacticalMove')
 	DefTraitList.Add(class'Ext_TraitSWATEnforcer')
 	DefTraitList.Add(class'Ext_TraitRapidAssault')
+	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitSuppress')
 	BasePerk=class'KFPerk_SWAT'
 

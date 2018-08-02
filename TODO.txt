@@ -1,0 +1,10 @@
+function bool NotifyInputKey( int ControllerId, name Key, EInputEvent Event, float AmountDepressed, bool bGamepad )
+{
+	if( Event==IE_Pressed && !bDelayedSet && InStr(Caps(string(Key)),"MOUSE")==-1 )
+	{
+		if( Key!='Escape' )
+			BindNewKey(Key,"Camera FirstPerson");
+		ReleaseKeyFocus();
+	}
+	return true;
+}

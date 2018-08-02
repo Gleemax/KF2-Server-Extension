@@ -9,11 +9,6 @@ replication
 		bHasUberAmmo,bHasFanfire;
 }
 
-simulated function bool GetUsingTactialReload( KFWeapon KFW )
-{
-	return (IsWeaponOnPerk(KFW) ? Modifiers[5]<0.8 : false);
-}
-
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 {
 	return bHasUberAmmo && IsWeaponOnPerk(KFW) && WorldInfo.TimeDilation < 1.f;
@@ -40,6 +35,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitUberAmmo')
 	DefTraitList.Add(class'Ext_TraitFanfire')
 	DefTraitList.Add(class'Ext_TraitRackEmUp')
+	DefTraitList.Add(class'Ext_TraitEliteReload')
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Gunslinger'
 	BasePerk=class'KFPerk_Gunslinger'
 	

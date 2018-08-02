@@ -10,11 +10,6 @@ replication
 		bUseProfessional,bUseMachineGunner;
 }
 
-simulated function bool GetUsingTactialReload( KFWeapon KFW )
-{
-	return (bTacticalReload && IsWeaponOnPerk(KFW));
-}
-
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	if( (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || (KFWeapon(DamageCauser)!=None && IsWeaponOnPerk(KFWeapon(DamageCauser))) )

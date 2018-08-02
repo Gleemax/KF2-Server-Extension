@@ -22,6 +22,11 @@ function OnWaveEnded()
 	bUsedSacrifice = false;
 }
 
+simulated function ModifyHealerRechargeTime( out float RechargeRate )
+{
+	RechargeRate /= Clamp(Modifiers[9] , 1.f, 2.f);
+}
+
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	return ( (bTacticalReload && IsWeaponOnPerkLight( KFW )) || bTacticalReload && IsWeaponOnPerkHeavy( KFW ));
@@ -96,7 +101,7 @@ defaultproperties
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Survivalist'
 	DefTraitList.Add(class'Ext_TraitWPSurv')
 	DefTraitList.Add(class'Ext_TraitCardiac')
-	//DefTraitList.Add(class'Ext_TraitHeavyArmor')
+	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitMadman')
 	BasePerk=class'KFPerk_Survivalist'
 

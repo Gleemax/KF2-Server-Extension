@@ -1233,6 +1233,10 @@ simulated function float ApplyEffect( name Type, float Value, float Progress )
 	return (Value*Progress);
 }
 
+simulated function ModifySpeed( out float Speed )
+{
+	Speed *= Modifiers[0];
+}
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	if( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || (KFWeapon(DamageCauser)!=None && IsWeaponOnPerk(KFWeapon(DamageCauser))) )

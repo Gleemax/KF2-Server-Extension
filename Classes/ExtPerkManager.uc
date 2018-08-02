@@ -493,7 +493,7 @@ function bool CanEarnSmallRadiusKillXP( class<DamageType> DT )
 simulated function ModifySpeed( out float Speed )
 {
 	if( CurrentPerk!=None )
-		Speed *= CurrentPerk.Modifiers[0];
+		CurrentPerk.ModifySpeed(Speed);
 }
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
