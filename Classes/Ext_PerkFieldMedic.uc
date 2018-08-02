@@ -19,7 +19,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	TempDamage = InDamage;
 
 	if( bUseSlug && WorldInfo.TimeDilation < 1.f && DamageType != none && ClassIsChildOf( DamageType, class'KFDT_Toxic' ) )
-		TempDamage += InDamage * 10;
+		TempDamage += InDamage * 25;
 
 	InDamage = Round(TempDamage);
 	
@@ -106,7 +106,7 @@ function NotifyZedTimeStarted()
 
 simulated function float GetSnarePower( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
-	if( bUseSlug && WorldInfo.TimeDilation < 1.f && class<KFDamageType>(DamageType)!=None && class<KFDamageType>(DamageType).Default.ModifierPerkList.Find(BasePerk)>=0 )
+	if( bUseSlug && WorldInfo.TimeDilation < 1.f && IsDamageTypeOnPerk(DamageType, BasePerk) )
 		return 100;
 
 	return 0.f;

@@ -37,7 +37,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
 }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
-	if( ZEDTimeStunPower>0 && HitZoneIdx==HZI_Head && WorldInfo.TimeDilation<1.f && (class<KFDamageType>(DamageType)!=None && class<KFDamageType>(DamageType).Default.ModifierPerkList.Find(BasePerk)>=0) )
+	if( ZEDTimeStunPower>0 && HitZoneIdx==HZI_Head && WorldInfo.TimeDilation<1.f && IsDamageTypeOnPerk(DamageType, BasePerk) )
 		return Super.GetStunPowerModifier(DamageType,HitZoneIdx) + ZEDTimeStunPower;
 	return Super.GetStunPowerModifier(DamageType,HitZoneIdx);
 }
@@ -52,6 +52,14 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitDireReload')
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	BasePerk=class'KFPerk_Sharpshooter'
+
+	AdditionalOnPerkWeaponNames(0)="KFWeap_Pistol_9mm"
+   	AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
+   	AdditionalOnPerkWeaponNames(2)="KFWeap_Revolver_Rem1858"
+   	AdditionalOnPerkWeaponNames(3)="KFWeap_Revolver_SW500"
+	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
+	AdditionalOnPerkDTNames(1)="KFDT_Ballistic_SW500"
+	AdditionalOnPerkDTNames(2)="KFDT_Ballistic_Rem1858"
 
 	PrimaryMelee=class'KFWeap_Knife_Sharpshooter'
 	PrimaryWeapon=class'KFWeap_Rifle_Winchester1894'

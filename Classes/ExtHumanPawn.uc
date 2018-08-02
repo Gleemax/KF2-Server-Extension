@@ -207,6 +207,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 					InstigatorExtPerk.ModifyHealDelay( ScDelay );
 			}
 			UsedHealAmount = ScAmount;
+			AddToHealingPool(UsedHealAmount, ScDelay);
 
 			// You can never have a HealthToRegen value that's greater than HealthMax
 			if( Health + HealthToRegen + UsedHealAmount > HealthMax )
@@ -216,7 +217,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				
 	    	HealthToRegen += UsedHealAmount;
 			RepRegenHP = HealthToRegen;
-			AddToHealingPool(UsedHealAmount, ScDelay);
 
 			// Give the healer money/XP for helping a teammate
 		    if( Healer.Pawn != none && Healer.Pawn != self )
@@ -324,7 +324,7 @@ function GiveHealthOverTime()
 			if ( PoolIndex > 0 )
 			{
 				ClearTimer( nameof( GiveHealthOverTime ) );
-				SetTimer(RegenRatePool[PoolIndex], true, 'GiveHealthOverTime');
+				SetTimer(RegenRatePool[PoolIndex-1], true, 'GiveHealthOverTime');
 			}
 		}
 		

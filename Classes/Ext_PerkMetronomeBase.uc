@@ -92,7 +92,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
    	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
 	{
-		if( class<KFDamageType>(DamageType)!=None && class<KFDamageType>(DamageType).Default.ModifierPerkList.Find(BasePerk)>=0 )
+		if( IsDamageTypeOnPerk(DamageType, BasePerk) )
 			UpdateZedTimeCount(true);
 	}
 }

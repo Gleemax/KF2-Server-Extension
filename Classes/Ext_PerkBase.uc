@@ -26,6 +26,7 @@ var array<Texture2D> PrestigeIcons;
 var() array<class<KFWeaponDefinition> > AutoBuyLoadOutPath;
 // For OnPerk Check
 var() array<Name> AdditionalOnPerkWeapon;
+var() array<Name> AdditionalOnPerkDT;
 
 // Config init stuff.
 var config int ConfigVersion;
@@ -119,6 +120,19 @@ simulated final function bool IsWeaponOnPerk( KFWeapon W )
 		return true;
 		
 	return W!=None && W.GetWeaponPerkClass(BasePerk)==BasePerk;
+}
+
+static function bool IsDamageTypeOnPerk( class<DamageType> DT, class<KFPerk> Perk )
+{
+	local class<KFDamageType> KFDT;
+	KFDT = class<KFDamageType>(DT);
+	if( KFDT != none )
+	{
+		return KFDT.default.ModifierPerkList.Find(Perk)>=0 || 
+			default.AdditionalOnPerkDT.Find( KFDT.name )>=0;
+	}
+
+	return false;
 }
 
 simulated static function string GetPerkIconPath( int Level )

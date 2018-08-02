@@ -43,6 +43,15 @@ defaultproperties
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Gunslinger'
 	BasePerk=class'KFPerk_Gunslinger'
 	
+	AdditionalOnPerkWeapon(0)="ExtWeap_Pistol_9mm"
+   	AdditionalOnPerkWeapon(1)="ExtWeap_Pistol_Dual9mm"
+	AdditionalOnPerkWeapon(2)="KFWeap_GrenadeLauncher_HX25"
+   	AdditionalOnPerkDT(0)="KFDT_Ballistic_9mm"
+   	AdditionalOnPerkDT(1)="KFDT_Ballistic_Pistol_Medic"
+   	AdditionalOnPerkDT(2)="KFDT_Ballistic_Winchester"
+   	AdditionalOnPerkDT(3)="KFDT_Ballistic_HX25Impact"
+   	AdditionalOnPerkDT(4)="KFDT_Ballistic_HX25SubmunitionImpact"
+
 	PrimaryMelee=class'KFWeap_Knife_Gunslinger'
 	PrimaryWeapon=class'KFWeap_Revolver_DualRem1858'
 	PerkGrenade=class'KFProj_NailBombGrenade'
