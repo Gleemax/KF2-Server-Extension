@@ -1,7 +1,7 @@
-Class Ext_PerkParryBase extends Ext_PerkBase;
+Class Ext_PerkCardiac extends Ext_PerkBase;
 
-var bool bParryActive;
-var float ParryDuration,ReductionModifier,HardAtkDmgModifier,HeadDmgModifier;
+var bool bHasCardiac;
+var float CardiacDuration,ResistModifier,MoveSpdModifier,ReloadSpdModifier,HealAmmount;
 
 replication
 {
@@ -23,21 +23,14 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 		
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }
-simulated function ModifyHardAttackDamage( out int InDamage )
-{
-    if( bParryActive )
-        InDamage *= (1.f + HardAtkDmgModifier);
-
-	super.ModifyHardAttackDamage(InDamage);
-}
 
 final function SetDuration( float Duration )
 {
-	ParryDuration = Duration;
+	CardiacDuration = Duration;
 }
-final function SetReduction( float Modifier )
+final function SetResist( float Modifier )
 {
-	ReductionModifier = Modifier;
+	ResistModifier = Modifier;
 }
 final function SetHardAtkDmg( float Modifier )
 {
@@ -48,12 +41,14 @@ final function SetHeadDmg( float Modifier )
 	HeadDmgModifier = Modifier;
 }
 
-final function ResetParry()
+final function ResetCardiac()
 {
-	ParryDuration = 0;
-	ReductionModifier = 0;
-	HardAtkDmgModifier = 0;
-	HeadDmgModifier = 0;
+	CardiacDuration = 0;
+	ResistModifier = 0;
+	MoveSpdModifier = 0;
+	ReloadSpdModifier = 0;
+	HealAmmount = 0;
+
 }
 
 simulated function SetSuccessfullParry()
