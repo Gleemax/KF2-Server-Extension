@@ -1327,9 +1327,8 @@ function SacrificeExplode()
 	SurvPerk = Ext_PerkSurvivalist(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
 	if (SurvPerk != None)
 	{
-		Health = Min( HealthMax * 0.25, HealthMax) ;
-		Armor = Min( Armor + MaxArmor * 0.25, MaxArmor );
-		HealDamage( 5, Controller, class'KFDT_Healing', false, false);
+		Health = Min( HealthMax * 0.30, HealthMax) ;
+		HealDamage( 100, Controller, class'KFDT_Healing', false, false);
 		
 		SurvPerk.bUsedSacrifice = true;
 	}

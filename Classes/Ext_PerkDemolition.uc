@@ -15,11 +15,6 @@ simulated function float GetAoERadiusModifier()
 	return AOEMult;
 }
 
-simulated function bool GetUsingTactialReload( KFWeapon KFW )
-{
-	return (IsWeaponOnPerk(KFW) ? Modifiers[5]<0.85 : false);
-}
-
 simulated function float ApplyEffect( name Type, float Value, float Progress )
 {
 	local KFPlayerReplicationInfo MyPRI;
@@ -84,6 +79,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitDemoCriticalHit')
 	DefTraitList.Add(class'Ext_TraitDemoAOE')
 	DefTraitList.Add(class'Ext_TraitDemoReactiveArmor')
+	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitDemoNuke')
 	DefTraitList.Add(class'Ext_TraitDemoProfessional')
 	BasePerk=class'KFPerk_Demolitionist'
