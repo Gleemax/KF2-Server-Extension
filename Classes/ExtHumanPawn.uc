@@ -58,6 +58,8 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InDamage = Max(HealthMax*0.5,1);
 }
 
+function ThrowWeaponOnDeath();
+
 simulated function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
 	local ExtPlayerController C;
