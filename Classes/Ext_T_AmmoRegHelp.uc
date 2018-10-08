@@ -9,7 +9,7 @@ function PostBeginPlay()
 	PawnOwner = Pawn(Owner);
 	if( PawnOwner==None )
 		Destroy();
-	else SetTimer(29+FRand(),true);
+	else SetTimer(29.9+FRand()*0.2,true);
 }
 function Timer()
 {
@@ -32,6 +32,8 @@ function Timer()
 			}
 			if ( KFWeap_AssaultRifle_M16M203(W) != none )
 				KFWeap_AssaultRifle_M16M203(W).ServerTotalAltAmmo = W.SpareAmmoCount[1];
+			if ( KFWeap_AssaultRifle_MedicRifleGrenadeLauncher(W) != none )
+				KFWeap_AssaultRifle_MedicRifleGrenadeLauncher(W).ServerTotalAltAmmo = W.SpareAmmoCount[1];
 		}
 	}
 }

@@ -1,6 +1,6 @@
 Class Ext_PerkSurvivalist extends Ext_PerkBase;
 
-var bool bHasMadman;
+var bool bHasMadman,bhasInvincible;
 var() byte GrenadeLevel;
 var() array<class<KFProj_Grenade> > PGrenadeList,SGrenadeList;
 
@@ -9,6 +9,23 @@ replication
 	// Things the server should send to the client.
 	if ( true )
 		bHasMadman;
+}
+
+simulated function ModifyMeleeAttackSpeed( out float InDuration )
+{
+	InDuration *= Modifiers[4];
+	
+	super.ModifyMeleeAttackSpeed(InDuration);
+}
+simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
+{
+	if( InDamage>0 && class<KFDamageType>(DamageType)!=None )
+	{
+		if( bhasInvincible && WorldInfo.TimeDilation < 1.f )
+			InDamage = 0;
+	}
+		
+	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }
 
 simulated function PostBeginPlay()
@@ -103,6 +120,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitCardiac')
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitMadman')
+	DefTraitList.Add(class'Ext_TraitInvincible')
 	BasePerk=class'KFPerk_Survivalist'
 
 	PrimaryMelee=class'KFWeap_Random'
@@ -122,11 +140,11 @@ defaultproperties
 	PGrenadeList.Add(class'KFProj_MolotovGrenade')
 
 	SGrenadeList.Add(class'ExtProj_SUPERGrenade')
+	SGrenadeList.Add(class'ExtProj_SUPERGrenade')
 	SGrenadeList.Add(class'ExtProj_SUPERFlashBang')
 	SGrenadeList.Add(class'ExtProj_SUPEREmpGrenade')
 	SGrenadeList.Add(class'ExtProj_SUPERMedGrenade')
 	SGrenadeList.Add(class'ExtProj_SUPERFreezeGrenade')
-	SGrenadeList.Add(class'ExtProj_SUPERMolotov')
 
 	PrimaryWeaponDef=class'KFWeapDef_Random'
 	KnifeWeaponDef=class'KFweapDef_Knife_Support'

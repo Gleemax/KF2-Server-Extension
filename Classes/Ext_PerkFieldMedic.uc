@@ -54,7 +54,7 @@ function bool ModifyHealAmount( out float HealAmount )
 }
 simulated function ModifyHealerRechargeTime( out float RechargeRate )
 {
-	RechargeRate /= Clamp(Modifiers[9] * 1.5, 1.f, 3.f);
+	RechargeRate /= Clamp(Modifiers[9] * 1.5, 1.0, 3.f);
 }
 
 function CheckForAirborneAgent( KFPawn HealTarget, class<DamageType> DamType, int HealAmount )

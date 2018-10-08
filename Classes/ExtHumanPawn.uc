@@ -58,8 +58,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InDamage = Max(HealthMax*0.5,1);
 }
 
-function ThrowWeaponOnDeath();
-
 simulated function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
 	local ExtPlayerController C;
@@ -371,9 +369,9 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	if( damageType!=class'DmgType_Fell' ) // Not from falling!
 	{
 		if( bRagdollFromMomentum && Damage>2 && VSizeSq(Momentum)>1000000.f && Rand(3)==0 ) // Square(1000)
-			SetFeignDeath(3.f+FRand()*2.5f); // Randomly knockout a player if hit by a huge force.
+			SetFeignDeath(3.f+FRand()*2.5); // Randomly knockout a player if hit by a huge force.
 		else if( bRagdollFromBackhit && Damage>20 && VSizeSq(Momentum)>40000.f && (vector(Rotation) Dot Momentum)>0.f && Rand(4)==0 )
-			SetFeignDeath(2.f+FRand()*3.f); // Randomly knockout a player if hit from behind.
+			SetFeignDeath(2.f+FRand()*2.f); // Randomly knockout a player if hit from behind.
 	}
 	Super.PlayHit(Damage,InstigatedBy,HitLocation,damageType,Momentum,HitInfo);
 }
@@ -1339,6 +1337,7 @@ function SacrificeExplode()
 	DemoPerk = Ext_PerkDemolition(ExtPlayerController(Controller).ActivePerkManager.CurrentPerk);
 	if (DemoPerk != None)
 	{
+		Health = Min( 25, HealthMax) ;
 		ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
 		if( ExploActor != None )
 		{

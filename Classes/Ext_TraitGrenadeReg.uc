@@ -25,7 +25,7 @@ defaultproperties
 	DefLevelCosts(0)=10
 	DefLevelCosts(1)=20
 	DefLevelCosts(2)=40
+	RegenIntervals.Add(15)
 	RegenIntervals.Add(9)
-	RegenIntervals.Add(6)
-	RegenIntervals.Add(4)
+	RegenIntervals.Add(5)
 }

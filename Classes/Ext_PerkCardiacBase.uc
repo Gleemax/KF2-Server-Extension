@@ -1,7 +1,7 @@
 Class Ext_PerkCardiacBase extends Ext_PerkBase;
 
 var byte Level,CurrentState,EndState;
-var array<float> ModifierDuration,MoveSpdModifier,ResistModifier,ReloadSpdModifier,HealAmmount;
+var float Duration[2],MoveSpdModifier[2],ResistModifier[2],ReloadSpdModifier[2],HealAmmount[2];
 
 replication
 {
@@ -13,13 +13,13 @@ replication
 simulated function ModifySpeed( out float Speed )
 {
 	if( Level> 0 )
-		Speed *= MoveSpdModifier[CurrentState]
+		Speed *= MoveSpdModifier[CurrentState];
 	super.ModifySpeed(Speed);
 }
 simulated function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy )
 {	
 	if( Level> 0 )
-		Speed *= ResistModifier[CurrentState]
+		InDamage *= ResistModifier[CurrentState];
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }
 simulated function float GetReloadRateScale(KFWeapon KFW)
@@ -36,36 +36,11 @@ final function SetEndState( byte state )
 {
 	EndState = state;
 }
-final function SetDuration( array<float> Duration )
-{
-	ModifierDuration = Duration;
-}
-final function SetMoveSpd( array<float> MoveSpd )
-{
-	MoveSpdModifier = MoveSpd;
-}
-final function SetResist( array<float> Resist )
-{
-	ResistModifier = Resist;
-}
-final function SetReloadSpd( array<float> ReloadSpd )
-{
-	ReloadSpdModifier = ReloadSpd;
-}
-final function SetHealAmmount( array<float> Ammount )
-{
-	HealAmmount = Ammount;
-}
 
 final function ResetCardiac()
 {
 	Level = 0;
 	CurrentState = 0;
-	ModifierDuration.Empty()
-	MoveSpdModifier.Empty()
-	ResistModifier.Empty()
-	ReloadSpdModifier.Empty()
-	HealAmmount.Empty()
 }
 
 simulated function StateActive( byte state )
@@ -83,7 +58,7 @@ simulated function StateActive( byte state )
 
 simulated function EffectRun()
 {
-	SetTimer(EffectRun, )
+
 }
 
 simulated function PassiveDeactive()

@@ -1441,7 +1441,10 @@ simulated final function DrawZedHealthbar(Canvas C, KFPawn_Monster KFPM, vector 
 	C.EnableStencilTest(false);
 }
 
-function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DamageType );
+function PlayerKilled( KFPawn_Monster Victim, class<DamageType> DamageType )
+{
+	// Prevent Weapon Throw
+};
 
 function ModifyBloatBileDoT( out float DoTScaler )
 {

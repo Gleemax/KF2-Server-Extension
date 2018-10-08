@@ -9,7 +9,7 @@ function PostBeginPlay()
 	PawnOwner = KFPawn_Human(Owner);
 	if( PawnOwner==None )
 		Destroy();
-	else SetTimer(9+FRand(),true);
+	else SetTimer(9.9+FRand()*0.2,true);
 }
 function Timer()
 {

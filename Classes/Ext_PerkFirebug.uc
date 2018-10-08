@@ -1,5 +1,26 @@
 Class Ext_PerkFirebug extends Ext_PerkBase;
 
+var bool bPyromaniac;
+
+replication
+{
+	// Things the server should send to the client.
+	if ( true )
+		bPyromaniac;
+}
+
+simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
+{
+	return bPyromaniac && IsWeaponOnPerk(KFW) && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated function float GetZedTimeModifier( KFWeapon W )
+{
+	if( bPyromaniac && WorldInfo.TimeDilation<1.f && IsWeaponOnPerk(W) && BasePerk.Default.ZedTimeModifyingStates.Find(W.GetStateName()) != INDEX_NONE )
+		return 0.9f;
+	return 0.f;
+}
+
 defaultproperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
@@ -7,6 +28,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitNapalm')
 	DefTraitList.Add(class'Ext_TraitFireExplode')
 	DefTraitList.Add(class'Ext_TraitFireRange')
+	DefTraitList.Add(class'Ext_TraitPyromaniac')
 	BasePerk=class'KFPerk_Firebug'
 
 	PrimaryMelee=class'KFWeap_Knife_Firebug'
