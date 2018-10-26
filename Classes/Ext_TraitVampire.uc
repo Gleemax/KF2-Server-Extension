@@ -15,10 +15,10 @@ defaultproperties
 {
 	SupportedPerk=class'Ext_PerkBerserker'
 	NumLevels=4
-	DefLevelCosts(0)=25
-	DefLevelCosts(1)=15
-	DefLevelCosts(2)=20
-	DefLevelCosts(3)=35
+	DefLevelCosts(0)=20
+	DefLevelCosts(1)=30
+	DefLevelCosts(2)=35
+	DefLevelCosts(3)=45
 	RegenRate.Add(2)
 	RegenRate.Add(3)
 	RegenRate.Add(4)

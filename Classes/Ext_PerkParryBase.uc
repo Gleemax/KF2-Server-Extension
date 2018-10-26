@@ -1,13 +1,13 @@
 Class Ext_PerkParryBase extends Ext_PerkBase;
 
 var bool bParryActive;
-var float ParryDuration,ReductionModifier,MeleeDmgModifier,HeadDmgModifier;
+var float ParryDuration,ReductionModifier,HardAtkDamageModifier,HeadDmgModifier;
 
 replication
 {
 	// Things the server should send to the client.
 	if ( true )
-		bParryActive,ParryDuration,MeleeDmgModifier,HeadDmgModifier;
+		bParryActive,ParryDuration,HardAtkDamageModifier,HeadDmgModifier;
 }
 
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
@@ -15,9 +15,6 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
     if( bParryActive && ( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) ) )
 	{
-		if( DamageCauser != none && (KFWeapon(DamageCauser)).IsMeleeWeapon() )
-			InDamage *= (1.f+MeleeDmgModifier);
-
 		if( HitZoneIdx == HZI_HEAD  )
 			InDamage *= (1.f+HeadDmgModifier);
 	}
@@ -29,7 +26,11 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 		
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }
-
+simulated function ModifyHardAttackDamage( out int InDamage )
+{
+	if( bParryActive )
+		InDamage *= (1.f+HardAtkDamageModifier);
+}
 final function SetDuration( float Duration )
 {
 	ParryDuration = Duration;
@@ -38,9 +39,9 @@ final function SetReduction( float Modifier )
 {
 	ReductionModifier = Modifier;
 }
-final function SetMeleeDmg( float Modifier )
+final function SetHardAtkDamage( float Modifier )
 {
-	MeleeDmgModifier = Modifier;
+	HardAtkDamageModifier = Modifier;
 }
 final function SetHeadDmg( float Modifier )
 {
@@ -51,7 +52,7 @@ final function ResetParry()
 {
 	ParryDuration = 0;
 	ReductionModifier = 0;
-	MeleeDmgModifier = 0;
+	HardAtkDamageModifier = 0;
 	HeadDmgModifier = 0;
 }
 

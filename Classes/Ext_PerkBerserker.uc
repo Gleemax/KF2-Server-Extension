@@ -23,7 +23,7 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 		if( (!PerkManager.bUseBounty) && (InstigatedBy.GetTeamNum()==0 && InstigatedBy!=PlayerOwner ) && class<KFDamageType>(DamageType)!=None )
 			InDamage = Max(Indamage*0.5f, 1);
 	}
-		
+			
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
 }
 simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
