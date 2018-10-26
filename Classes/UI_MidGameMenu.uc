@@ -14,7 +14,7 @@ var transient KFGUI_Button PrevButton;
 var transient int NumButtons,NumButtonRows;
 var transient bool bInitSpectate,bOldSpectate;
 
-var() Localized string localizedStr[14];
+var() Localized string localizedStr[21];
 
 function InitMenu()
 {
@@ -29,9 +29,10 @@ function InitMenu()
 	SpectateButton = AddMenuButton('Spectate',"","");
 	AddMenuButton('Close',localizedStr[6],localizedStr[7]);
 	AddMenuButton('Exit',localizedStr[8],localizedStr[9]);
-	
+
 	for( i=0; i<Pages.Length; ++i )
 	{
+		Pages[i].Caption = localizedStr[i+14];
 		PageSwitcher.AddPage(Pages[i].PageClass,Pages[i].Caption,Pages[i].Hint,B).InitMenu();
 		if( Pages[i].PageClass==Class'UIP_AdminMenu' )
 			AdminButton = B;

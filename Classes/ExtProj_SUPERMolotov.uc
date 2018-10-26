@@ -15,7 +15,8 @@ defaultproperties
 	
 	// explosion
 	Begin Object Name=ExploTemplate0
-		Damage=750
+		MyDamageType=class'ExtDT_SUPERMolotov'
+		Damage=500
 		DamageRadius=500
 	End Object
 }

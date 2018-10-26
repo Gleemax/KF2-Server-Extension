@@ -47,6 +47,24 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	return 0.f;
 }
 
+simulated function PostBeginPlay()
+{
+	super.PostBeginPlay();
+	SetTimer(0.99+FRand()*0.02,true,nameof(HealthRegen));
+}
+
+simulated function HealthRegen()
+{
+	if( PlayerOwner.Pawn.Health>0 && PlayerOwner.Pawn.Health<PlayerOwner.Pawn.HealthMax )
+		PlayerOwner.Pawn.Health = Min(PlayerOwner.Pawn.HealthMax, PlayerOwner.Pawn.Health + 1);
+}
+
+simulated function Destroyed()
+{
+	ClearTimer(nameof(HealthRegen));
+	super.Destroyed();
+}
+
 defaultproperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'

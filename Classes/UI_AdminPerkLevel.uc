@@ -55,7 +55,7 @@ defaultproperties
 	bAlwaysTop=true
 	bOnlyThisFocus=true
 
-	Begin Object Class=KFGUI_Button Name=YesButten
+	Begin Object Class=KFGUI_Button Name=YesButton
 		ID="Yes"
 		ButtonText="Submit"
 		Tooltip="Set the perk/prestige level"
@@ -67,7 +67,7 @@ defaultproperties
 		OnClickLeft=ButtonClicked
 		OnClickRight=ButtonClicked
 	End Object
-	Begin Object Class=KFGUI_Button Name=NoButten
+	Begin Object Class=KFGUI_Button Name=NoButton
 		ID="No"
 		ButtonText="Cancel"
 		Tooltip="Abort without doing anything"
@@ -88,7 +88,7 @@ defaultproperties
 		MaxValue=99999
 	End Object
 
-	Components.Add(YesButten)
-	Components.Add(NoButten)
+	Components.Add(YesButton)
+	Components.Add(NoButton)
 	Components.Add(EditBox)
 }

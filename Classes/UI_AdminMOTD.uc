@@ -67,7 +67,7 @@ defaultproperties
 		XSize=0.98
 		YSize=0.77
 	End Object
-	Begin Object Class=KFGUI_Button Name=YesButten
+	Begin Object Class=KFGUI_Button Name=YesButton
 		ID="Yes"
 		ButtonText="Submit"
 		Tooltip="Submit changes to server"
@@ -79,7 +79,7 @@ defaultproperties
 		OnClickLeft=ButtonClicked
 		OnClickRight=ButtonClicked
 	End Object
-	Begin Object Class=KFGUI_Button Name=NoButten
+	Begin Object Class=KFGUI_Button Name=NoButton
 		ID="No"
 		ButtonText="Cancel"
 		Tooltip="Abort without doing anything"
@@ -101,7 +101,7 @@ defaultproperties
 	End Object
 	
 	Components.Add(WarningLabel)
-	Components.Add(YesButten)
-	Components.Add(NoButten)
+	Components.Add(YesButton)
+	Components.Add(NoButton)
 	Components.Add(EditBox)
 }

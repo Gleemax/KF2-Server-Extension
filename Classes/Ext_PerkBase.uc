@@ -1254,7 +1254,7 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 			InDamage = Max(InDamage*Modifiers[15],1); // Do at least 1 damage.
 		else if( Modifiers[16]<1 && class<KFDT_Sonic>(DamageType)!=None )
 			InDamage = Max(InDamage*Modifiers[16],1);
-		else if( Modifiers[17]<1 && class<KFDT_Fire>(DamageType)!=None )
+		else if( Modifiers[17]<1 && ( class<KFDT_Fire>(DamageType)!=None || class<KFDT_Microwave>(DamageType)!=None ) )
 			InDamage = Max(InDamage*Modifiers[17],1);
 		if( Modifiers[18]<1 && InstigatedBy!=None && InstigatedBy!=PlayerOwner )
 			InDamage = Max(InDamage*Modifiers[18],1);
@@ -1349,7 +1349,7 @@ function bool ModifyHealDelay( out float HealDelay )
 }
 simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
-	if( MagazineCapacity>2 && (KFW==None ? WeaponPerkClass.Find(BasePerk)>=0 : IsWeaponOnPerk(KFW)) ) // Skip boomstick for this.
+	if( MagazineCapacity>4 && (KFW==None ? WeaponPerkClass.Find(BasePerk)>=0 : IsWeaponOnPerk(KFW)) ) // Skip boomstick*doomstick for this.
 		MagazineCapacity = Min(MagazineCapacity*Modifiers[10],255);
 }
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )

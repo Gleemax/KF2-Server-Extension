@@ -28,7 +28,7 @@ function InitMenu()
 	if( ExtPlayerController(GetPlayer()).bThirdPersonEnabled )
 		KeyBindButton = AddButton("",localizedStr[14],localizedStr[15],'KB',KeyBindLabel);
 	AddCheckBox(localizedStr[16],localizedStr[17],'ZP',class'ExtPlayerController'.Default.bNoMonsterPlayer);
-	AddCheckBox(localizedStr[18],localizedStr[19],'NS',class'ExtPlayerController'.Default.bNoScreenShake);
+	AddCheckBox(localizedStr[18],localizedStr[19],'NS',class'ExtPlayerController'.Default.bHasScreenShake);
 	if( ExtPlayerController(GetPlayer()).bThirdPersonEnabled )
 		InitBehindviewKey();
 }
@@ -119,7 +119,7 @@ function CheckChange( KFGUI_CheckBox Sender )
 		PC.SendServerSettings();
 		break;
 	case 'NS':
-		PC.bNoScreenShake = Sender.bChecked;
+		PC.bHasScreenShake = Sender.bChecked;
 		break;
 	case 'K2DM':
 		PC.bUseKF2DeathMessages = Sender.bChecked;

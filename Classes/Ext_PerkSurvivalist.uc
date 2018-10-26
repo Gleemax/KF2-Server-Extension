@@ -123,9 +123,13 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitInvincible')
 	BasePerk=class'KFPerk_Survivalist'
 
-	PrimaryMelee=class'KFWeap_Random'
-	PrimaryWeapon=class'KFWeap_Knife_Support'
+	PrimaryMelee=class'KFWeap_Knife_Survivalist'
+	PrimaryWeapon=class'KFWeap_Ice_FreezeThrower'
 	PerkGrenade=class'KFProj_HEGrenade'
+
+	PrimaryWeaponDef=class'KFWeapDef_FreezeThrower'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Survivalist'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Commando'
 
 	GrenadeLevel=0
 
@@ -145,10 +149,6 @@ defaultproperties
 	SGrenadeList.Add(class'ExtProj_SUPEREmpGrenade')
 	SGrenadeList.Add(class'ExtProj_SUPERMedGrenade')
 	SGrenadeList.Add(class'ExtProj_SUPERFreezeGrenade')
-
-	PrimaryWeaponDef=class'KFWeapDef_Random'
-	KnifeWeaponDef=class'KFweapDef_Knife_Support'
-	GrenadeWeaponDef=class'KFWeapDef_Grenade_Commando'
 
 	AutoBuyLoadOutPath=(class'KFWeapDef_DragonsBreath', class'KFWeapDef_M16M203', class'KFWeapDef_MedicRifle')
 }

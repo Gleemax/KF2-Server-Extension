@@ -1,24 +1,27 @@
 Class UI_UnloadInfo extends KFGUI_FloatingWindow;
 
 var class<Ext_PerkBase> PerkToReset;
-var KFGUI_Button YesButten;
+var KFGUI_Button YesButton,NoButton;
 var KFGUI_TextField InfoLabel;
 var byte CurCallCode;
 
-var() Localized string localizedStr[8];
+var() Localized string localizedStr[10];
 
 function InitMenu()
 {
-	YesButten = KFGUI_Button(FindComponentID('Yes'));
 	InfoLabel = KFGUI_TextField(FindComponentID('Info'));
+	YesButton = KFGUI_Button(FindComponentID('Yes'));
+	NoButton = KFGUI_Button(FindComponentID('No'));
+	YesButton.ButtonText = localizedStr[1];
+	NoButton.ButtonText = localizedStr[2];
 	Super.InitMenu();
 }
 final function SetupTo( class<Ext_PerkBase> P )
 {
 	PerkToReset = P;
 	WindowTitle = localizedStr[0]$P.Default.PerkName;
-	YesButten.SetDisabled(true);
-	InfoLabel.SetText(localizedStr[1]);
+	YesButton.SetDisabled(true);
+	InfoLabel.SetText(localizedStr[3]);
 	++CurCallCode;
 	ExtPlayerController(GetPlayer()).OnClientGetResponse = ReceivedInfo;
 	ExtPlayerController(GetPlayer()).ServerGetUnloadInfo(CurCallCode,PerkToReset,false);
@@ -50,14 +53,14 @@ function ReceivedInfo( byte CallID, byte Code, int DataA, int DataB )
 	switch( Code )
 	{
 	case 0:
-		InfoLabel.SetText(localizedStr[2]);
+		InfoLabel.SetText(localizedStr[4]);
 		break;
 	case 1:
-		InfoLabel.SetText(localizedStr[3]$DataA$localizedStr[4]);
+		InfoLabel.SetText(localizedStr[5]$DataA$localizedStr[6]);
 		break;
 	case 2:
-		InfoLabel.SetText(localizedStr[5]$DataA$localizedStr[6]$DataB$localizedStr[7]);
-		YesButten.SetDisabled(false);
+		InfoLabel.SetText(localizedStr[7]$DataA$localizedStr[8]$DataB$localizedStr[9]);
+		YesButton.SetDisabled(false);
 		break;
 	}
 }
@@ -78,7 +81,7 @@ defaultproperties
 		XSize=0.98
 		YSize=0.775
 	End Object
-	Begin Object Class=KFGUI_Button Name=YesButten
+	Begin Object Class=KFGUI_Button Name=YesButton
 		ID="Yes"
 		ButtonText="YES"
 		Tooltip="Reset the perk (you can not undo this action!)"
@@ -90,7 +93,7 @@ defaultproperties
 		OnClickLeft=ButtonClicked
 		OnClickRight=ButtonClicked
 	End Object
-	Begin Object Class=KFGUI_Button Name=NoButten
+	Begin Object Class=KFGUI_Button Name=NoButton
 		ID="No"
 		ButtonText="ABORT"
 		Tooltip="Abort without doing anything"
@@ -103,6 +106,6 @@ defaultproperties
 	End Object
 	
 	Components.Add(WarningLabel)
-	Components.Add(YesButten)
-	Components.Add(NoButten)
+	Components.Add(YesButton)
+	Components.Add(NoButton)
 }

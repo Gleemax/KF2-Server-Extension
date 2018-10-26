@@ -238,6 +238,6 @@ defaultproperties
 {
 	RespawnHelperTime=1
 	HPScale=0.25
-	DamageScale=5.0
+	DamageScale=7.5
 	FriendlyScalar=0.85
 }

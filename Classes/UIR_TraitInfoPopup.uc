@@ -88,7 +88,7 @@ defaultproperties
 		XSize=0.9
 		YSize=0.8
 	End Object
-	Begin Object Class=KFGUI_Button Name=BuyButten
+	Begin Object Class=KFGUI_Button Name=BuyButton
 		ID="Yes"
 		Tooltip="Purchase this trait (you can not undo this action!)"
 		XPosition=0.3
@@ -99,7 +99,7 @@ defaultproperties
 		OnClickLeft=ButtonClicked
 		OnClickRight=ButtonClicked
 	End Object
-	Begin Object Class=KFGUI_Button Name=CancelButten
+	Begin Object Class=KFGUI_Button Name=CancelButton
 		ID="No"
 		ButtonText="Cancel"
 		Tooltip="Abort without doing anything"
@@ -112,6 +112,6 @@ defaultproperties
 	End Object
 	
 	Components.Add(TraitInfoLbl)
-	Components.Add(BuyButten)
-	Components.Add(CancelButten)
+	Components.Add(BuyButton)
+	Components.Add(CancelButton)
 }

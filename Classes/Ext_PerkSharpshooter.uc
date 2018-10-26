@@ -48,18 +48,17 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitWPSharp')
 	DefTraitList.Add(class'Ext_TraitRackEmUp')
 	DefTraitList.Add(class'Ext_TraitRanger')
-	DefTraitList.Add(class'Ext_TraitFarAway')
+	DefTraitList.Add(class'Ext_TraitSniping')
 	DefTraitList.Add(class'Ext_TraitDireReload')
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	BasePerk=class'KFPerk_Sharpshooter'
-
-	AdditionalOnPerkWeaponNames(0)="KFWeap_Pistol_9mm"
-   	AdditionalOnPerkWeaponNames(1)="KFWeap_Pistol_Dual9mm"
-   	AdditionalOnPerkWeaponNames(2)="KFWeap_Revolver_Rem1858"
-   	AdditionalOnPerkWeaponNames(3)="KFWeap_Revolver_SW500"
-	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_9mm"
-	AdditionalOnPerkDTNames(1)="KFDT_Ballistic_SW500"
-	AdditionalOnPerkDTNames(2)="KFDT_Ballistic_Rem1858"
+	
+	AdditionalOnPerkWeapon(0)="ExtWeap_Pistol_9mm"
+   	AdditionalOnPerkWeapon(1)="KFWeap_Revolver_Rem1858"
+   	AdditionalOnPerkWeapon(2)="KFWeap_Revolver_SW500"
+	AdditionalOnPerkDT(0)="KFDT_Ballistic_9mm"
+	AdditionalOnPerkDT(1)="KFDT_Ballistic_Rem1858"
+	AdditionalOnPerkDT(2)="KFDT_Ballistic_SW500"
 
 	PrimaryMelee=class'KFWeap_Knife_Sharpshooter'
 	PrimaryWeapon=class'KFWeap_Rifle_Winchester1894'

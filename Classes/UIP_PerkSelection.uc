@@ -1,7 +1,7 @@
 Class UIP_PerkSelection extends KFGUI_MultiComponent;
 
 var KFGUI_List PerkList;
-var KFGUI_Button B_Prestige;
+var KFGUI_Button B_Reset,B_Unload,B_Prestige;
 var KFGUI_ComponentList StatsList;
 var UIR_PerkTraitList TraitsList;
 var KFGUI_TextLable PerkLabel;
@@ -11,7 +11,7 @@ var class<Ext_PerkBase> PrevPendingPerk;
 var array<UIR_PerkStat> StatBuyers;
 var int OldPerkPoints;
 
-var() Localized string localizedStr[5];
+var() Localized string localizedStr[10];
 
 function InitMenu()
 {
@@ -20,7 +20,14 @@ function InitMenu()
 	TraitsList = UIR_PerkTraitList(FindComponentID('Traits'));
 	PerkLabel = KFGUI_TextLable(FindComponentID('Info'));
 	PerkLabel.SetText("");
+	B_Reset = KFGUI_Button(FindComponentID('Reset'));
+	B_Unload = KFGUI_Button(FindComponentID('Unload'));
 	B_Prestige = KFGUI_Button(FindComponentID('Prestige'));
+	B_Reset.ButtonText = localizedStr[4];
+	B_Unload.ButtonText = localizedStr[5];
+	B_Prestige.ButtonText = localizedStr[6];
+	B_Reset.ToolTip = localizedStr[7];
+	B_Unload.ToolTip = localizedStr[8];
 	Super.InitMenu();
 }
 function ShowMenu()
@@ -106,7 +113,7 @@ function Timer()
 				for( i=0; i<StatsList.ItemComponents.Length; ++i )
 					StatBuyers[i].CloseMenu();
 				StatsList.ItemComponents.Length = 0;
-				PerkLabel.SetText(localizedStr[4]);
+				PerkLabel.SetText(localizedStr[9]);
 			}
 		}
 		else if( PendingPerk!=None && OldPerkPoints!=PendingPerk.CurrentSP )

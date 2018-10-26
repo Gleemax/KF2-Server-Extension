@@ -35,7 +35,7 @@ var transient rotator EndGameCamRot,CalcViewRotation;
 var transient float EndGameCamTimer,LastPlayerCalcView;
 var transient bool bEndGameCamFocus;
 
-var globalconfig bool bShowFPLegs,bHideNameBeacons,bHideKillMsg,bHideDamageMsg,bHideNumberMsg,bNoMonsterPlayer,bNoScreenShake,bRenderModes,bUseKF2DeathMessages,bUseKF2KillMessages;
+var globalconfig bool bShowFPLegs,bHideNameBeacons,bHideKillMsg,bHideDamageMsg,bHideNumberMsg,bNoMonsterPlayer,bHasScreenShake,bRenderModes,bUseKF2DeathMessages,bUseKF2KillMessages;
 var globalconfig int SelectedEmoteIndex;
 var bool bMOTDReceived,bNamePlateShown,bNamePlateHidden,bClientHideKillMsg,bClientHideDamageMsg,bClientHideNumbers,bNoDamageTracking,bClientNoZed,bSetPerk,bThirdPersonEnabled;
 
@@ -158,7 +158,7 @@ function AddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<
 
 unreliable client function ClientPlayCameraShake( CameraShake Shake, optional float Scale=1.f, optional bool bTryForceFeedback, optional ECameraAnimPlaySpace PlaySpace=CAPS_CameraLocal, optional rotator UserPlaySpaceRot )
 {
-	if( !bNoScreenShake )
+	if( bHasScreenShake )
 		Super.ClientPlayCameraShake(Shake,Scale,bTryForceFeedback,PlaySpace,UserPlaySpaceRot);
 }
 
