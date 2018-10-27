@@ -1,33 +1,35 @@
-Class Ext_PerkMetronomeBase extends Ext_PerkBase;
+Class Ext_PerkPendulumBase extends Ext_PerkBase;
 
-var byte HeadShotMax,HeadShotCount,ZTStackCount,ZTStackMax;
-var float CountdownIntervall;
+var byte HeadShotMax,HeadShotCount,StackCount,StackMax;
+var float StackInterval;
 var KFPawn_Monster LKFPM;
 var bool bCountingDown,bEnabledUI;
 
 final function SetIntervall( float Intervall )
 {
-	CountdownIntervall = Intervall;
+	StackInterval = Intervall;
 }
 final function SetMaxStack( byte MaxStack )
 {
-	ZTStackMax = MaxStack;
+	StackMax = MaxStack;
 }
 
 final function EnableMetronome( bool bEnabled )
 {
 	if (!bEnabled) 
 	{
-		HeadShotMax = 0;
 		HeadShotCount = 0;
-		ZTStackCount = 0;
-		ZTStackMax = 0;
+		StackCount = 0;
+		StackMax = 0;
 		bEnabledUI = false;
-		CountdownIntervall = 0;
+		StackInterval = 0;
 		HeadShotMessage(0,true,1);
+		ClearTimer(nameOf(AddStack));
 	}
 	else 
-		SetTimer(CountdownIntervall,true,nameOf(SetUpMetronome));
+	{
+		SetTimer(StackInterval,true,nameOf(AddStack));
+	}
 }
 final function EnableUI( bool bEnabled )
 {
@@ -43,41 +45,49 @@ final function EnableUI( bool bEnabled )
 	}
 	
 }
-final function UpdateZedTimeCount( bool bHit )
+final function UpdHeadshotCount( bool bHit )
 {
 	local KFGameInfo KFGI;
 	if( bHit )
 	{
 		HeadShotCount = Max(HeadShotCount-1,0);
-		if ( HeadShotCount <= 0 )
+		if ( HeadShotCount == 0 )
 		{
 			KFGI = KFGameInfo(WorldInfo.Game);
 			KFGI.DramaticEvent(1.0);
-			if ( --ZTStackCount > 0 )
+			if ( StackCount >= StackMax)
+			{
+				SetTimer(StackInterval,true,nameOf(AddStack));
+				bCountingDown = true;
+			}
+			if ( --StackCount > 0 )
 				HeadShotCount = HeadShotMax;
-			bCountingDown = true;
-			SetTimer(CountdownIntervall,true,nameOf(SetUpMetronome));
 		}
 	}
 	else
+	{
 		HeadShotCount = HeadShotMax;
+	}
 	if ( bEnabledUI )
 		HeadShotMessage(HeadShotCount,true,HeadShotMax);
 }
-final function SetUpMetronome()
+final function AddStack()
 {
-	HeadShotMax = 5;
-	ZTStackCount = ZTStackMax;
-	UpdateZedTimeCount(false);
-	ClearTimer(nameOf(SetUpMetronome));
-	bCountingDown = false;
+	StackCount = Min(StackCount+1, StackMax);
+	if( HeadShotCount <= 0 )
+		UpdHeadshotCount(false);
+	if( StackCount == StackMax )
+	{
+		ClearTimer(nameOf(AddStack));
+		bCountingDown = false;
+	}
 }
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit )
 {
    	local int HitZoneIdx;
    	local KFPawn_Monster KFPM;
  	
-	if( ZTStackCount<=0 || HeadShotCount<=0 )
+	if( WorldInfo.TimeDilation<1.f || StackCount<=0 || HeadShotCount<=0 )
 		return;
 		
    	KFPM = KFPawn_Monster(Impact.HitActor);
@@ -85,7 +95,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    		return;
 	if ( KFPM != LKFPM )
 	{
-		UpdateZedTimeCount(false);
+		UpdHeadshotCount(false);
 		LKFPM = KFPM;
 	}
 
@@ -93,7 +103,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
 	{
 		if( IsDamageTypeOnPerk(DamageType, BasePerk) )
-			UpdateZedTimeCount(true);
+			UpdHeadshotCount(true);
 	}
 }
 
@@ -133,4 +143,5 @@ reliable client function HeadShotMessage( byte HeadShotNum, bool bMissed, byte M
 defaultproperties
 {
 	bEnabledUI=false
+	HeadShotMax=5
 }

@@ -1,41 +1,38 @@
-Class Ext_TraitMetronome extends Ext_TraitBase;
+Class Ext_TraitPendulum extends Ext_TraitBase;
 
-var array<byte> IntervallSize;
+var array<float> IntervallSize;
 var array<byte> MaxStackSize;
 
 static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkMetronomeBase(Perk).SetIntervall(Default.IntervallSize[Level-1]);
-	Ext_PerkMetronomeBase(Perk).SetMaxStack(Default.MaxStackSize[Level-1]);
-	Ext_PerkMetronomeBase(Perk).EnableMetronome(true);
+	Ext_PerkPendulumBase(Perk).SetIntervall(Default.IntervallSize[Level-1]);
+	Ext_PerkPendulumBase(Perk).SetMaxStack(Default.MaxStackSize[Level-1]);
+	Ext_PerkPendulumBase(Perk).EnableMetronome(true);
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkMetronomeBase(Perk).EnableMetronome(false);
+	Ext_PerkPendulumBase(Perk).EnableMetronome(false);
 }
 static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkMetronomeBase(Perk).EnableUI(true);
+	Ext_PerkPendulumBase(Perk).EnableUI(true);
 }
 static function PlayerDied( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkMetronomeBase(Perk).EnableUI(false);
+	Ext_PerkPendulumBase(Perk).EnableUI(false);
 }
 
 defaultproperties
 {
-	SupportedPerk=class'Ext_PerkMetronomeBase'
+	SupportedPerk=class'Ext_PerkPendulumBase'
 	DefLevelCosts(0)=25
-	DefLevelCosts(1)=30
-	DefLevelCosts(2)=40
-	DefLevelCosts(3)=75
+	DefLevelCosts(1)=45
+	DefLevelCosts(2)=35
 	IntervallSize.Add(30)
-	IntervallSize.Add(20)
 	IntervallSize.Add(15)
 	IntervallSize.Add(15)
-	MaxStackSize.Add(1)
 	MaxStackSize.Add(1)
 	MaxStackSize.Add(1)
 	MaxStackSize.Add(2)
-	NumLevels=4
+	NumLevels=3
 }
