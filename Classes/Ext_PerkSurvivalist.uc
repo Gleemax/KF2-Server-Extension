@@ -11,6 +11,20 @@ replication
 		bHasMadman;
 }
 
+// Player joined/perk changed.
+function ActivateTraits()
+{
+	super.ActivateTraits();
+	SetTimer(0.25,true,nameof(SetRandomGrenade));
+}
+
+// Player disconnected/perk changed.
+function DeactivateTraits()
+{
+	super.DeactivateTraits();
+	ClearTimer(nameof(SetRandomGrenade));
+}
+
 simulated function ModifyMeleeAttackSpeed( out float InDuration )
 {
 	InDuration *= Modifiers[4];
@@ -26,12 +40,6 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 	}
 		
 	super.ModifyDamageTaken(InDamage,DamageType,InstigatedBy);
-}
-
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-	SetTimer(0.25,true,nameof(SetRandomGrenade));
 }
 
 function OnWaveEnded()
@@ -105,12 +113,6 @@ simulated function SetRandomGrenade()
 		} else
 			GrenadeClass = PerkGrenade;
 	}
-}
-
-simulated function Destroyed()
-{
-	ClearTimer(nameof(SetRandomGrenade));
-	super.Destroyed();
 }
 
 defaultproperties

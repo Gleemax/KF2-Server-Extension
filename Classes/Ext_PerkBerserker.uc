@@ -10,6 +10,20 @@ replication
 		bSpartanAttack;
 }
 
+// Player joined/perk changed.
+function ActivateTraits()
+{
+	super.ActivateTraits();
+	SetTimer(0.99+FRand()*0.02,true,nameof(HealthRegen));
+}
+
+// Player disconnected/perk changed.
+function DeactivateTraits()
+{
+	super.DeactivateTraits();
+	ClearTimer(nameof(HealthRegen));	
+}
+
 simulated function ModifyMeleeAttackSpeed( out float InDuration )
 {
 	InDuration *= Modifiers[4];
@@ -47,22 +61,10 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	return 0.f;
 }
 
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-	SetTimer(0.99+FRand()*0.02,true,nameof(HealthRegen));
-}
-
 simulated function HealthRegen()
 {
 	if( PlayerOwner.Pawn.Health>0 && PlayerOwner.Pawn.Health<PlayerOwner.Pawn.HealthMax )
 		PlayerOwner.Pawn.Health = Min(PlayerOwner.Pawn.HealthMax, PlayerOwner.Pawn.Health + 1);
-}
-
-simulated function Destroyed()
-{
-	ClearTimer(nameof(HealthRegen));
-	super.Destroyed();
 }
 
 defaultproperties
