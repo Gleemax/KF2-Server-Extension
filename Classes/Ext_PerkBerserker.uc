@@ -34,7 +34,7 @@ simulated function ModifyDamageTaken( out int InDamage, optional class<DamageTyp
 {
 	if( InDamage>0 )
 	{
-		if( (!PerkManager.bUseBounty) && (InstigatedBy.GetTeamNum()==0 && InstigatedBy!=PlayerOwner ) && class<KFDamageType>(DamageType)!=None )
+		if( (!PerkManager.bBountyHunter) && (InstigatedBy.GetTeamNum()==0 && InstigatedBy!=PlayerOwner ) && class<KFDamageType>(DamageType)!=None )
 			InDamage = Max(Indamage*0.5f, 1);
 	}
 			

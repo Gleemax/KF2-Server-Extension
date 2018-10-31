@@ -1011,6 +1011,7 @@ final function DrawDamage()
 simulated function SearchInventoryForNewItem()
 {
 	local int i,j;
+	local string Item;
 
 	if( WasNewlyAdded.Length!=OnlineSub.CurrentInventory.Length )
 		WasNewlyAdded.Length = OnlineSub.CurrentInventory.Length;
@@ -1025,11 +1026,12 @@ simulated function SearchInventoryForNewItem()
 
 			if(j != INDEX_NONE)
 			{
-				NewItems.Insert(0,1);
-				NewItems[0].Icon = Texture2D(DynamicLoadObject(OnlineSub.ItemPropertiesList[j].IconURL,Class'Texture2D'));
-				NewItems[0].Item = OnlineSub.ItemPropertiesList[j].Name$" ["$RarityStr(OnlineSub.ItemPropertiesList[j].Rarity)$"]";
-				NewItems[0].MsgTime = WorldInfo.TimeSeconds;
-				ExtPlayerController(Owner).ServerItemDropGet(NewItems[0].Item);
+				// NewItems.Insert(0,1);
+				// NewItems[0].Icon = Texture2D(DynamicLoadObject(OnlineSub.ItemPropertiesList[j].IconURL,Class'Texture2D'));
+				// NewItems[0].Item = OnlineSub.ItemPropertiesList[j].Name$" ["$RarityStr(OnlineSub.ItemPropertiesList[j].Rarity)$"]";
+				// NewItems[0].MsgTime = WorldInfo.TimeSeconds;
+				Item = OnlineSub.ItemPropertiesList[j].Name$" ["$RarityStr(OnlineSub.ItemPropertiesList[j].Rarity)$"]";
+				ExtPlayerController(Owner).ServerItemDropGet(Item);
 			}
 		}
 	}

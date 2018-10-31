@@ -12,6 +12,7 @@ static final function string FormatTimeSMH (float Sec)
     Minutes = Seconds / 60;
     Seconds -= Minutes * 60;
     Hours = Minutes / 60;
+	Minutes -= Hours * 60;
 
     return ((Hours < 1) ? "0" $Hours : string (Hours)) @":" @((Minutes < 10) ? "0" $Minutes : string (Minutes)) @":" @((Seconds < 10) ? "0" $Seconds : string (Seconds));
 }

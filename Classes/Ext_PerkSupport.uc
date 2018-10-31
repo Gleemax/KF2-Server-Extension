@@ -43,7 +43,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitEliteReload')
 	DefTraitList.Add(class'Ext_TraitPenetrator')
 	BasePerk=class'KFPerk_Support'
-	WeldExpUpNum=80
+	WeldExpUpNum=20
 
 	DefPerkStats(0)=(MaxValue=20,CostPerValue=2)
 	DefPerkStats(8)=(bHiddenConfig=false)

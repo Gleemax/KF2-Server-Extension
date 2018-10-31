@@ -3,27 +3,19 @@ Class Ext_PerkRhythmPerkBase extends Ext_PerkBase;
 var byte HeadShotComboCount,MaxRhythmCombo;
 var float RhythmComboDmg,CountdownIntervall,HeadShotMultiplier;
 
+replication
+{
+	// Things the server should send to the client.
+	if ( true )
+		HeadShotComboCount,MaxRhythmCombo;
+}
+
 simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
 
-	if( HitZoneIdx == HZI_Head)
-	{
-		if( MaxRhythmCombo<=0 )
-			return;
-
-		if ( MyKFPM != none && MyKFPM.GetTeamNum()!=0 && MyKFPM.IsAliveAndWell() )
-		{
-			if( IsDamageTypeOnPerk(DamageType, BasePerk) )
-				UpdateDmgScale(true);
-		}
-
-		if( RhythmComboDmg>0 && BasePerk==None || IsWeaponOnPerk(KFWeapon(DamageCauser)) || IsDamageTypeOnPerk(DamageType, BasePerk) )
-		{
-			InDamage *= (1.f+RhythmComboDmg);
-		}
-	}
-	
+	if( RhythmComboDmg>0 && BasePerk==None || IsWeaponOnPerk(KFWeapon(DamageCauser)) || IsDamageTypeOnPerk(DamageType, BasePerk) )
+		InDamage *= (1.f+RhythmComboDmg);
 }
 
 final function SetMaxRhythm( byte MaxCombo )
@@ -73,6 +65,23 @@ final function ReduceDmgScale()
 		HeadShotComboCount=0;
 		ClearTimer(nameOf(UpdateDmgScale));
 	}
+}
+
+function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit )
+{
+   	local int HitZoneIdx;
+   	local KFPawn KFPM;
+ 	
+	if( MaxRhythmCombo<=0 )
+		return;
+   	KFPM = KFPawn_Monster(Impact.HitActor);
+   	if( KFPM==none || (KFPM.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale==0.f) )
+   		return;
+
+   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
+   	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
+		if( class<KFDamageType>(DamageType)!=None && IsDamageTypeOnPerk(DamageType, BasePerk) )
+			UpdateDmgScale(true);
 }
 reliable client function HeadShotMessage( byte HeadShotNum, bool bMissed, byte MaxHits )
 {

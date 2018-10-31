@@ -33,10 +33,9 @@ var int TotalEXP,TotalKills,TotalPlayTime;
 
 // Bounty Exp
 var int BountyExp; 
-var float BountyTransRatio; 
-var bool bEarnedSelfBounty;
+var float BountyExpRatio; 
 
-var bool bStatsDirty,bServerReady,bUserStatsBroken,bCurrentlyHealing,bUseBounty;
+var bool bStatsDirty,bServerReady,bUserStatsBroken,bCurrentlyHealing,bBountyHunter;
 
 replication
 {
@@ -188,7 +187,7 @@ simulated function InitPerks()
 			PRIOwner.RepEXP = TotalEXP;
 			PRIOwner.SetInitPlayTime(TotalPlayTime);
 			PRIOwner.PerkManager = Self;
-			PRIOwner.bUseBounty = bUseBounty;
+			PRIOwner.bBountyHunter = bBountyHunter;
 		}
 	}
 }
@@ -258,18 +257,31 @@ function EarnedEXP( int EXP, optional byte Mode )
 			PRIOwner.RepEXP+=EXP;
 			bStatsDirty = true;
 		}
-		if( EXP>0 && bUseBounty )
+		if( EXP>0 && BountyExpRatio>0.001 )
 		{
-			BountyExp+=EXP*BountyTransRatio;
+			BountyExp+=EXP*BountyExpRatio;
 			PRIOwner.BountyExp=BountyExp;
 		}
 	}
 }
 
+function AchieveBountyExp()
+{
+	if( BountyExp>0 )
+	{
+		ExtPlayerController(Owner).AddBountyPoints(BountyExp);
+		BountyExp = 0;
+		PRIOwner.BountyExp = BountyExp;
+		if( !KFGameReplicationInfo(WorldInfo.GRI).IsBossWave() )
+			ResetBountyExp();
+	}
+}
 function ResetBountyExp()
 {
-	bEarnedSelfBounty = true;
-	BountyExp = CurrentPerk.CalcBountyExp();
+	if( CurrentPerk.BaseBountyExp>0 )
+		BountyExp = Max(BountyExp, CurrentPerk.CalcBountyExp());
+	else
+		BountyExp = 0;
 	PRIOwner.BountyExp = BountyExp;
 }
 
@@ -717,16 +729,16 @@ function GameExplosion GetExplosionTemplate()
 function OnWaveEnded()
 {
 	CurrentPerk.OnWaveEnded();
-	if( bUseBounty )
-	{
-		if( bEarnedSelfBounty )
-			ExtPlayerController(Owner).AddBountyPoints(BountyExp);
-		ResetBountyExp();
-	}
+	AchieveBountyExp();
 }
 function OnWaveStart()
 {
 	CurrentPerk.OnWaveStart();
+}
+function OnGameEnd()
+{
+	if( KFGameReplicationInfo(WorldInfo.GRI).IsBossWave() )
+		AchieveBountyExp();
 }
 
 function NotifyZedTimeStarted()

@@ -75,15 +75,17 @@ simulated function bool Died(Controller Killer, class<DamageType> damageType, ve
 	if( WorldInfo.NetMode!=NM_Client && PlayerReplicationInfo!=None )
 	{
 		PM = ExtPlayerController(Controller).ActivePerkManager;
-		if ( PM.bUseBounty && PM.BountyExp > 0 )
+		if ( PM.bBountyHunter && PM.BountyExp > 0 )
 		{
-			if ( Killer.GetTeamNum()!=0  || Killer==Controller )
-				PM.bEarnedSelfBounty = false;
-			else 
+			if ( Killer.GetTeamNum()==0 && Killer!=Controller )
 			{
 				ExtPlayerController(Killer).AddBountyPoints(PM.BountyExp);
 				PM.BountyExp = 0;
 				PM.PRIOwner.BountyExp = 0;
+			} 
+			else 
+			{
+				PM.ResetBountyExp();
 			}
 		}
 		if( Killer==None || Killer==Controller )

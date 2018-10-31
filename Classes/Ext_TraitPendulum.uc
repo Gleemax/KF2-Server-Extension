@@ -7,11 +7,11 @@ static function TraitActivate( Ext_PerkBase Perk, byte Level, optional Ext_Trait
 {
 	Ext_PerkPendulumBase(Perk).SetIntervall(Default.IntervallSize[Level-1]);
 	Ext_PerkPendulumBase(Perk).SetMaxStack(Default.MaxStackSize[Level-1]);
-	Ext_PerkPendulumBase(Perk).EnableMetronome(true);
+	Ext_PerkPendulumBase(Perk).EnablePendulum(true);
 }
 static function TraitDeActivate( Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {
-	Ext_PerkPendulumBase(Perk).EnableMetronome(false);
+	Ext_PerkPendulumBase(Perk).EnablePendulum(false);
 }
 static function ApplyEffectOn( KFPawn_Human Player, Ext_PerkBase Perk, byte Level, optional Ext_TraitDataStore Data )
 {

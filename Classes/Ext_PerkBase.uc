@@ -128,7 +128,7 @@ static function bool IsDamageTypeOnPerk( class<DamageType> DT, class<KFPerk> Per
 	KFDT = class<KFDamageType>(DT);
 	if( KFDT != none )
 	{
-		return KFDT.default.ModifierPerkList.Find(Perk)>=0 || 
+		return KFDT.default.ModifierPerkList.Find(Perk)>=0 ||
 			default.AdditionalOnPerkDT.Find( KFDT.name )>=0;
 	}
 
@@ -141,12 +141,12 @@ simulated static function string GetPerkIconPath( int Level )
 }
 
 
-simulated static function string GetPrestigeIconPath( int PrestigeLevel, int MaxPrestige )
+simulated static function string GetPrestigeIconPath( int PrestigeLevel, int MaxPrestigeLevel )
 {
 	local int PrestigeProgress;
 	if( PrestigeLevel>0 )
 	{
-		PrestigeProgress = (PrestigeLevel-1)*5/MaxPrestige;
+		PrestigeProgress = (PrestigeLevel-1)*5/MaxPrestigeLevel;
 		return "img://"$PathName(default.PrestigeIcons[PrestigeProgress]);
 	}
 	else
@@ -511,7 +511,7 @@ final function int CalcBountyExp()
 
 	LevelRatio = (float(CurrentLevel)-float(MinimumLevel))/(float(MaximumLevel)-float(MinimumLevel));
 	if( LevelRatio > 0 && LevelRatio <= 1.f )
-		BountyExp *= (1.f + LevelRatio * 2.f);
+		BountyExp *= (1.f + LevelRatio );
 
 	PrestigeRatio = float(CurrentPrestige)/float(MaxPrestige);
 	if( PrestigeRatio > 0 && PrestigeRatio <= 1.f )
@@ -710,7 +710,7 @@ static function UpdateConfigs( int OldVer )
 			AddStatsCfg(20); // Add Switch Speed/Bodsysize Scalar
 		}
 		else if( OldVer<=14 )
-			Default.BaseBountyExp = 500;
+			Default.BaseBountyExp = 0;
 		
 
 		Default.TraitClasses.Length = Default.DefTraitList.Length;
@@ -910,7 +910,7 @@ function ApplyEffectsTo( KFPawn_Human P )
 	if( bCanUseSacrifice )
 		bUsedSacrifice = false;
 
-	if ( PerkManager.bUseBounty && PerkManager.BountyExp <= 0 )
+	if ( BaseBountyExp > 0 )
 		PerkManager.ResetBountyExp();
 }
 
@@ -1354,7 +1354,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 }
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )
 {
-	if( KFW==None ? TraderItem.AssociatedPerkClasses.Find(BasePerk)>=0 : IsWeaponOnPerk(KFW) )
+	if( KFW==None )
 		PrimarySpareAmmo*=Modifiers[11];
 }
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
@@ -1495,8 +1495,8 @@ defaultproperties
 	GrenadeClass=class'KFProj_FragGrenade'
 	PerkGrenade=class'KFProj_FragGrenade'
 	SuperGrenade=class'ExtProj_SUPERGrenade'
-	HealExpUpNum=12
-	WeldExpUpNum=180
+	HealExpUpNum=2
+	WeldExpUpNum=45
 	ToxicDartDamage=15
 	NetPriority=4
 	

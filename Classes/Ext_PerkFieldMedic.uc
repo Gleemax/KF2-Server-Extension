@@ -178,7 +178,7 @@ defaultproperties
 	DefTraitList.Add(class'Ext_TraitZedative')
 	DefTraitList.Add(class'Ext_TraitAirborneAgent')
 	BasePerk=class'KFPerk_FieldMedic'
-	HealExpUpNum=3
+	HealExpUpNum=1
 	
 	HealingSpeedBoostPct = 10.0f
 	HealingDamageBoostPct = 5.0f

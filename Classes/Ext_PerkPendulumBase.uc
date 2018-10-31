@@ -1,11 +1,11 @@
 Class Ext_PerkPendulumBase extends Ext_PerkBase;
 
-var byte HeadShotMax,HeadShotCount,StackCount,StackMax;
-var float StackInterval;
+var byte StackInterval,HeadShotMax,HeadShotCount,StackCount,StackMax;
+var int CooldownCount;
 var KFPawn_Monster LKFPM;
 var bool bCountingDown,bEnabledUI;
 
-final function SetIntervall( float Intervall )
+final function SetIntervall( byte Intervall )
 {
 	StackInterval = Intervall;
 }
@@ -14,26 +14,29 @@ final function SetMaxStack( byte MaxStack )
 	StackMax = MaxStack;
 }
 
-final function EnableMetronome( bool bEnabled )
+final function EnablePendulum( bool bEnabled )
 {
-	if (!bEnabled) 
+	if( !bEnabled ) 
 	{
 		HeadShotCount = 0;
 		StackCount = 0;
 		StackMax = 0;
 		bEnabledUI = false;
 		StackInterval = 0;
+		CooldownCount = 0;
 		HeadShotMessage(0,true,1);
-		ClearTimer(nameOf(AddStack));
+		ClearTimer(nameOf(CooldownTimer));
 	}
 	else 
 	{
-		SetTimer(StackInterval,true,nameOf(AddStack));
+		bCountingDown = true;
+		CooldownCount = StackInterval;
+		SetTimer(1.0f,true,nameOf(CooldownTimer));
 	}
 }
 final function EnableUI( bool bEnabled )
 {
-	if (!bEnabled) 
+	if ( !bEnabled ) 
 	{
 		bEnabledUI = false;
 		HeadShotMessage(0,true,1);
@@ -57,8 +60,10 @@ final function UpdHeadshotCount( bool bHit )
 			KFGI.DramaticEvent(1.0);
 			if ( StackCount >= StackMax)
 			{
-				SetTimer(StackInterval,true,nameOf(AddStack));
 				bCountingDown = true;
+				CooldownCount = StackInterval;
+				SetTimer(1.0f,true,nameOf(CooldownTimer));
+				
 			}
 			if ( --StackCount > 0 )
 				HeadShotCount = HeadShotMax;
@@ -71,15 +76,24 @@ final function UpdHeadshotCount( bool bHit )
 	if ( bEnabledUI )
 		HeadShotMessage(HeadShotCount,true,HeadShotMax);
 }
-final function AddStack()
+final function CooldownTimer()
 {
-	StackCount = Min(StackCount+1, StackMax);
-	if( HeadShotCount <= 0 )
-		UpdHeadshotCount(false);
-	if( StackCount == StackMax )
+	if( WorldInfo.TimeDilation<1.f )
+		return;
+
+	if( --CooldownCount<=0 )
 	{
-		ClearTimer(nameOf(AddStack));
-		bCountingDown = false;
+		StackCount = Min(StackCount+1, StackMax);
+		if( StackCount == StackMax )
+		{
+			bCountingDown = false;
+			CooldownCount = 0;
+			ClearTimer(nameOf(CooldownTimer));
+		}
+		else
+			CooldownCount = StackInterval;
+		if( HeadShotCount <= 0 )
+		UpdHeadshotCount(false);
 	}
 }
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit )

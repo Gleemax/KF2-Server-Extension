@@ -19,7 +19,7 @@ function TickHud(float DeltaTime)
 		}
         else
 		{
-			i = KFGRI.IsFinalWave() ? INDEX_NONE : Max(KFGRI.AIRemaining,0);
+			i = KFGRI.IsBossWave() ? INDEX_NONE : Max(KFGRI.AIRemaining,0);
 			if(LastZEDCount != i)
 			{
 				SetInt("remainingZEDs" ,i);
