@@ -99,13 +99,13 @@ final function CooldownTimer()
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit )
 {
    	local int HitZoneIdx;
-   	local KFPawn_Monster KFPM;
+   	local KFPawn KFP;
  	
 	if( WorldInfo.TimeDilation<1.f || StackCount<=0 || HeadShotCount<=0 )
 		return;
 		
-   	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM==none || KFPM.GetTeamNum()==0 )
+   	KFP = KFPawn(Impact.HitActor);
+   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale==0.f) )
    		return;
 	if ( KFPM != LKFPM )
 	{
