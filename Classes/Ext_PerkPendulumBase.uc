@@ -2,7 +2,7 @@ Class Ext_PerkPendulumBase extends Ext_PerkBase;
 
 var byte StackInterval,HeadShotMax,HeadShotCount,StackCount,StackMax;
 var int CooldownCount;
-var KFPawn_Monster LKFPM;
+var KFPawn KFP;
 var bool bCountingDown,bEnabledUI;
 
 final function SetIntervall( byte Intervall )
@@ -105,16 +105,16 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 		return;
 		
    	KFP = KFPawn(Impact.HitActor);
-   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale==0.f) )
+   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale<=0.f) )
    		return;
-	if ( KFPM != LKFPM )
+	if ( KFP != LKFP )
 	{
 		UpdHeadshotCount(false);
-		LKFPM = KFPM;
+		LKFP = KFP;
 	}
 
-   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
-   	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
+   	HitZoneIdx = KFP.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
+   	if( HitZoneIdx == HZI_Head && KFP.IsAliveAndWell() )
 	{
 		if( IsDamageTypeOnPerk(DamageType, BasePerk) )
 			UpdHeadshotCount(true);

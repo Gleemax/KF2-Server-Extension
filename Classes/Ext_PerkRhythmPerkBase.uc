@@ -75,7 +75,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 	if( MaxRhythmCombo<=0 )
 		return;
    	KFP = KFPawn(Impact.HitActor);
-   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale==0.f) )
+   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale<=0.f) )
    		return;
 
    	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
