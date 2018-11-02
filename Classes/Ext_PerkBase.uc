@@ -1354,7 +1354,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 }
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary )
 {
-	if( KFW==None )
+	if( KFW!=None && PrimarySpareAmmo>0 )
 		PrimarySpareAmmo*=Modifiers[11];
 }
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
