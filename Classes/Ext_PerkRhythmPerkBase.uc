@@ -70,16 +70,16 @@ final function ReduceDmgScale()
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit )
 {
    	local int HitZoneIdx;
-   	local KFPawn KFPM;
+   	local KFPawn KFP;
  	
 	if( MaxRhythmCombo<=0 )
 		return;
-   	KFPM = KFPawn_Monster(Impact.HitActor);
-   	if( KFPM==none || (KFPM.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale==0.f) )
+   	KFP = KFPawn(Impact.HitActor);
+   	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale<=0.f) )
    		return;
 
    	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
-   	if( HitZoneIdx == HZI_Head && KFPM.IsAliveAndWell() )
+   	if( HitZoneIdx == HZI_Head && KFP.IsAliveAndWell() )
 		if( class<KFDamageType>(DamageType)!=None && IsDamageTypeOnPerk(DamageType, BasePerk) )
 			UpdateDmgScale(true);
 }

@@ -16,12 +16,14 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
 
+	if( !bHasPreparation )
+		retrun;
 	if( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) )
 	{
-		if( bHasPreparation && PrepareTimer+1<WorldInfo.TimeSeconds )
+		if( PrepareTimer+1<WorldInfo.TimeSeconds && MyKFPM!=none )
 		{
 			interval = WorldInfo.TimeSeconds-PrepareTimer;
-			InDamage *= 1.f+PrepareDamage*(FClamp(interval/5.f,0.f,1.f));
+			InDamage *= 1.f+PrepareDamage*(FClamp(interval/6.f,0.f,1.5));
 		}
 		PrepareTimer = WorldInfo.TimeSeconds;
 	}
