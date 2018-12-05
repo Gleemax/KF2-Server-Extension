@@ -78,7 +78,7 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
    	if( KFP==none || (KFP.GetTeamNum()==0 && KFGameInfo(WorldInfo.Game).FriendlyFireScale<=0.f) )
    		return;
 
-   	HitZoneIdx = KFPM.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
+   	HitZoneIdx = KFP.HitZones.Find('ZoneName', Impact.HitInfo.BoneName);
    	if( HitZoneIdx == HZI_Head && KFP.IsAliveAndWell() )
 		if( class<KFDamageType>(DamageType)!=None && IsDamageTypeOnPerk(DamageType, BasePerk) )
 			UpdateDmgScale(true);

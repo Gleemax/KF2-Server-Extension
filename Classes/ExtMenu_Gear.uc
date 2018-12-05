@@ -633,7 +633,7 @@ function Callback_Attachment( byte MeshIndex, byte SkinIndex )
 		else
 		{
 			class'ExtCharacterInfo'.Static.DetachConflictingAttachments(CurrentCharInfo, MeshIndex, KFP, ExtPRI);
-			SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP);
+			SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP, ExtPRI);
 			ExtPRI.UpdateCustomization(CO_Attachment, MeshIndex, SkinIndex, SlotIndex);
 		}
 

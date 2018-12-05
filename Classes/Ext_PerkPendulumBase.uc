@@ -2,7 +2,7 @@ Class Ext_PerkPendulumBase extends Ext_PerkBase;
 
 var byte StackInterval,HeadShotMax,HeadShotCount,StackCount,StackMax;
 var int CooldownCount;
-var KFPawn KFP;
+var KFPawn LKFP;
 var bool bCountingDown,bEnabledUI;
 
 final function SetIntervall( byte Intervall )

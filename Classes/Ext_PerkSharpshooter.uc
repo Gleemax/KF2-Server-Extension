@@ -17,7 +17,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	Super.ModifyDamageGiven(InDamage,DamageCauser,MyKFPM,DamageInstigator,DamageType,HitZoneIdx);
 
 	if( !bHasPreparation )
-		retrun;
+		return;
 	if( BasePerk==None || (DamageType!=None && DamageType.Default.ModifierPerkList.Find(BasePerk)>=0) || IsWeaponOnPerk(KFWeapon(DamageCauser)) )
 	{
 		if( PrepareTimer+1<WorldInfo.TimeSeconds && MyKFPM!=none )

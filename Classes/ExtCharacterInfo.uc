@@ -281,7 +281,7 @@ static final function SetAttachmentMeshAndSkin( KFCharacterInfo_Human C,
 	// Clear any previously attachments for the same slot
 	//DetachConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
 	// Get a slot where this attachment could fit
-	AttachmentSlotIndex = C.GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
+	AttachmentSlotIndex = C.GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP, KFPRI);
 
 	// Since cosmetic attachments are optional, do not choose index 0 if none is
 	// specified unlike the the head and body meshes
@@ -373,7 +373,6 @@ static final function SetAttachmentMeshAndSkin( KFCharacterInfo_Human C,
 		}
 
 		// Update the pawn's attachment metadata
-		KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
 		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
 
 		SetAttachmentSkinMaterial(
