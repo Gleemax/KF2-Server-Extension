@@ -104,7 +104,7 @@ simulated function CharListRecieved()
 
 function UpdateEmoteList()
 {
-	local byte ItemIndex, i;
+	local int ItemIndex, i;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 
@@ -135,7 +135,7 @@ function UpdateEmoteList()
 
 function UpdateCharacterList()
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 
@@ -208,7 +208,7 @@ final function string GetMenuNameStr( string ObjName )
 
 function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> Outfits, string DataArrayString)
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath, OutfitName;
 	local OutfitVariants Outfit;
@@ -247,7 +247,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 
 function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local SkinVariant Skin;
 	local SkinVariant FirstSkin;
@@ -284,7 +284,7 @@ function SkinVariant UpdateOutfitVariants(string OutfitKey, string KeyName, out 
 
 function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 	local AttachmentVariants Variant;
@@ -298,6 +298,7 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 	SlotObject = CreateObject( "Object" );
 	SlotObject.SetString("label", class'KFGFxMenu_Gear'.Default.NoneString);
 	SlotObject.SetString("source", "img://"$class'KFGFxMenu_Gear'.Default.ClearImagePath);
+	SlotObject.SetInt("ItemIndex", INDEX_NONE);
 	SlotObject.SetBool("enabled", true);
 	DataProvider.SetElementObject(ItemIndex, SlotObject);
 	ItemIndex++;
@@ -318,22 +319,23 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 		FirstSkin = UpdateCosmeticVariants( class'KFGFxMenu_Gear'.Default.AttachmentKey, class'KFGFxMenu_Gear'.Default.AttachmentSkinKey, Variant.AttachmentItem, i, SlotObject );
 		if( string(FirstSkin.UITexture) == "Bad" )
 			continue;
-			
+
 		SlotObject.SetString("label", AttachmentName);
 		SlotObject.SetBool("enabled", true);
 		TexturePath = "img://"$PathName(FirstSkin.UITexture);
 		SlotObject.SetString("source", TexturePath);
-		
+
 		DataProvider.SetElementObject(ItemIndex, SlotObject);
 		ItemIndex++;
 	}
+
 	
 	SetObject("attachmentsArray", DataProvider);
 }
 
 function SkinVariant UpdateCosmeticVariants(string OutfitKey, string KeyName, KFCharacterAttachment Attachment, int OutfitIndex, out GFxObject MeshObject)
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local SkinVariant Skin;
 	local SkinVariant FirstSkin;
