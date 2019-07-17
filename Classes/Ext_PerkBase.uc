@@ -511,11 +511,11 @@ final function int CalcBountyExp()
 
 	LevelRatio = (float(CurrentLevel)-float(MinimumLevel))/(float(MaximumLevel)-float(MinimumLevel));
 	if( LevelRatio > 0 && LevelRatio <= 1.f )
-		BountyExp *= (1.f + LevelRatio );
+		BountyExp *= (1.f + LevelRatio  / 2.f);
 
 	PrestigeRatio = float(CurrentPrestige)/float(MaxPrestige);
 	if( PrestigeRatio > 0 && PrestigeRatio <= 1.f )
-		BountyExp *= (1.f + LevelRatio / 2.f);
+		BountyExp *= (1.f + PrestigeRatio / 2.f);
 
 	return round(BountyExp);
 }

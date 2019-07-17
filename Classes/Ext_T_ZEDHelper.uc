@@ -154,7 +154,7 @@ final function SpawnHelper()
 		LiveHelper.bWeakZedGrab = true;
 		LiveHelper.bCanGrabAttack = false;
 		if( KFPawn_MonsterBoss(LiveHelper)==None )
-			LiveHelper.DamageScaling *= 2;
+			LiveHelper.DamageScaling *= 3;
 
 		// Scale by previous zed HP.
 		if( PrevMonster!=None )
@@ -238,6 +238,6 @@ defaultproperties
 {
 	RespawnHelperTime=1
 	HPScale=0.25
-	DamageScale=10.0
+	DamageScale=15.0
 	FriendlyScalar=0.85
 }
